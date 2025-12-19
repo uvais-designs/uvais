@@ -3,6 +3,9 @@ const citi = "images/citi.png";
 const cba = "images/cba.png";
 const emis = "images/emis.png";
 const self = "images/self.png";
+const hostel = "images/hostel.png";
+const trunfrun = "images/trunfrun.png";
+
 
 interface CaseStudyProps {
   title: string;
@@ -14,6 +17,7 @@ interface CaseStudyProps {
   image: string;
   tags: string[];
   featured?: boolean;
+  url?: string; // external link
 }
 
 function FeaturedCaseStudyCard({
@@ -24,7 +28,8 @@ function FeaturedCaseStudyCard({
   solution,
   impact,
   image,
-  tags
+  tags,
+  url
 }: CaseStudyProps) {
   return (
     <div className="group cursor-pointer mb-10">
@@ -59,7 +64,6 @@ function FeaturedCaseStudyCard({
               <p className="text-base text-muted-foreground leading-relaxed">{description}</p>
             </div>
 
-
             <div className="flex flex-col md:flex-row gap-4">
               {/* Challenge */}
               <div className="flex-1 glass-card p-4 rounded-xl">
@@ -93,7 +97,14 @@ function FeaturedCaseStudyCard({
                 ))}
               </div>
 
-              <button className="glass-button px-6 py-3 rounded-full text-primary hover:text-primary-foreground group/btn relative overflow-hidden transition-all duration-300 hover:scale-105">
+              {/* External link button */}
+              <a
+                href={url ?? "#"}
+                target={url ? "_blank" : undefined}
+                rel={url ? "noopener noreferrer" : undefined}
+                className="inline-block glass-button px-6 py-3 rounded-full text-primary hover:text-primary-foreground group/btn relative overflow-hidden transition-all duration-300 hover:scale-105"
+                aria-label={`Open ${title} project`}
+              >
                 <span className="relative z-10 flex items-center gap-2">
                   Explore This Project
                   <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -101,7 +112,7 @@ function FeaturedCaseStudyCard({
                   </svg>
                 </span>
                 <div className="absolute inset-0 bg-primary scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left rounded-full"></div>
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -117,7 +128,8 @@ function CompactCaseStudyCard({
   description,
   challenge,
   image,
-  tags
+  tags,
+  url
 }: CaseStudyProps) {
   return (
     <div className="group cursor-pointer">
@@ -144,10 +156,8 @@ function CompactCaseStudyCard({
           <div className="space-y-3 flex-1">
             <div className="glass-card p-3 rounded-lg">
               <h4 className="font-medium text-foreground text-xs mb-1 titlecase tracking-wide "><b>My Part</b></h4>
-              <p className="text-xs text-muted-foreground line-clamp-5"><ul>{challenge}</ul></p>
+              <p className="text-xs text-muted-foreground line-clamp-5">{challenge}</p>
             </div>
-
-
           </div>
 
           <div className="space-y-3 mt-auto pt-4">
@@ -167,9 +177,16 @@ function CompactCaseStudyCard({
               )}
             </div>
 
-            <button className="w-full glass-button py-2 rounded-lg text-primary text-xs font-medium hover:scale-105 transition-all duration-200">
+            {/* External link button */}
+            {/* <a
+              href={url ?? "#"}
+              target={url ? "_blank" : undefined}
+              rel={url ? "noopener noreferrer" : undefined}
+              className="w-full glass-button py-2 rounded-lg text-primary text-xs font-medium hover:scale-105 transition-all duration-200 inline-block text-center"
+              aria-label={`Open ${title} project`}
+            >
               View Project
-            </button>
+            </a> */}
           </div>
         </div>
       </div>
@@ -178,20 +195,20 @@ function CompactCaseStudyCard({
 }
 
 export function CaseStudies() {
-  const caseStudies = [
+  const caseStudies: CaseStudyProps[] = [
     {
       title: "Streamlining the Sea: A UX Overhaul for Kognitive Cloud",
       category: "Featured Work",
       description: "Led a comprehensive UX redesign for Kognitive Cloud, enhancing user engagement and operational efficiency across their platform.Redesigned outdated workflows and screens into a usable, responsive interface based on customer needs.This revamp empowers maritime users—especially those using Starlink—to manage networks effortlessly in their day-to-day operations.",
       challenge: "Users, especially in the maritime sector, struggled with an outdated UI that wasn’t optimized for modern workflows or hardware integrations like Starlink.",
       solution: "I reimagined old screens from a user-centered perspective simplifying flows, applying consistent UI patterns, and ensuring accessibility across devices. I also introduced scalable components to support new feature rollouts.",
-      results: "The result is a more intuitive, task-focused experience. Daily operations became faster and less error-prone, and feedback from maritime users showed a clear increase in satisfaction and adoption.",
       impact: [
         "The result is a more intuitive, task-focused experience. Daily operations became faster and less error-prone, and feedback from maritime users showed a clear increase in satisfaction and adoption."
       ],
       image: Kognitive,
       tags: ["UX Strategy", "Design Systems", "User Research", "Leadership"],
-      featured: true
+      featured: true,
+      url: "https://www.kognitive.net/"
     },
     {
       title: "Enterprise Banking Platform – LATAM Region",
@@ -206,7 +223,8 @@ export function CaseStudies() {
       ],
       image: citi,
       tags: ["Finance", "Mobile UX", "Conversion"],
-      featured: false
+      featured: false,
+      url: "https://uvais.design/projects/enterprise-banking"
     },
     {
       title: "Retail Banking Dashboard – APAC Region",
@@ -221,7 +239,8 @@ export function CaseStudies() {
       ],
       image: cba,
       tags: ["Banking", "Design Guide", "Prototypes"],
-      featured: false
+      featured: false,
+      url: "https://uvais.design/projects/retail-banking"
     },
     {
       title: "Tamil Nadu EMIS Portal – School Education Platform",
@@ -236,7 +255,8 @@ export function CaseStudies() {
       ],
       image: emis,
       tags: ["Education", "Government", "User Research"],
-      featured: false
+      featured: false,
+      url: "https://uvais.design/projects/emis-tn"
     },
     {
       title: "Self-Initiated Projects for Skill Growth",
@@ -251,7 +271,8 @@ export function CaseStudies() {
       ],
       image: self,
       tags: ["EdTech", "Gamification", "Social Learning"],
-      featured: false
+      featured: false,
+      url: "https://uvais.design/projects/self-initiated"
     }
   ];
 
@@ -284,13 +305,14 @@ export function CaseStudies() {
             impact={featuredProject.impact}
             image={featuredProject.image}
             tags={featuredProject.tags}
+            url={featuredProject.url}
           />
         )}
 
         {/* Other Projects Grid */}
         <div className="space-y-8">
           <div className="text-center">
-            <h3 className="text-2xl font-semibold text-foreground mb-2">More Projects</h3>
+            <h3 className="text-2xl font-semibold text-foreground mb-2">Work Projects</h3>
             <p className="text-muted-foreground">A selection of impactful design solutions</p>
           </div>
 
@@ -306,7 +328,47 @@ export function CaseStudies() {
                   impact={study.impact}
                   image={study.image}
                   tags={study.tags}
+                  url={study.url}
                 />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Personal Projects */}
+        <div className="mt-16">
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-semibold text-foreground">Personal Projects</h3>
+            <p className="text-muted-foreground">Small experiments and side projects</p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
+            {[
+              { title: "Hostel Management", image: hostel, url: "https://uvais.design/projects/tiny-weather" },
+              { title: "TrunFrun - Upcoming", image: trunfrun, url: "" },
+            ].map((p, i) => (
+              <div key={i} className="glass-card rounded-2xl overflow-hidden flex flex-col">
+                <div className="relative h-40 overflow-hidden">
+                  <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                </div>
+
+                <div className="p-4 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-2 line-clamp-2">{p.title}</h4>
+                  </div>
+
+                  <div className="mt-4">
+                    <a
+                      href={p.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block w-full text-center py-2 rounded-md glass-button text-primary hover:scale-105 transition-all duration-200"
+                      aria-label={`View ${p.title}`}
+                    >
+                      View Project
+                    </a>
+                  </div>
+                </div>
               </div>
             ))}
           </div>

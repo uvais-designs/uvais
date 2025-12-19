@@ -22,10 +22,10 @@ interface ProfileCardProps {
   onContactClick?: () => void;
 }
 
-const DEFAULT_BEHIND_GRADIENT = 
+const DEFAULT_BEHIND_GRADIENT =
   "radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(59, 130, 246, 0.15), transparent 80%)";
 
-const DEFAULT_INNER_GRADIENT = 
+const DEFAULT_INNER_GRADIENT =
   "linear-gradient(to right, rgba(59, 130, 246, 0.05), transparent)";
 
 const ANIMATION_CONFIG = {
@@ -236,32 +236,32 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     const pointerLeaveHandler = handlePointerLeave as EventListener;
     const deviceOrientationHandler = handleDeviceOrientation as EventListener;
 
-   
+
 
     const handleDeviceMotion = () => {
-  if (!enableMobileTilt) return;
+      if (!enableMobileTilt) return;
 
-  // ✅ Safe check for iOS-only method
-  if (
-    typeof DeviceOrientationEvent !== "undefined" &&
-    typeof (DeviceOrientationEvent as any).requestPermission === "function"
-  ) {
-    (DeviceOrientationEvent as any)
-      .requestPermission()
-      .then((state: string) => {
-        if (state === "granted") {
-          window.addEventListener(
-            "deviceorientation",
-            deviceOrientationHandler
-          );
-        }
-      })
-      .catch((err: any) => console.error(err));
-  } else {
-    // ✅ All non-iOS devices
-    window.addEventListener("deviceorientation", deviceOrientationHandler);
-  }
-};
+      // ✅ Safe check for iOS-only method
+      if (
+        typeof DeviceOrientationEvent !== "undefined" &&
+        typeof (DeviceOrientationEvent as any).requestPermission === "function"
+      ) {
+        (DeviceOrientationEvent as any)
+          .requestPermission()
+          .then((state: string) => {
+            if (state === "granted") {
+              window.addEventListener(
+                "deviceorientation",
+                deviceOrientationHandler
+              );
+            }
+          })
+          .catch((err: any) => console.error(err));
+      } else {
+        // ✅ All non-iOS devices
+        window.addEventListener("deviceorientation", deviceOrientationHandler);
+      }
+    };
 
 
     // Try to initialize device orientation immediately
@@ -318,58 +318,93 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   }, [onContactClick]);
 
   return (
-    <section className="p-[25px] flex items-center justify-center w-full min-h-screen">
-    <div
-      ref={wrapRef}
-      className={`pc-card-wrapper ${className}`.trim()}
-      style={cardStyle}
-    >
-      <section ref={cardRef} className="pc-card">
-        <div className="pc-inside">
-          <div className="pc-content pc-avatar-content">
-            <img
-              className="avatar"
-              src={avatarUrl}
-              alt={`${name || "User"} avatar`}
-              loading="lazy"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = "none";
-              }}
-            />
-            {showUserInfo && (
-              <div className="pc-user-info">
-                <button
+    <section className="grid gap-16">
+
+      <div
+        ref={wrapRef}
+        className={` mx-auto px-4 text-center relative z-10 mt-40 ${className}`.trim()}
+        style={cardStyle}
+      >
+        <section ref={cardRef} className="pc-card">
+          <div className="pc-inside">
+            <div className="pc-content pc-avatar-content">
+              <img
+                className="avatar"
+                src={avatarUrl}
+                alt={`${name || "User"} avatar`}
+                loading="lazy"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = "none";
+                }}
+              />
+              {showUserInfo && (
+                <div className="pc-user-info">
+                  <button
                   // className="pc-contact-btn"
                   // onClick={handleContactClick}
                   // style={{ pointerEvents: "auto" }}
                   // type="button"
                   // aria-label={`Contact ${name || "user"}`}
-                >
-                  {/* {downloadText} */}
-                </button>
-                <button
-                  className="pc-contact-btn"
-                  onClick={handleContactClick}
-                  style={{ pointerEvents: "auto" }}
-                  type="button"
-                  aria-label={`Contact ${name || "user"}`}
-                >
-                  {contactText}
-                </button>
+                  >
+                    {/* {downloadText} */}
+                  </button>
+                  <button
+                    className="pc-contact-btn"
+                    onClick={handleContactClick}
+                    style={{ pointerEvents: "auto" }}
+                    type="button"
+                    aria-label={`Contact ${name || "user"}`}
+                  >
+                    {contactText}
+                  </button>
+                </div>
+              )}
+            </div>
+            <div className="pc-content">
+              <div className="pc-details">
+                <h3>{name}</h3>
+                <p>{title}</p>
               </div>
-            )}
-          </div>
-          <div className="pc-content">
-            <div className="pc-details">
-              <h3>{name}</h3>
-              <p>{title}</p>
             </div>
           </div>
+        </section>
+      </div>
+      <div className="container mx-auto px-4 text-center relative z-10">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="space-y-6">
+            <div className="space-y-4 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                Crafting meaningful digital experiences that bridge user needs with business goals.
+                Passionate about design systems, team leadership, and creating products that make a difference.
+              </p>
+            </div>
+          </div>
+
+          {/* Personal stats with glass cards */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
+            {[
+              { number: "5+", label: "Years Experience" },
+              { number: "8+", label: "Projects" },
+              { number: "4+", label: "Teams Worked" },
+              { number: "5+", label: "Certifications" }
+            ].map((stat, index) => (
+              <div key={index} className="glass-card p-6 rounded-2xl hover:scale-105 transition-all duration-300 group">
+                <div className="space-y-2">
+                  <div className="text-2xl md:text-3xl font-bold text-primary group-hover:scale-110 transition-transform duration-300">
+                    {stat.number}
+                  </div>
+                  <div className="text-sm text-muted-foreground font-semibold text-blue-500 group-hover:text-primary transition-colors duration-300 ">
+                    {stat.label}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </section>
-    </div>
-      </section>
+      </div>
+
+    </section>
 
   );
 };

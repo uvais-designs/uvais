@@ -13,10 +13,8 @@ import ProfileCard from './components/ProfileCard'
 
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);  //change this to show the loader
   const [showContent, setShowContent] = useState(true);
-
-  //change this to true to show the loader
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
@@ -81,7 +79,6 @@ export default function App() {
                   }
                 }}
               />
-              <Hero />
               <CaseStudies />
               <Experience />
               <Education />

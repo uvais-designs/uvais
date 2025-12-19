@@ -38,7 +38,7 @@ export function Experience() {
     },
     {
       role: "UX Designer",
-      company: "Tata Consultancy Services",
+      company: "TCS",
       period: "2023 - 2025",
       description: "Designed for diffrent banking clients, improving UX by 35%.",
     },
