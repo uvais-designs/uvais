@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HostelHub – UX Case Study</title>
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #16a34a;
+            --accent: #f59e0b;
+            --bg: #f8fafc;
+            --text: #0f172a;
+            --muted: #64748b;
+            --card: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: Inter, system-ui, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 48px 20px;
+        }
+
+        /* TYPOGRAPHY */
+        h1 {
+            font-size: 42px;
+        }
+
+        h2 {
+            font-size: 30px;
+        }
+
+        h3 {
+            font-size: 20px;
+        }
+
+        p {
+            color: var(--muted);
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 64px 48px;
+            border-radius: 28px;
+            margin-bottom: 80px;
+        }
+
+        /* LAYOUT */
+        section {
+            margin-bottom: 80px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 32px;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        /* CARD */
+        .card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 28px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+        }
+
+        /* PLACEHOLDER (CLICKABLE) */
+        .placeholder {
+            height: 220px;
+            border: 2px dashed var(--border);
+            border-radius: 20px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .placeholder:hover {
+            background: #eef2ff;
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.8);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 900px;
+            width: 100%;
+            border-radius: 20px;
+            padding: 24px;
+            position: relative;
+        }
+
+        .modal img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 80px;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #16a34a;
+            --accent: #f59e0b;
+            --bg: #f8fafc;
+            --text: #0f172a;
+            --muted: #64748b;
+            --card: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: Inter, system-ui, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 48px 20px;
+        }
+
+        /* TYPOGRAPHY */
+        h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            color: var(--muted);
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 64px 48px;
+            border-radius: 28px;
+            margin-bottom: 80px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            color: #fff;
+        }
+
+        /* LAYOUT */
+        section {
+            margin-bottom: 80px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 32px;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        /* CARD */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+        }
+
+        /* PERSONA */
+        .persona-icon {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        ul {
+            padding-left: 18px;
+            color: var(--muted);
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        /* FLOW */
+        .flow {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .flow-step {
+            padding: 12px 18px;
+            background: #f1f5f9;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .flow-step.primary {
+            background: #e0e7ff;
+            color: var(--primary);
+        }
+
+        .flow-step.secondary {
+            background: #dcfce7;
+            color: var(--secondary);
+        }
+
+        .flow-arrow {
+            color: var(--muted);
+            font-size: 18px;
+        }
+
+        /* HIGHLIGHT BOX */
+        .highlight {
+            background: #fef3c7;
+            border-left: 6px solid var(--accent);
+            padding: 20px;
+            border-radius: 16px;
+            color: #92400e;
+        }
+
+        /* PLACEHOLDERS */
+        .placeholder {
+            height: 220px;
+            border: 2px dashed var(--border);
+            border-radius: 20px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 100px;
+        }
+
+        /* ZOOM CONTROLS */
+        .zoom-controls {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .zoom-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            background: #0f172a;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .zoom-btn:hover {
+            background: #2563eb;
+        }
+
+        /* ZOOM IMAGE */
+        .zoomable {
+            transform-origin: center center;
+            transition: transform 0.25s ease;
+        }
+
+        /* DRAG SUPPORT */
+        .zoom-wrapper {
+            overflow: hidden;
+            cursor: grab;
+        }
+
+        .zoom-wrapper.dragging {
+            cursor: grabbing;
+        }
+
+        .zoomable {
+            user-select: none;
+            -webkit-user-drag: none;
+            transform-origin: center center;
+            transition: transform 0.25s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <section class="hero">
+            <h1>HostelHub</h1>
+            <p>
+                A dual-role mobile app designed to simplify PG management for owners
+                and enable transparent, real-time PG discovery for hostellers.
+            </p>
+        </section>
+
+        <!-- OVERVIEW -->
+        <section>
+            <h2>Project Overview</h2>
+            <p>
+                HostelHub replaces manual PG management and unreliable discovery methods
+                with a structured, visual, and role-based digital experience.
+            </p>
+        </section>
+
+        <!-- PROBLEM -->
+        <section>
+            <h2>Problem Statement</h2>
+            <div class="card">
+                <p>
+                    PG owners track occupancy using notebooks or spreadsheets, while hostellers
+                    rely on brokers or outdated listings. This causes confusion, lack of trust,
+                    and inefficiency for both sides.
+                </p>
+            </div>
+        </section>
+
+        <!-- PERSONAS -->
+        <section>
+            <h2>User Personas</h2>
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="persona-icon">🔑</div>
+                    <h3>PG Owner</h3>
+                    <ul>
+                        <li>Manages multiple rooms</li>
+                        <li>Needs quick occupancy overview</li>
+                        <li>Wants control over tenants</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="persona-icon">🧳</div>
+                    <h3>Hosteller</h3>
+                    <ul>
+                        <li>New to the city</li>
+                        <li>Needs real-time availability</li>
+                        <li>Wants transparent pricing</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOLUTION -->
+        <section>
+            <h2>Solution</h2>
+            <div class="highlight">
+                A visual room-grid system for PG owners combined with
+                location-based PG discovery for hostellers, connected through
+                a secure approval workflow.
+            </div>
+        </section>
+
+        <!-- KEY USER FLOWS -->
+        <section>
+            <h2>Key User Flows</h2>
+
+            <div class="grid grid-2">
+
+                <div class="card">
+                    <h3>PG Owner Flow</h3>
+                    <div class="flow">
+                        <div class="flow-step primary">Create PG</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">Define Floors</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">Define Rooms</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">Manage Grid</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">Configure Rooms</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step secondary">Accept Join Requests</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Hosteller Flow</h3>
+                    <div class="flow">
+                        <div class="flow-step primary">Select Location</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">Browse PGs</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">View PG Details</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">Select Room</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">Upload Proof</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step secondary">Request Approval</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- DESIGN DECISIONS -->
+        <section>
+            <h2>Key Design Decisions</h2>
+            <div class="grid grid-3">
+                <div class="card">
+                    <h3>Room Grid</h3>
+                    <p>Matches real-world mental model of floors and rooms.</p>
+                </div>
+                <div class="card">
+                    <h3>Color Coding</h3>
+                    <p>Red, yellow, green indicate occupancy instantly.</p>
+                </div>
+                <div class="card">
+                    <h3>Approval Flow</h3>
+                    <p>Builds trust and prevents unauthorized entry.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDGE CASES -->
+        <section>
+            <h2>Edge Cases Considered</h2>
+            <div class="card">
+                <ul>
+                    <li>Location permission denied</li>
+                    <li>Room filled during request</li>
+                    <li>Owner rejects request</li>
+                    <li>Upload failure</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FUTURE -->
+        <section>
+            <h2>Future Enhancements</h2>
+            <div class="card">
+                <ul>
+                    <li>Online rent payments</li>
+                    <li>Maintenance tickets</li>
+                    <li>Chat between owner and tenant</li>
+                    <li>Ratings & analytics</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Design Artifacts</h2>
+            <div class="grid grid-2">
+                <div class="placeholder" onclick="openModal('ia')">Information Architecture</div>
+                <div class="placeholder" onclick="openModal('screens')">Key UI Screens</div>
+            </div>
+        </section>
+
+        <footer>
+            Designed & Developed by Uvais • HostelHub UX Case Study
+        </footer>
+    </div>
+
+    <!-- MODALS -->
+
+    <div class="modal" id="ia">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('ia')">✕</button>
+
+            <div class="zoom-wrapper">
+                <img class="zoomable" src="https://uvais-designs.github.io/uvais/images/hostel-info-arch.jpg">
+                <div class="zoom-controls">
+                    <button class="zoom-btn" onclick="zoomIn(this)">+</button>
+                    <button class="zoom-btn" onclick="zoomOut(this)">−</button>
+                    <button class="zoom-btn" onclick="resetZoom(this)">⟳</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <div class="modal" id="screens">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('ia')">✕</button>
+
+            <div class="zoom-wrapper">
+                <img class="zoomable" src="https://uvais-designs.github.io/uvais/images/hostelscreens.jpg">
+                <div class="zoom-controls">
+                    <button class="zoom-btn" onclick="zoomIn(this)">+</button>
+                    <button class="zoom-btn" onclick="zoomOut(this)">−</button>
+                    <button class="zoom-btn" onclick="resetZoom(this)">⟳</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+            }
+        });
+
+        const state = new WeakMap();
+
+        function initState(img) {
+            if (!state.has(img)) {
+                state.set(img, { scale: 1, x: 0, y: 0 });
+            }
+        }
+
+        function applyTransform(img) {
+            const s = state.get(img);
+            img.style.transform = `translate(${s.x}px, ${s.y}px) scale(${s.scale})`;
+        }
+
+        function getImg(btn) {
+            return btn.closest('.modal-content').querySelector('.zoomable');
+        }
+
+        /* ZOOM */
+        function zoomIn(btn) {
+            const img = getImg(btn);
+            initState(img);
+            const s = state.get(img);
+            s.scale = Math.min(s.scale + 0.2, 3);
+            applyTransform(img);
+        }
+
+        function zoomOut(btn) {
+            const img = getImg(btn);
+            initState(img);
+            const s = state.get(img);
+            s.scale = Math.max(s.scale - 0.2, 0.5);
+            applyTransform(img);
+        }
+
+        function resetZoom(btn) {
+            const img = getImg(btn);
+            state.set(img, { scale: 1, x: 0, y: 0 });
+            applyTransform(img);
+        }
+
+        /* DRAG */
+        document.querySelectorAll('.zoom-wrapper').forEach(wrapper => {
+            const img = wrapper.querySelector('.zoomable');
+            initState(img);
+
+            let isDragging = false;
+            let startX = 0, startY = 0;
+
+            wrapper.addEventListener('mousedown', e => {
+                isDragging = true;
+                wrapper.classList.add('dragging');
+                startX = e.clientX;
+                startY = e.clientY;
+            });
+
+            window.addEventListener('mousemove', e => {
+                if (!isDragging) return;
+                const s = state.get(img);
+                s.x += e.clientX - startX;
+                s.y += e.clientY - startY;
+                startX = e.clientX;
+                startY = e.clientY;
+                applyTransform(img);
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+                wrapper.classList.remove('dragging');
+            });
+        });
+
+        /* MODAL */
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            const img = modal.querySelector('.zoomable');
+            if (img) {
+                state.set(img, { scale: 1, x: 0, y: 0 });
+                applyTransform(img);
+            }
+            modal.style.display = 'none';
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
