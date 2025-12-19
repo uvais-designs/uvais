@@ -1,0 +1,31 @@
+{
+  "hash": "05146927",
+  "configHash": "2c7ed94c",
+  "lockfileHash": "2e484585",
+  "browserHash": "475cda48",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "d13e792b",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "1c9583a9",
+      "needsInterop": true
+    },
+    "react-icons/fa": {
+      "src": "../../node_modules/react-icons/fa/index.mjs",
+      "file": "react-icons_fa.js",
+      "fileHash": "284eb9e5",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-RGWPGAAI": {
+      "file": "chunk-RGWPGAAI.js"
+    }
+  }
+}
