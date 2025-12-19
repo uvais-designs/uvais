@@ -344,7 +344,7 @@ export function CaseStudies() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
             {[
-              { title: "Hostel Management", image: hostel, url: "https://uvais.design/projects/tiny-weather" },
+              { title: "Hostel Management", image: hostel, url: "src/components/hostel.html" },
               { title: "TrunFrun - Upcoming", image: trunfrun, url: "" },
             ].map((p, i) => (
               <div key={i} className="glass-card rounded-2xl overflow-hidden flex flex-col">
