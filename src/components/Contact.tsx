@@ -8,8 +8,10 @@ import {
   FaWordpress,
   FaGithub,
 } from "react-icons/fa";
+import { useIsMobile } from "./ui/use-mobile";
 
 export function Contact() {
+  const isMobile = useIsMobile();
   const icons = [
     {
       href: "mailto:ysul2505@gmail.com",
@@ -35,24 +37,24 @@ export function Contact() {
       Icon: FaPhone,
       color: "#6B7280", // Gray
     },
-    {
+    ...(isMobile ? [] : [{
       href: "https://api.whatsapp.com/send?phone=918344875844&text=Hi,%20Are%20you%20available%20for%20a%20quick%20chat%20regarding%20",
       label: "WhatsApp",
       Icon: FaWhatsapp,
       color: "#25D366", // WhatsApp Green
-    },
-    {
+    }]),
+    ...(isMobile ? [] : [{
       href: "https://uvaisdesigns.wordpress.com/",
       label: "WordPress",
       Icon: FaWordpress,
       color: "#21759B", // WP Blue
-    },
-    {
+    }]),
+    ...(isMobile ? [] : [{
       href: "https://github.com/uvais-designs",
       label: "GitHub",
       Icon: FaGithub,
       color: "#111827", // GitHub / dark
-    },
+    }]),
   ];
 
   const containerRef = useRef<HTMLDivElement | null>(null);

@@ -8,14 +8,14 @@
 
     <style>
         :root {
-            --primary: #2563eb;
-            --secondary: #16a34a;
-            --accent: #f59e0b;
-            --bg: #f8fafc;
-            --text: #0f172a;
-            --muted: #64748b;
-            --card: #ffffff;
-            --border: #e2e8f0;
+            --primary: #3b82f6;
+            --secondary: #22c55e;
+            --accent: #fbbf24;
+            --bg: #0f172a;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --card: #1e293b;
+            --border: #334155;
         }
 
         * {
@@ -36,7 +36,48 @@
             padding: 48px 20px;
         }
 
-        /* TYPOGRAPHY */
+        /* BACK BUTTON */
+        .back-btn {
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            z-index: 1000;
+            padding: 10px 16px;
+            border-radius: 8px;
+            background: var(--primary);
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+            transform: translateX(-4px);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+        }
+
+        .back-btn:active {
+            transform: translateX(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .back-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+                top: 16px;
+                left: 16px;
+            }
+        }
         h1 {
             font-size: 42px;
         }
@@ -57,9 +98,22 @@
         .hero {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 64px 48px;
+            padding: 32px 36px;
             border-radius: 28px;
             margin-bottom: 80px;
+            width: 100%;
+        }
+
+        .hero h1 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .hero p {
+            font-size: 14px;
+            color: #e0e7ff;
+            line-height: 1.6;
         }
 
         /* LAYOUT */
@@ -83,31 +137,47 @@
         /* CARD */
         .card {
             background: var(--card);
+            border: 1px solid var(--border);
             border-radius: 20px;
             padding: 28px;
-            border: 1px solid var(--border);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
         }
 
-        /* PLACEHOLDER (CLICKABLE) */
-        .placeholder {
-            height: 220px;
-            border: 2px dashed var(--border);
+        /* ARTIFACT CARD */
+        .artifact-card {
+            background: var(--card);
+            border: 1px solid var(--border);
             border-radius: 20px;
-            background: #f1f5f9;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .artifact-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(59, 130, 246, 0.2);
+        }
+
+        .artifact-thumbnail {
+            width: 100%;
+            height: 220px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--muted);
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.2s ease;
+            margin-bottom: 16px;
         }
 
-        .placeholder:hover {
-            background: #eef2ff;
-            border-color: var(--primary);
-            color: var(--primary);
+        .artifact-thumbnail svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .artifact-card h3 {
+            color: var(--text);
+            font-size: 16px;
+            margin: 0;
         }
 
         /* MODAL */
@@ -115,7 +185,7 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             z-index: 999;
             align-items: center;
             justify-content: center;
@@ -123,7 +193,7 @@
         }
 
         .modal-content {
-            background: white;
+            background: #1e293b;
             max-width: 900px;
             width: 100%;
             border-radius: 20px;
@@ -157,69 +227,6 @@
             margin-top: 80px;
         }
 
-        :root {
-            --primary: #2563eb;
-            --secondary: #16a34a;
-            --accent: #f59e0b;
-            --bg: #f8fafc;
-            --text: #0f172a;
-            --muted: #64748b;
-            --card: #ffffff;
-            --border: #e2e8f0;
-        }
-
-        * {
-            box-sizing: border-box;
-            font-family: Inter, system-ui, sans-serif;
-        }
-
-        body {
-            margin: 0;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 48px 20px;
-        }
-
-        /* TYPOGRAPHY */
-        h1 {
-            font-size: 42px;
-            margin-bottom: 12px;
-        }
-
-        h2 {
-            font-size: 30px;
-            margin-bottom: 20px;
-        }
-
-        h3 {
-            font-size: 20px;
-            margin-bottom: 8px;
-        }
-
-        p {
-            color: var(--muted);
-        }
-
-        /* HERO */
-        .hero {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 64px 48px;
-            border-radius: 28px;
-            margin-bottom: 80px;
-        }
-
-        .hero p {
-            max-width: 700px;
-            color: #fff;
-        }
-
         /* LAYOUT */
         section {
             margin-bottom: 80px;
@@ -234,8 +241,16 @@
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         }
 
-        .grid-3 {
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* CARD */
@@ -247,7 +262,6 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
         }
 
-        /* PERSONA */
         .persona-icon {
             font-size: 42px;
             margin-bottom: 12px;
@@ -262,7 +276,6 @@
             margin-bottom: 6px;
         }
 
-        /* FLOW */
         .flow {
             display: flex;
             flex-wrap: wrap;
@@ -273,7 +286,7 @@
 
         .flow-step {
             padding: 12px 18px;
-            background: #f1f5f9;
+            background: #334155;
             border: 1px solid var(--border);
             border-radius: 14px;
             font-size: 14px;
@@ -282,12 +295,12 @@
         }
 
         .flow-step.primary {
-            background: #e0e7ff;
+            background: #1e3a8a;
             color: var(--primary);
         }
 
         .flow-step.secondary {
-            background: #dcfce7;
+            background: #15803d;
             color: var(--secondary);
         }
 
@@ -296,88 +309,20 @@
             font-size: 18px;
         }
 
-        /* HIGHLIGHT BOX */
         .highlight {
-            background: #fef3c7;
+            background: #7c2d12;
             border-left: 6px solid var(--accent);
             padding: 20px;
             border-radius: 16px;
-            color: #92400e;
-        }
-
-        /* PLACEHOLDERS */
-        .placeholder {
-            height: 220px;
-            border: 2px dashed var(--border);
-            border-radius: 20px;
-            background: #f1f5f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--muted);
-            font-size: 16px;
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            color: var(--muted);
-            font-size: 14px;
-            margin-top: 100px;
-        }
-
-        /* ZOOM CONTROLS */
-        .zoom-controls {
-            position: absolute;
-            bottom: 16px;
-            right: 16px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .zoom-btn {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
-            border: none;
-            cursor: pointer;
-            background: #0f172a;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .zoom-btn:hover {
-            background: #2563eb;
-        }
-
-        /* ZOOM IMAGE */
-        .zoomable {
-            transform-origin: center center;
-            transition: transform 0.25s ease;
-        }
-
-        /* DRAG SUPPORT */
-        .zoom-wrapper {
-            overflow: hidden;
-            cursor: grab;
-        }
-
-        .zoom-wrapper.dragging {
-            cursor: grabbing;
-        }
-
-        .zoomable {
-            user-select: none;
-            -webkit-user-drag: none;
-            transform-origin: center center;
-            transition: transform 0.25s ease;
+            color: #fcd34d;
         }
     </style>
 </head>
 
 <body>
+    <!-- Back to Portfolio Button -->
+    <!-- <button class="back-btn" id="backBtn" title="Back to Portfolio">← Back to Portfolio</button> -->
+
     <div class="container">
 
         <section class="hero">
@@ -388,19 +333,18 @@
             </p>
         </section>
 
-        <!-- OVERVIEW -->
-        <section>
-            <h2>Project Overview</h2>
-            <p>
-                HostelHub replaces manual PG management and unreliable discovery methods
-                with a structured, visual, and role-based digital experience.
-            </p>
-        </section>
+        <!-- OVERVIEW & PROBLEM -->
+        <section class="two-column">
+            <div>
+                <h2>Project Overview</h2>
+                <p>
+                    HostelHub replaces manual PG management and unreliable discovery methods
+                    with a structured, visual, and role-based digital experience.
+                </p>
+            </div>
 
-        <!-- PROBLEM -->
-        <section>
-            <h2>Problem Statement</h2>
-            <div class="card">
+            <div>
+                <h2>Problem Statement</h2>
                 <p>
                     PG owners track occupancy using notebooks or spreadsheets, while hostellers
                     rely on brokers or outdated listings. This causes confusion, lack of trust,
@@ -507,37 +451,179 @@
             </div>
         </section>
 
-        <!-- EDGE CASES -->
-        <section>
-            <h2>Edge Cases Considered</h2>
-            <div class="card">
-                <ul>
-                    <li>Location permission denied</li>
-                    <li>Room filled during request</li>
-                    <li>Owner rejects request</li>
-                    <li>Upload failure</li>
-                </ul>
+        <!-- EDGE CASES & FUTURE ENHANCEMENTS -->
+        <section class="two-column">
+            <div>
+                <h2>Edge Cases Considered</h2>
+                <div class="card">
+                    <ul>
+                        <li>Location permission denied</li>
+                        <li>Room filled during request</li>
+                        <li>Owner rejects request</li>
+                        <li>Upload failure</li>
+                    </ul>
+                </div>
             </div>
-        </section>
 
-        <!-- FUTURE -->
-        <section>
-            <h2>Future Enhancements</h2>
-            <div class="card">
-                <ul>
-                    <li>Online rent payments</li>
-                    <li>Maintenance tickets</li>
-                    <li>Chat between owner and tenant</li>
-                    <li>Ratings & analytics</li>
-                </ul>
+            <div>
+                <h2>Future Enhancements</h2>
+                <div class="card">
+                    <ul>
+                        <li>Online rent payments</li>
+                        <li>Maintenance tickets</li>
+                        <li>Chat between owner and tenant</li>
+                        <li>Ratings & analytics</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
         <section>
             <h2>Design Artifacts</h2>
             <div class="grid grid-2">
-                <div class="placeholder" onclick="openModal('ia')">Information Architecture</div>
-                <div class="placeholder" onclick="openModal('screens')">Key UI Screens</div>
+                <div class="artifact-card" onclick="openModal('ia')">
+                    <div class="artifact-thumbnail">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="10" width="180" height="40" fill="#3b82f6" rx="4"/>
+                            <text x="100" y="35" text-anchor="middle" fill="white" font-size="12" font-weight="bold">App Navigation</text>
+                            
+                            <rect x="10" y="60" width="85" height="120" fill="#1e3a8a" stroke="#3b82f6" stroke-width="2" rx="4"/>
+                            <text x="52.5" y="80" text-anchor="middle" fill="#94a3b8" font-size="10">Owner Module</text>
+                            <line x1="15" y1="90" x2="90" y2="90" stroke="#94a3b8" stroke-width="1"/>
+                            <text x="20" y="105" fill="#94a3b8" font-size="8">• Dashboard</text>
+                            <text x="20" y="120" fill="#94a3b8" font-size="8">• Occupancy Mgmt</text>
+                            <text x="20" y="135" fill="#94a3b8" font-size="8">• Requests</text>
+                            <text x="20" y="150" fill="#94a3b8" font-size="8">• Profile</text>
+                            <text x="20" y="165" fill="#94a3b8" font-size="8">• Analytics</text>
+                            
+                            <rect x="105" y="60" width="85" height="120" fill="#15803d" stroke="#22c55e" stroke-width="2" rx="4"/>
+                            <text x="147.5" y="80" text-anchor="middle" fill="#94a3b8" font-size="10">Hosteller Module</text>
+                            <line x1="110" y1="90" x2="185" y2="90" stroke="#94a3b8" stroke-width="1"/>
+                            <text x="115" y="105" fill="#94a3b8" font-size="8">• Discover PGs</text>
+                            <text x="115" y="120" fill="#94a3b8" font-size="8">• Search & Filter</text>
+                            <text x="115" y="135" fill="#94a3b8" font-size="8">• Send Requests</text>
+                            <text x="115" y="150" fill="#94a3b8" font-size="8">• Saved Listings</text>
+                            <text x="115" y="165" fill="#94a3b8" font-size="8">• Bookmarks</text>
+                        </svg>
+                    </div>
+                    <h3>Information Architecture</h3>
+                </div>
+
+                <div class="artifact-card" onclick="openModal('screens')">
+                    <div class="artifact-thumbnail">
+                        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Screen 1: Discovery Feed (Left) -->
+                            <g>
+                                <!-- Phone frame -->
+                                <rect x="15" y="30" width="75" height="140" fill="#0f172a" stroke="#3b82f6" stroke-width="2" rx="6"/>
+                                <rect x="18" y="33" width="69" height="134" fill="#1e293b" rx="4"/>
+                                
+                                <!-- Status bar -->
+                                <rect x="18" y="33" width="69" height="12" fill="#3b82f6" rx="3"/>
+                                <text x="52.5" y="40" text-anchor="middle" fill="white" font-size="6" font-weight="bold">9:41</text>
+                                
+                                <!-- PG Listing Card 1 -->
+                                <rect x="22" y="50" width="61" height="28" fill="#334155" stroke="#475569" stroke-width="1" rx="3"/>
+                                <circle cx="28" cy="56" r="3" fill="#22c55e"/>
+                                <text x="55" y="56" font-size="5" fill="#94a3b8" font-weight="bold">Oakvale Hostel</text>
+                                <text x="33" y="62" font-size="4" fill="#94a3b8">₹8000/month</text>
+                                <rect x="22" y="72" width="61" height="3" fill="#3b82f6" rx="1"/>
+                                
+                                <!-- PG Listing Card 2 -->
+                                <rect x="22" y="78" width="61" height="28" fill="#334155" stroke="#475569" stroke-width="1" rx="3"/>
+                                <circle cx="28" cy="84" r="3" fill="#dc2626"/>
+                                <text x="55" y="84" font-size="5" fill="#94a3b8" font-weight="bold">Greenview Inn</text>
+                                <text x="33" y="90" font-size="4" fill="#94a3b8">₹7500/month</text>
+                                <rect x="22" y="100" width="61" height="3" fill="#fbbf24" rx="1"/>
+                                
+                                <!-- Bottom nav -->
+                                <rect x="18" y="155" width="69" height="10" fill="#334155" rx="2"/>
+                                <circle cx="26" cy="160" r="2" fill="#3b82f6"/>
+                                <circle cx="52.5" cy="160" r="2" fill="#94a3b8"/>
+                                <circle cx="79" cy="160" r="2" fill="#94a3b8"/>
+                            </g>
+                            
+                            <!-- Screen 2: PG Details (Center) -->
+                            <g>
+                                <!-- Phone frame -->
+                                <rect x="112.5" y="30" width="75" height="140" fill="#0f172a" stroke="#22c55e" stroke-width="2" rx="6"/>
+                                <rect x="115.5" y="33" width="69" height="134" fill="#1e293b" rx="4"/>
+                                
+                                <!-- Header -->
+                                <rect x="115.5" y="33" width="69" height="12" fill="#22c55e" rx="3"/>
+                                <text x="150" y="40" text-anchor="middle" fill="white" font-size="5" font-weight="bold">← Details</text>
+                                
+                                <!-- Property Image -->
+                                <rect x="119.5" y="50" width="61" height="25" fill="#15803d" rx="3"/>
+                                <text x="150" y="62" text-anchor="middle" fill="white" font-size="6" font-weight="bold">🏠</text>
+                                
+                                <!-- PG Info -->
+                                <text x="122" y="82" font-size="5" fill="white" font-weight="bold">Oakvale Hostel</text>
+                                <text x="122" y="88" font-size="4" fill="#94a3b8">📍 Koramangala, Bangalore</text>
+                                <text x="122" y="94" font-size="4" fill="#94a3b8">₹8000/month • 4 Rooms</text>
+                                
+                                <!-- Details -->
+                                <rect x="119.5" y="100" width="61" height="4" fill="#334155" rx="1"/>
+                                <rect x="119.5" y="106" width="61" height="4" fill="#334155" rx="1"/>
+                                <rect x="119.5" y="112" width="61" height="4" fill="#334155" rx="1"/>
+                                
+                                <!-- Request Button -->
+                                <rect x="122" y="120" width="55" height="8" fill="#22c55e" rx="2"/>
+                                <text x="149.5" y="124" text-anchor="middle" fill="white" font-size="5" font-weight="bold">Send Request</text>
+                                
+                                <!-- Bottom nav -->
+                                <rect x="115.5" y="155" width="69" height="10" fill="#334155" rx="2"/>
+                                <circle cx="123.5" cy="160" r="2" fill="#94a3b8"/>
+                                <circle cx="150" cy="160" r="2" fill="#22c55e"/>
+                                <circle cx="176.5" cy="160" r="2" fill="#94a3b8"/>
+                            </g>
+                            
+                            <!-- Screen 3: Request Sent (Right) -->
+                            <g>
+                                <!-- Phone frame -->
+                                <rect x="210" y="30" width="75" height="140" fill="#0f172a" stroke="#fbbf24" stroke-width="2" rx="6"/>
+                                <rect x="213" y="33" width="69" height="134" fill="#1e293b" rx="4"/>
+                                
+                                <!-- Status bar -->
+                                <rect x="213" y="33" width="69" height="12" fill="#fbbf24" rx="3"/>
+                                <text x="247.5" y="40" text-anchor="middle" fill="#1e293b" font-size="6" font-weight="bold">✓</text>
+                                
+                                <!-- Success Message -->
+                                <circle cx="247.5" cy="70" r="12" fill="#22c55e"/>
+                                <text x="247.5" y="73" text-anchor="middle" fill="white" font-size="12" font-weight="bold">✓</text>
+                                
+                                <!-- Message -->
+                                <text x="247.5" y="92" text-anchor="middle" fill="white" font-size="6" font-weight="bold">Request Sent!</text>
+                                <text x="217" y="105" font-size="4" fill="#94a3b8">Your request to Oakvale</text>
+                                <text x="217" y="111" font-size="4" fill="#94a3b8">Hostel has been sent.</text>
+                                <text x="217" y="117" font-size="4" fill="#94a3b8">Owner will respond soon</text>
+                                
+                                <!-- Action Button -->
+                                <rect x="217" y="130" width="61" height="8" fill="#3b82f6" rx="2"/>
+                                <text x="247.5" y="134" text-anchor="middle" fill="white" font-size="5" font-weight="bold">View Status</text>
+                                
+                                <!-- Bottom nav -->
+                                <rect x="213" y="155" width="69" height="10" fill="#334155" rx="2"/>
+                                <circle cx="221" cy="160" r="2" fill="#94a3b8"/>
+                                <circle cx="247.5" cy="160" r="2" fill="#94a3b8"/>
+                                <circle cx="274" cy="160" r="2" fill="#fbbf24"/>
+                            </g>
+                            
+                            <!-- Flow Labels -->
+                            <text x="52.5" y="180" text-anchor="middle" fill="#94a3b8" font-size="6" font-weight="bold">Browse</text>
+                            <text x="150" y="180" text-anchor="middle" fill="#94a3b8" font-size="6" font-weight="bold">Explore</text>
+                            <text x="247.5" y="180" text-anchor="middle" fill="#94a3b8" font-size="6" font-weight="bold">Connect</text>
+                            
+                            <!-- Flow arrows -->
+                            <path d="M 95 160 L 107 160" stroke="#3b82f6" stroke-width="1.5" fill="none"/>
+                            <polygon points="107,160 102,157.5 102,162.5" fill="#3b82f6"/>
+                            
+                            <path d="M 192 160 L 204 160" stroke="#22c55e" stroke-width="1.5" fill="none"/>
+                            <polygon points="204,160 199,157.5 199,162.5" fill="#22c55e"/>
+                        </svg>
+                    </div>
+                    <h3>Key UI Screens</h3>
+                </div>
             </div>
         </section>
 
@@ -688,6 +774,11 @@
             if (e.key === 'Escape') {
                 document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
             }
+        });
+
+        // Back button functionality
+        document.getElementById('backBtn').addEventListener('click', function() {
+            window.history.back();
         });
     </script>
 

@@ -66,8 +66,8 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   enableMobileTilt = true,
   mobileTiltSensitivity = 3,
   miniAvatarUrl,
-  name = "Javi A. Torres",
-  title = "Software Engineer",
+  name = "Uvaisul Karni",
+  title = "UX Designer",
   contactText = "Contact",
   downloadText = "Resume",
   showUserInfo = true,
@@ -317,6 +317,15 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     onContactClick?.();
   }, [onContactClick]);
 
+  const handleResumeDownload = useCallback(() => {
+    const link = document.createElement("a");
+    link.href = "/uvais/uvais_cv.pdf";
+    link.download = "Uvaisul_Karni_Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, []);
+
   return (
     <section className="grid gap-16">
 
@@ -341,13 +350,13 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
               {showUserInfo && (
                 <div className="pc-user-info">
                   <button
-                  // className="pc-contact-btn"
-                  // onClick={handleContactClick}
-                  // style={{ pointerEvents: "auto" }}
-                  // type="button"
-                  // aria-label={`Contact ${name || "user"}`}
+                  className="pc-contact-btn"
+                  onClick={handleResumeDownload}
+                  style={{ pointerEvents: "auto" }}
+                  type="button"
+                  aria-label="Download resume"
                   >
-                    {/* {downloadText} */}
+                    {downloadText}
                   </button>
                   <button
                     className="pc-contact-btn"

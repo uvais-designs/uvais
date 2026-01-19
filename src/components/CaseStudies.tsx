@@ -344,8 +344,8 @@ export function CaseStudies() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
             {[
-              { title: "Hostel Management", image: hostel, url: "/uvais/hostel.html" },
-              { title: "TrunFrun - Upcoming", image: trunfrun, url: "" },
+              { title: "Hostel Management", image: hostel, url: "/uvais/hostel.html", disabled: false },
+              { title: "TrunFrun - Upcoming", image: trunfrun, url: "", disabled: true },
             ].map((p, i) => (
               <div key={i} className="glass-card rounded-2xl overflow-hidden flex flex-col">
                 <div className="relative h-40 overflow-hidden">
@@ -358,15 +358,25 @@ export function CaseStudies() {
                   </div>
 
                   <div className="mt-4">
-                    <a
-                      href={p.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block w-full text-center py-2 rounded-md glass-button text-primary hover:scale-105 transition-all duration-200"
-                      aria-label={`View ${p.title}`}
-                    >
-                      View Project
-                    </a>
+                    {p.disabled ? (
+                      <button
+                        disabled
+                        className="inline-block w-full text-center py-2 rounded-md bg-muted/50 text-muted-foreground cursor-not-allowed opacity-50"
+                        aria-label={`${p.title} - Coming Soon`}
+                      >
+                        Coming Soon
+                      </button>
+                    ) : (
+                      <a
+                        href={p.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block w-full text-center py-2 rounded-md glass-button text-primary hover:scale-105 transition-all duration-200"
+                        aria-label={`View ${p.title}`}
+                      >
+                        View Project
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
