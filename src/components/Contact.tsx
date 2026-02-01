@@ -7,6 +7,7 @@ import {
   FaWhatsapp,
   FaWordpress,
   FaGithub,
+  FaFigma
 } from "react-icons/fa";
 import { useIsMobile } from "./ui/use-mobile";
 
@@ -26,17 +27,23 @@ export function Contact() {
       color: "#0A66C2", // LinkedIn Blue
     },
     {
-      href: "https://www.behance.net/uvaisulkarni",
-      label: "Behance",
-      Icon: FaBehance,
-      color: "#1769FF", // Behance Blue
+      href: "https://www.figma.com/design/sMaCcp6O3qgYvbNFbxmpi4/Uvaisul?node-id=1626-262&t=0tkEohgXWXsB7EBX-1",
+      label: "Figma",
+      Icon: FaFigma,
+      color: "#F24E1E", // Figma Orange
     },
-    {
+     {
       href: "tel:+918344875844",
       label: "Phone",
       Icon: FaPhone,
       color: "#6B7280", // Gray
     },
+      ...(isMobile ? [] : [{
+      href: "https://www.behance.net/uvaisulkarni",
+      label: "Behance",
+      Icon: FaBehance,
+      color: "#1769FF", // Behance Blue
+    }]),
     ...(isMobile ? [] : [{
       href: "https://api.whatsapp.com/send?phone=918344875844&text=Hi,%20Are%20you%20available%20for%20a%20quick%20chat%20regarding%20",
       label: "WhatsApp",
