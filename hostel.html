@@ -78,6 +78,7 @@
                 left: 16px;
             }
         }
+
         h1 {
             font-size: 42px;
         }
@@ -316,6 +317,78 @@
             border-radius: 16px;
             color: #fcd34d;
         }
+
+        /* Add this to the <style> section */
+        .figma-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+            cursor: pointer;
+        }
+
+        .figma-btn:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(59, 130, 246, 0.2);
+        }
+
+        .figma-btn svg {
+            flex-shrink: 0;
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        /* Add this to the <style> section */
+        .zoom-wrapper {
+            height: 600px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 12px;
+        }
+
+        .zoomable {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: center center;
+            cursor: grab;
+        }
+
+        .zoom-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .zoom-btn {
+            padding: 8px 12px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .zoom-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
     </style>
 </head>
 
@@ -480,150 +553,44 @@
 
         <section>
             <h2>Design Artifacts</h2>
-            <div class="grid grid-2">
-                <div class="artifact-card" onclick="openModal('ia')">
-                    <div class="artifact-thumbnail">
-                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="10" y="10" width="180" height="40" fill="#3b82f6" rx="4"/>
-                            <text x="100" y="35" text-anchor="middle" fill="white" font-size="12" font-weight="bold">App Navigation</text>
-                            
-                            <rect x="10" y="60" width="85" height="120" fill="#1e3a8a" stroke="#3b82f6" stroke-width="2" rx="4"/>
-                            <text x="52.5" y="80" text-anchor="middle" fill="#94a3b8" font-size="10">Owner Module</text>
-                            <line x1="15" y1="90" x2="90" y2="90" stroke="#94a3b8" stroke-width="1"/>
-                            <text x="20" y="105" fill="#94a3b8" font-size="8">• Dashboard</text>
-                            <text x="20" y="120" fill="#94a3b8" font-size="8">• Occupancy Mgmt</text>
-                            <text x="20" y="135" fill="#94a3b8" font-size="8">• Requests</text>
-                            <text x="20" y="150" fill="#94a3b8" font-size="8">• Profile</text>
-                            <text x="20" y="165" fill="#94a3b8" font-size="8">• Analytics</text>
-                            
-                            <rect x="105" y="60" width="85" height="120" fill="#15803d" stroke="#22c55e" stroke-width="2" rx="4"/>
-                            <text x="147.5" y="80" text-anchor="middle" fill="#94a3b8" font-size="10">Hosteller Module</text>
-                            <line x1="110" y1="90" x2="185" y2="90" stroke="#94a3b8" stroke-width="1"/>
-                            <text x="115" y="105" fill="#94a3b8" font-size="8">• Discover PGs</text>
-                            <text x="115" y="120" fill="#94a3b8" font-size="8">• Search & Filter</text>
-                            <text x="115" y="135" fill="#94a3b8" font-size="8">• Send Requests</text>
-                            <text x="115" y="150" fill="#94a3b8" font-size="8">• Saved Listings</text>
-                            <text x="115" y="165" fill="#94a3b8" font-size="8">• Bookmarks</text>
-                        </svg>
-                    </div>
-                    <h3>Information Architecture</h3>
-                </div>
-
-                <div class="artifact-card" onclick="openModal('screens')">
-                    <div class="artifact-thumbnail">
-                        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Screen 1: Discovery Feed (Left) -->
-                            <g>
-                                <!-- Phone frame -->
-                                <rect x="15" y="30" width="75" height="140" fill="#0f172a" stroke="#3b82f6" stroke-width="2" rx="6"/>
-                                <rect x="18" y="33" width="69" height="134" fill="#1e293b" rx="4"/>
-                                
-                                <!-- Status bar -->
-                                <rect x="18" y="33" width="69" height="12" fill="#3b82f6" rx="3"/>
-                                <text x="52.5" y="40" text-anchor="middle" fill="white" font-size="6" font-weight="bold">9:41</text>
-                                
-                                <!-- PG Listing Card 1 -->
-                                <rect x="22" y="50" width="61" height="28" fill="#334155" stroke="#475569" stroke-width="1" rx="3"/>
-                                <circle cx="28" cy="56" r="3" fill="#22c55e"/>
-                                <text x="55" y="56" font-size="5" fill="#94a3b8" font-weight="bold">Oakvale Hostel</text>
-                                <text x="33" y="62" font-size="4" fill="#94a3b8">₹8000/month</text>
-                                <rect x="22" y="72" width="61" height="3" fill="#3b82f6" rx="1"/>
-                                
-                                <!-- PG Listing Card 2 -->
-                                <rect x="22" y="78" width="61" height="28" fill="#334155" stroke="#475569" stroke-width="1" rx="3"/>
-                                <circle cx="28" cy="84" r="3" fill="#dc2626"/>
-                                <text x="55" y="84" font-size="5" fill="#94a3b8" font-weight="bold">Greenview Inn</text>
-                                <text x="33" y="90" font-size="4" fill="#94a3b8">₹7500/month</text>
-                                <rect x="22" y="100" width="61" height="3" fill="#fbbf24" rx="1"/>
-                                
-                                <!-- Bottom nav -->
-                                <rect x="18" y="155" width="69" height="10" fill="#334155" rx="2"/>
-                                <circle cx="26" cy="160" r="2" fill="#3b82f6"/>
-                                <circle cx="52.5" cy="160" r="2" fill="#94a3b8"/>
-                                <circle cx="79" cy="160" r="2" fill="#94a3b8"/>
-                            </g>
-                            
-                            <!-- Screen 2: PG Details (Center) -->
-                            <g>
-                                <!-- Phone frame -->
-                                <rect x="112.5" y="30" width="75" height="140" fill="#0f172a" stroke="#22c55e" stroke-width="2" rx="6"/>
-                                <rect x="115.5" y="33" width="69" height="134" fill="#1e293b" rx="4"/>
-                                
-                                <!-- Header -->
-                                <rect x="115.5" y="33" width="69" height="12" fill="#22c55e" rx="3"/>
-                                <text x="150" y="40" text-anchor="middle" fill="white" font-size="5" font-weight="bold">← Details</text>
-                                
-                                <!-- Property Image -->
-                                <rect x="119.5" y="50" width="61" height="25" fill="#15803d" rx="3"/>
-                                <text x="150" y="62" text-anchor="middle" fill="white" font-size="6" font-weight="bold">🏠</text>
-                                
-                                <!-- PG Info -->
-                                <text x="122" y="82" font-size="5" fill="white" font-weight="bold">Oakvale Hostel</text>
-                                <text x="122" y="88" font-size="4" fill="#94a3b8">📍 Koramangala, Bangalore</text>
-                                <text x="122" y="94" font-size="4" fill="#94a3b8">₹8000/month • 4 Rooms</text>
-                                
-                                <!-- Details -->
-                                <rect x="119.5" y="100" width="61" height="4" fill="#334155" rx="1"/>
-                                <rect x="119.5" y="106" width="61" height="4" fill="#334155" rx="1"/>
-                                <rect x="119.5" y="112" width="61" height="4" fill="#334155" rx="1"/>
-                                
-                                <!-- Request Button -->
-                                <rect x="122" y="120" width="55" height="8" fill="#22c55e" rx="2"/>
-                                <text x="149.5" y="124" text-anchor="middle" fill="white" font-size="5" font-weight="bold">Send Request</text>
-                                
-                                <!-- Bottom nav -->
-                                <rect x="115.5" y="155" width="69" height="10" fill="#334155" rx="2"/>
-                                <circle cx="123.5" cy="160" r="2" fill="#94a3b8"/>
-                                <circle cx="150" cy="160" r="2" fill="#22c55e"/>
-                                <circle cx="176.5" cy="160" r="2" fill="#94a3b8"/>
-                            </g>
-                            
-                            <!-- Screen 3: Request Sent (Right) -->
-                            <g>
-                                <!-- Phone frame -->
-                                <rect x="210" y="30" width="75" height="140" fill="#0f172a" stroke="#fbbf24" stroke-width="2" rx="6"/>
-                                <rect x="213" y="33" width="69" height="134" fill="#1e293b" rx="4"/>
-                                
-                                <!-- Status bar -->
-                                <rect x="213" y="33" width="69" height="12" fill="#fbbf24" rx="3"/>
-                                <text x="247.5" y="40" text-anchor="middle" fill="#1e293b" font-size="6" font-weight="bold">✓</text>
-                                
-                                <!-- Success Message -->
-                                <circle cx="247.5" cy="70" r="12" fill="#22c55e"/>
-                                <text x="247.5" y="73" text-anchor="middle" fill="white" font-size="12" font-weight="bold">✓</text>
-                                
-                                <!-- Message -->
-                                <text x="247.5" y="92" text-anchor="middle" fill="white" font-size="6" font-weight="bold">Request Sent!</text>
-                                <text x="217" y="105" font-size="4" fill="#94a3b8">Your request to Oakvale</text>
-                                <text x="217" y="111" font-size="4" fill="#94a3b8">Hostel has been sent.</text>
-                                <text x="217" y="117" font-size="4" fill="#94a3b8">Owner will respond soon</text>
-                                
-                                <!-- Action Button -->
-                                <rect x="217" y="130" width="61" height="8" fill="#3b82f6" rx="2"/>
-                                <text x="247.5" y="134" text-anchor="middle" fill="white" font-size="5" font-weight="bold">View Status</text>
-                                
-                                <!-- Bottom nav -->
-                                <rect x="213" y="155" width="69" height="10" fill="#334155" rx="2"/>
-                                <circle cx="221" cy="160" r="2" fill="#94a3b8"/>
-                                <circle cx="247.5" cy="160" r="2" fill="#94a3b8"/>
-                                <circle cx="274" cy="160" r="2" fill="#fbbf24"/>
-                            </g>
-                            
-                            <!-- Flow Labels -->
-                            <text x="52.5" y="180" text-anchor="middle" fill="#94a3b8" font-size="6" font-weight="bold">Browse</text>
-                            <text x="150" y="180" text-anchor="middle" fill="#94a3b8" font-size="6" font-weight="bold">Explore</text>
-                            <text x="247.5" y="180" text-anchor="middle" fill="#94a3b8" font-size="6" font-weight="bold">Connect</text>
-                            
-                            <!-- Flow arrows -->
-                            <path d="M 95 160 L 107 160" stroke="#3b82f6" stroke-width="1.5" fill="none"/>
-                            <polygon points="107,160 102,157.5 102,162.5" fill="#3b82f6"/>
-                            
-                            <path d="M 192 160 L 204 160" stroke="#22c55e" stroke-width="1.5" fill="none"/>
-                            <polygon points="204,160 199,157.5 199,162.5" fill="#22c55e"/>
-                        </svg>
-                    </div>
-                    <h3>Key UI Screens</h3>
-                </div>
+            <div class="grid grid-3">
+                <a href="https://www.figma.com/design/sMaCcp6O3qgYvbNFbxmpi4/Uvaisul?node-id=2331-22485" target="_blank"
+                    class="figma-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Figma Logo -->
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                            fill="#F24E1E" />
+                        <!-- Document Icon for Case Study -->
+                        <rect x="4" y="6" width="16" height="12" rx="2" ry="2" fill="#333" stroke="#F24E1E"
+                            stroke-width="2" />
+                        <line x1="8" y1="10" x2="16" y2="10" stroke="#F24E1E" stroke-width="2" />
+                        <line x1="8" y1="14" x2="12" y2="14" stroke="#F24E1E" stroke-width="2" />
+                    </svg>
+                    <span>Case Study</span>
+                </a>
+                <a href="https://www.figma.com/proto/sMaCcp6O3qgYvbNFbxmpi4/Uvaisul?node-id=2331-21311&t=4Q9b25Pans4CJlhs-1&starting-point-node-id=2331%3A22456"
+                    target="_blank" class="figma-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Figma Logo -->
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                            fill="#F24E1E" />
+                        <!-- Play Icon for Prototype -->
+                        <polygon points="8,5 19,12 8,19" fill="#333" stroke="#F24E1E" stroke-width="2" />
+                    </svg>
+                    <span>Prototype</span>
+                </a>
+                <button class="figma-btn" onclick="openModal('screens')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Screen Icon for Sample Screens -->
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" fill="#333" stroke="#F24E1E"
+                            stroke-width="2" />
+                        <line x1="8" y1="21" x2="16" y2="21" stroke="#F24E1E" stroke-width="2" />
+                        <line x1="12" y1="17" x2="12" y2="21" stroke="#F24E1E" stroke-width="2" />
+                    </svg>
+                    <span>Sample Screens</span>
+                </button>
             </div>
         </section>
 
@@ -634,38 +601,17 @@
 
     <!-- MODALS -->
 
-    <div class="modal" id="ia">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('ia')">✕</button>
-
-            <div class="zoom-wrapper">
-                <img class="zoomable" src="https://uvais-designs.github.io/uvais/images/hostel-info-arch.jpg">
-                <div class="zoom-controls">
-                    <button class="zoom-btn" onclick="zoomIn(this)">+</button>
-                    <button class="zoom-btn" onclick="zoomOut(this)">−</button>
-                    <button class="zoom-btn" onclick="resetZoom(this)">⟳</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
-
-
     <div class="modal" id="screens">
         <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('ia')">✕</button>
-
-            <div class="zoom-wrapper">
-                <img class="zoomable" src="https://uvais-designs.github.io/uvais/images/hostelscreens.jpg">
-                <div class="zoom-controls">
-                    <button class="zoom-btn" onclick="zoomIn(this)">+</button>
-                    <button class="zoom-btn" onclick="zoomOut(this)">−</button>
-                    <button class="zoom-btn" onclick="resetZoom(this)">⟳</button>
-                </div>
+            <button class="close-btn" onclick="closeModal('screens')">✕</button>
+            <div class="zoom-controls">
+                <button class="zoom-btn" onclick="zoomIn(this)">+</button>
+                <button class="zoom-btn" onclick="zoomOut(this)">−</button>
+                <button class="zoom-btn" onclick="resetZoom(this)">⟳</button>
             </div>
-
+            <div class="zoom-wrapper">
+                <img class="zoomable" src="https://uvais-designs.github.io/uvais/images/hostel-info-arch">
+            </div>
         </div>
     </div>
 
@@ -777,7 +723,7 @@
         });
 
         // Back button functionality
-        document.getElementById('backBtn').addEventListener('click', function() {
+        document.getElementById('backBtn').addEventListener('click', function () {
             window.history.back();
         });
     </script>
