@@ -7,16 +7,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "hsl(var(--color-background))",
-        foreground: "hsl(var(--color-foreground))",
-        muted: "hsl(var(--color-muted))",
-        card: "hsl(var(--color-card))",
-        primary: "hsl(var(--color-primary))",
-        secondary: "hsl(var(--color-secondary))",
-        accent: "hsl(var(--color-accent))",
+        background: "var(--color-background)",
+        foreground: "var(--color-foreground)",
+        muted: "var(--color-muted)",
+        card: "var(--color-card)",
+        primary: "var(--color-primary)",
+        secondary: "var(--color-secondary)",
+        accent: "var(--color-accent)",
       },
       fontFamily: {
-        sans: ["poppins", "sans-serif"],
+        sans: ["Fraunces", "Georgia", "serif"],
+        serif: ["Fraunces", "Georgia", "serif"],
       },
       keyframes: {
         move: {

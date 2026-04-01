@@ -12,7 +12,7 @@ import ProfileCard from './components/ProfileCard'
 
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true);//change this to true to show the loader
+  const [isLoading, setIsLoading] = useState(false);//change this to true to show the loader
   const [showContent, setShowContent] = useState(true);
 
   const handleLoadingComplete = () => {
@@ -39,14 +39,14 @@ export default function App() {
     <div className="bg-background min-h-screen relative">
       {/* Animated background elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {/* Floating geometric shapes with sample colors */}
-        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-transparent rounded-full blur-xl animate-float"></div>
-        <div className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-br from-green-500/10 to-transparent rounded-full blur-xl animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-32 left-1/4 w-40 h-40 bg-gradient-to-br from-purple-500/10 to-transparent morphing-blob blur-xl"></div>
-        <div className="absolute bottom-20 right-1/3 w-28 h-28 bg-gradient-to-br from-pink-500/10 to-transparent rounded-full blur-xl animate-float" style={{ animationDelay: '4s' }}></div>
+        {/* Floating geometric shapes with premium accent colors */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-xl animate-float"></div>
+        <div className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-br from-secondary/20 to-transparent rounded-full blur-xl animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-32 left-1/4 w-40 h-40 bg-gradient-to-br from-accent/20 to-transparent morphing-blob blur-xl"></div>
+        <div className="absolute bottom-20 right-1/3 w-28 h-28 bg-gradient-to-br from-primary/15 to-transparent rounded-full blur-xl animate-float" style={{ animationDelay: '4s' }}></div>
 
         {/* Grid pattern overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(37,99,235,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(37,99,235,0.03)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(213,182,124,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(213,182,124,0.03)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
       </div>
 
       {/* Loader */}

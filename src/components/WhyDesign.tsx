@@ -3,9 +3,9 @@ export function WhyDesign() {
   return (
     <section className="py-16 px-4 container mx-auto">
       <div className="max-w-6xl mx-auto">
-        <div className="relative bg-[#151820] rounded-3xl p-8 md:p-12 lg:p-16 border border-blue-500/20 shadow-2xl backdrop-blur-sm">
+        <div className="relative bg-[#151820] rounded-3xl p-8 md:p-12 lg:p-16 border border-primary/20 shadow-2xl backdrop-blur-sm">
           {/* Decorative elements */}
-          <div className="absolute -top-6 -left-6 w-16 h-16 bg-blue-500/10 rounded-full border border-blue-500/30 flex items-center justify-center backdrop-blur-sm">
+          <div className="absolute -top-6 -left-6 w-16 h-16 bg-primary/10 rounded-full border border-primary/30 flex items-center justify-center backdrop-blur-sm">
             <svg
               className="w-8 h-8"
               fill="none"
@@ -15,7 +15,7 @@ export function WhyDesign() {
               <g id="Icon">
                 <path
                   clipRule="evenodd"
-                  fill="rgba(59, 130, 246, 0.8)"
+                  fill="rgba(213, 182, 124, 0.9)"
                   fillRule="evenodd"
                 />
               </g>
@@ -24,7 +24,7 @@ export function WhyDesign() {
           
           <div className="absolute top-4 right-4 hidden lg:block">
             <svg
-              className="w-24 h-16 text-blue-500/30"
+              className="w-24 h-16 text-primary/30"
               fill="none"
               preserveAspectRatio="none"
               viewBox="0 0 67 56"
@@ -38,7 +38,7 @@ export function WhyDesign() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl mb-6 text-white font-semibold">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl mb-6 text-primary font-semibold">
                 Why i choose design?
               </h2>
             </div>
@@ -59,7 +59,7 @@ export function WhyDesign() {
               viewBox="0 0 216 190"
             >
               <path 
-                fill="rgba(59, 130, 246, 0.1)"
+                fill="rgba(213, 182, 124, 0.12)"
               />
             </svg>
           </div>

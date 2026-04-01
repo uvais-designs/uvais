@@ -23,10 +23,10 @@ interface ProfileCardProps {
 }
 
 const DEFAULT_BEHIND_GRADIENT =
-  "radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(59, 130, 246, 0.15), transparent 80%)";
+  "radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(213, 182, 124, 0.15), transparent 80%)";
 
 const DEFAULT_INNER_GRADIENT =
-  "linear-gradient(to right, rgba(59, 130, 246, 0.05), transparent)";
+  "linear-gradient(to right, rgba(213, 182, 124, 0.05), transparent)";
 
 const ANIMATION_CONFIG = {
   SMOOTH_DURATION: 800,
@@ -403,7 +403,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                   <div className="text-2xl md:text-3xl font-bold text-primary group-hover:scale-110 transition-transform duration-300">
                     {stat.number}
                   </div>
-                  <div className="text-sm text-muted-foreground font-semibold text-blue-500 group-hover:text-primary transition-colors duration-300 ">
+                  <div className="text-sm text-muted-foreground font-semibold text-primary group-hover:text-primary transition-colors duration-300 ">
                     {stat.label}
                   </div>
                 </div>

@@ -1,3 +1,5 @@
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
+
 const Kognitive = "images/image.png";
 const citi = "images/citi.png";
 const cba = "images/cba.png";
@@ -276,6 +278,106 @@ export function CaseStudies() {
     }
   ];
 
+  interface FeaturedCaseStudyAccordion {
+    title: string;
+    outcome: string;
+    domain: string;
+    tags: string[];
+    context: string;
+    contextMobile: string;
+    approach: string;
+    approachMobile: string;
+    solutionHighlights: string;
+    solutionHighlightsMobile: string;
+    outcomes: string;
+    outcomesMobile: string;
+    visuals: string;
+    figmaUrl: string;
+  }
+
+  const featuredCaseStudies: FeaturedCaseStudyAccordion[] = [
+    {
+      title: "Redesigning the Command Center for Maritime Operations",
+      outcome: "Designed a high-trust dashboard that reduced task friction and improved situational clarity for complex operations.",
+      domain: "Maritime Logistics",
+      tags: ["Enterprise UX", "Operational Design", "Responsive", "Accessibility"],
+      context: "Senior users were managing mission-critical marine communication systems in inconsistent network conditions, where a single error could delay logistics or compromise safety.",
+      contextMobile: "Senior users managed marine comms in inconsistent conditions and needed clear, dependable controls.",
+      approach: "I audited existing workflows, prioritized critical user journeys, and created a modular interface that supports both desktop and tablet navigation.",
+      approachMobile: "I focused on the most important journeys, simplifying controls for clarity on smaller screens.",
+      solutionHighlights: "Simplified onboarding flows, introduced progressive disclosure for complex controls, and created clear error states with recovery paths.",
+      solutionHighlightsMobile: "Created easier onboarding, clearer controls, and stronger error recovery.",
+      outcomes: "Improved task confidence, reduced review cycles, and created a visual system built for real-world operational constraints.",
+      outcomesMobile: "Boosted confidence, cut review time, and made tasks more reliable.",
+      visuals: "Dashboard screens, workflow sequences, and status-aware alerts that map to real operational scenarios.",
+      figmaUrl: "https://www.figma.com/file/example-maritime-command-center"
+    },
+    {
+      title: "Enterprise Banking Experience for Cross-Border Teams",
+      outcome: "Created a secure, efficient banking workflow for staff operating across multiple markets and time zones.",
+      domain: "Financial Services",
+      tags: ["Banking", "Compliance", "Workflow", "Usability"],
+      context: "Bank staff were switching between disparate systems to complete customer onboarding, creating delays and duplicate work.",
+      contextMobile: "Staff switched between tools to onboard customers, creating delays and friction.",
+      approach: "I mapped handoff points, harmonized information architecture, and designed a single responsive experience that adapts to desktop and tablet usage.",
+      approachMobile: "I simplified handoffs, unified info, and created a responsive workflow for both desktop and tablet.",
+      solutionHighlights: "Introduced role-based navigation, a unified customer timeline, and contextual help for complex compliance tasks.",
+      solutionHighlightsMobile: "Added role-based navigation, a single timeline, and clearer compliance help.",
+      outcomes: "Streamlined case handling, improved visibility into outstanding actions, and reduced training overhead.",
+      outcomesMobile: "Faster handling, better visibility, and less training time.",
+      visuals: "Customer journey maps, dashboard panels, and rapid selection screens for cross-border approvals.",
+      figmaUrl: "https://www.figma.com/file/example-enterprise-banking"
+    },
+    {
+      title: "Government Education Portal with Role-Based Insights",
+      outcome: "Designed a government-facing education portal that made large datasets easy to understand and act on.",
+      domain: "Public Sector",
+      tags: ["GovTech", "Data Viz", "Accessibility", "Service Design"],
+      context: "Administrators needed to manage school data while complying with existing government standards and limited network reliability.",
+      contextMobile: "Administrators needed clear school data views with low network risk.",
+      approach: "I built dashboards with progressive disclosure, clear status indicators, and mobile-friendly summaries for field use.",
+      approachMobile: "I created simpler dashboards with status indicators and mobile summaries.",
+      solutionHighlights: "Created intelligent data cards, adaptive navigation, and a consistent visual language for complex policy reporting.",
+      solutionHighlightsMobile: "Delivered smart cards, adaptive navigation, and a consistent reporting language.",
+      outcomes: "Enabled faster decision-making, better data comprehension, and more confident stakeholder reporting.",
+      outcomesMobile: "Faster decisions, clearer data, and stronger reports.",
+      visuals: "Role-based dashboard panels, alerts, and workflow diagrams for inspection and reporting tasks.",
+      figmaUrl: "https://www.figma.com/file/example-education-portal"
+    },
+    {
+      title: "Learning Platform with Adaptive Experience Paths",
+      outcome: "Synthesized personalized learning journeys into a clear, motivating interface for diverse learner needs.",
+      domain: "EdTech",
+      tags: ["Adaptive UX", "Gamification", "Learner Experience", "Scalability"],
+      context: "Learners engaged with multiple content formats and needed personalized guidance without overwhelming options.",
+      contextMobile: "Learners needed clear guidance across mixed content without feeling overwhelmed.",
+      approach: "I aligned success metrics, crafted meaningful micro-interactions, and prototyped responsive flows for learner motivation.",
+      approachMobile: "I used clear micro-interactions and responsive flows to make learning motivating.",
+      solutionHighlights: "Built adaptive progress summaries, milestone nudges, and simplified content discovery pathways.",
+      solutionHighlightsMobile: "Built adaptive progress cards, milestone nudges, and clearer content paths.",
+      outcomes: "Increased engagement clarity and created a flexible platform that supports future learning scenarios.",
+      outcomesMobile: "Increased clarity and created a flexible learning platform.",
+      visuals: "Learning path screens, progress dashboards, and simplified content selection flows.",
+      figmaUrl: "https://www.figma.com/file/example-learning-platform"
+    },
+    {
+      title: "High-Impact Product Launch Experience",
+      outcome: "Built a launch-ready product experience that balanced speed, quality, and stakeholder alignment.",
+      domain: "Product Design",
+      tags: ["Launch", "Stakeholder Alignment", "Rapid Prototyping", "Design Ops"],
+      context: "The product team needed a polished experience that could be shared with stakeholders while development timelines were tight.",
+      contextMobile: "The team needed a polished launch experience on a tight schedule.",
+      approach: "I created a clear experience roadmap, validated interactions with rapid prototypes, and aligned the team on the highest-impact screens.",
+      approachMobile: "I built a roadmap, validated prototypes, and aligned screens to the launch goals.",
+      solutionHighlights: "Delivered a purpose-driven experience with clear success metrics, launch checklists, and stakeholder-facing flows.",
+      solutionHighlightsMobile: "Delivered a focused launch experience with clear metrics and stakeholder-ready screens.",
+      outcomes: "Reduced review cycles and provided a confident handoff for development and launch planning.",
+      outcomesMobile: "Reduced reviews and created a strong handoff for launch.",
+      visuals: "Launch journey maps, prototype flow screens, and product walkthrough sequences.",
+      figmaUrl: "https://www.figma.com/file/example-launch-experience"
+    }
+  ];
+
   const featuredProject = caseStudies.find(study => study.featured);
   const otherProjects = caseStudies.filter(study => !study.featured);
 
@@ -285,6 +387,96 @@ export function CaseStudies() {
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background"></div>
 
       <div className="container mx-auto px-4 relative z-10">
+        {/* <div className="max-w-5xl mx-auto mb-14">
+          <div className="text-center space-y-6">
+            <p className="text-sm uppercase tracking-[0.3em] text-primary font-semibold">
+              Featured Case Studies
+            </p>
+          
+            <p className="text-base md:text-lg leading-7 text-muted-foreground max-w-3xl mx-auto">
+              Due to confidentiality agreements, real production work cannot be shown, but the displayed case studies are realistic simulations based on actual professional experience, reflecting similar challenges, constraints, and decision-making processes.
+            </p>
+          </div>
+
+          <Accordion type="single" collapsible className="mt-10 space-y-4">
+            {featuredCaseStudies.map((project, index) => (
+              <AccordionItem
+                key={project.title}
+                value={`case-${index}`}
+                className="glass-card overflow-hidden border border-border/20 bg-background/80 shadow-sm"
+              >
+                <AccordionTrigger className="px-5 md:px-6">
+                  <div className="flex flex-col gap-3 py-4">
+                    <div>
+                      <p className="text-sm font-semibold text-primary mb-1">{project.domain}</p>
+                      <h3 className="text-lg font-semibold text-foreground">{project.title}</h3>
+                      <p className="text-sm text-muted-foreground mt-2 max-w-2xl">{project.outcome}</p>
+                    </div>
+                  </div>
+                </AccordionTrigger>
+
+                <AccordionContent className="px-5 md:px-6 pb-6">
+                  <div className="grid gap-5">
+                    <div className="rounded-3xl overflow-hidden border border-border/20 bg-muted/5">
+                      <img
+                        src="https://via.placeholder.com/1200x720?text=Project+Image+Placeholder"
+                        alt="Project visual placeholder"
+                        className="w-full h-56 object-cover sm:h-64"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <h4 className="text-sm font-semibold text-foreground mb-2">Context & Problem</h4>
+                        <p className="text-sm text-muted-foreground leading-6 pl-3 md:pl-0">
+                          <span className="block md:hidden">{project.contextMobile}</span>
+                          <span className="hidden md:block">{project.context}</span>
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-semibold text-foreground mb-2">Approach & Decision Making</h4>
+                        <p className="text-sm text-muted-foreground leading-6 pl-3 md:pl-0">
+                          <span className="block md:hidden">{project.approachMobile}</span>
+                          <span className="hidden md:block">{project.approach}</span>
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-semibold text-foreground mb-2">Solution Highlights</h4>
+                        <p className="text-sm text-muted-foreground leading-6 pl-3 md:pl-0">
+                          <span className="block md:hidden">{project.solutionHighlightsMobile}</span>
+                          <span className="hidden md:block">{project.solutionHighlights}</span>
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-semibold text-foreground mb-2">Outcomes / Impact</h4>
+                        <p className="text-sm text-muted-foreground leading-6 pl-3 md:pl-0">
+                          <span className="block md:hidden">{project.outcomesMobile}</span>
+                          <span className="hidden md:block">{project.outcomes}</span>
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-center gap-4 flex-wrap">
+                      <div className="rounded-3xl bg-muted/10 border border-border/20 p-4 flex-1 min-w-[170px]">
+                        <h4 className="text-sm font-semibold text-foreground mb-2">Visual Screens / Flows</h4>
+                        <p className="text-sm text-muted-foreground leading-6 pl-3">{project.visuals}</p>
+                      </div>
+                      <a
+                        href={project.figmaUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:shadow-lg"
+                      >
+                        View Figma File
+                      </a>
+                    </div>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div> */}
+
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Design Stories & Solutions
@@ -349,7 +541,7 @@ export function CaseStudies() {
             ].map((p, i) => (
               <div key={i} className="glass-card rounded-2xl overflow-hidden flex flex-col">
                 <div className="relative h-40 overflow-hidden">
-                  <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  <img src={p.image} alt={p.title} className="w-full h-full object-fill group-hover:scale-110 transition-transform duration-500" />
                 </div>
 
                 <div className="p-4 flex-1 flex flex-col justify-between">

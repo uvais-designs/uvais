@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;  
@@ -12,44 +14,44 @@
 
 :root {
   --font-size: 16px;
-  --background: #0a0c10;
-  --foreground: #e6e6e6;
-  --card: #151820;
-  --card-foreground: #e6e6e6;
-  --popover: #ffffff;
-  --popover-foreground: #1a1a1a;
-  --primary: #2563eb;
-  --primary-foreground: #ffffff;
-  --secondary: #f8fafc;
-  --secondary-foreground: #334155;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #e2e8f0;
-  --accent-foreground: #1e293b;
-  --destructive: #dc2626;
+  --background: #050507;
+  --foreground: #f5f3ef;
+  --card: #111114;
+  --card-foreground: #f5f3ef;
+  --popover: #111114;
+  --popover-foreground: #f5f3ef;
+  --primary: #d5b67c;
+  --primary-foreground: #101010;
+  --secondary: #7c756a;
+  --secondary-foreground: #e4dfd7;
+  --muted: #7e7a75;
+  --muted-foreground: #c5beb5;
+  --accent: #b39b71;
+  --accent-foreground: #f5f3ef;
+  --destructive: #d15f4a;
   --destructive-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: transparent;
-  --input-background: #f8fafc;
-  --switch-background: #cbd5e1;
+  --border: #2f2f35;
+  --input: #111114;
+  --input-background: #121216;
+  --switch-background: #3b3730;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
   --font-weight-semibold: 600;
-  --ring: #2563eb;
-  --chart-1: #2563eb;
-  --chart-2: #059669;
-  --chart-3: #dc2626;
-  --chart-4: #7c3aed;
-  --chart-5: #ea580c;
+  --ring: #d5b67c;
+  --chart-1: #d5b67c;
+  --chart-2: #a18d70;
+  --chart-3: #d66d4e;
+  --chart-4: #8c7a9a;
+  --chart-5: #5e8a9a;
   --radius: 24px;
-  --sidebar: #f8fafc;
-  --sidebar-foreground: #1e293b;
-  --sidebar-primary: #2563eb;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #e2e8f0;
-  --sidebar-accent-foreground: #334155;
-  --sidebar-border: #e2e8f0;
-  --sidebar-ring: #2563eb;
+  --sidebar: #111114;
+  --sidebar-foreground: #f5f3ef;
+  --sidebar-primary: #d5b67c;
+  --sidebar-primary-foreground: #101010;
+  --sidebar-accent: #7c756a;
+  --sidebar-accent-foreground: #e4dfd7;
+  --sidebar-border: #2f2f35;
+  --sidebar-ring: #d5b67c;
 
 
     --color-background: var(--background);
@@ -93,41 +95,41 @@
 }
 
 .dark {
-  --background: #0a0c10;
-  --foreground: #f8fafc;
-  --card: #151820;
-  --card-foreground: #f8fafc;
-  --popover: #1e293b;
-  --popover-foreground: #f8fafc;
-  --primary: #3b82f6;
-  --primary-foreground: #ffffff;
-  --secondary: #334155;
-  --secondary-foreground: #e2e8f0;
-  --muted: #475569;
-  --muted-foreground: #94a3b8;
-  --accent: #475569;
-  --accent-foreground: #e2e8f0;
-  --destructive: #ef4444;
+  --background: #050507;
+  --foreground: #f5f3ef;
+  --card: #111114;
+  --card-foreground: #f5f3ef;
+  --popover: #111114;
+  --popover-foreground: #f5f3ef;
+  --primary: #d5b67c;
+  --primary-foreground: #101010;
+  --secondary: #7c756a;
+  --secondary-foreground: #e4dfd7;
+  --muted: #7e7a75;
+  --muted-foreground: #c5beb5;
+  --accent: #b39b71;
+  --accent-foreground: #f5f3ef;
+  --destructive: #d15f4a;
   --destructive-foreground: #ffffff;
-  --border: #334155;
-  --input: #334155;
-  --ring: #3b82f6;
+  --border: #2f2f35;
+  --input: #111114;
+  --ring: #d5b67c;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
   --font-weight-semibold: 600;
-  --chart-1: #3b82f6;
-  --chart-2: #10b981;
-  --chart-3: #ef4444;
-  --chart-4: #8b5cf6;
-  --chart-5: #f59e0b;
-  --sidebar: #1e293b;
-  --sidebar-foreground: #f8fafc;
-  --sidebar-primary: #3b82f6;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #334155;
-  --sidebar-accent-foreground: #e2e8f0;
-  --sidebar-border: #334155;
-  --sidebar-ring: #3b82f6;
+  --chart-1: #d5b67c;
+  --chart-2: #a18d70;
+  --chart-3: #d66d4e;
+  --chart-4: #8c7a9a;
+  --chart-5: #5e8a9a;
+  --sidebar: #111114;
+  --sidebar-foreground: #f5f3ef;
+  --sidebar-primary: #d5b67c;
+  --sidebar-primary-foreground: #101010;
+  --sidebar-accent: #7c756a;
+  --sidebar-accent-foreground: #e4dfd7;
+  --sidebar-border: #2f2f35;
+  --sidebar-ring: #d5b67c;
 }
 
 /* @theme inline {
@@ -137,7 +139,7 @@
 /* Reset and Base Styles */
 * {
   border-color: var(--color-border);
-  outline-color: rgba(37, 99, 235, 0.5);
+  outline-color: rgba(245, 243, 239, 0.3);
   box-sizing: border-box;
 }
 
@@ -151,12 +153,13 @@ body {
   padding: 0;
   background-color: var(--color-background);
   color: var(--color-foreground);
-  font-family: 'poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: radial-gradient(ellipse at top, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-              radial-gradient(ellipse at bottom, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-              linear-gradient(to bottom, #0a0c10, #12141a);
+  font-family: 'Montserrat', Georgia, serif;
+  background: radial-gradient(circle at top left, rgba(245, 243, 239, 0.06), transparent 24%),
+              radial-gradient(circle at 80% 15%, rgba(213, 182, 124, 0.14), transparent 18%),
+              linear-gradient(180deg, var(--color-background) 0%, #09090b 55%, #050507 100%);
   background-attachment: fixed;
-  line-height: 1.5;
+  line-height: 1.55;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -278,17 +281,18 @@ html {
 }
 
 .glass-button {
-  background: rgba(37, 99, 235, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(37, 99, 235, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   transition: all 0.3s ease;
-  border-radius: 24 px;
+  border-radius: 24px;
   cursor: pointer;
 }
 
 .glass-button:hover {
-  background: rgba(37, 99, 235, 0.2);
-  border-color: rgba(37, 99, 235, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.24);
   transform: translateY(-2px);
 }
 
@@ -304,10 +308,10 @@ html {
 
 @keyframes pulse-glow {
   0%, 100% { 
-    box-shadow: 0 0 20px rgba(37, 99, 235, 0.5); 
+    box-shadow: 0 0 20px rgba(213, 182, 124, 0.45); 
   }
   50% { 
-    box-shadow: 0 0 40px rgba(37, 99, 235, 0.8); 
+    box-shadow: 0 0 40px rgba(213, 182, 124, 0.75); 
   }
 }
 
@@ -407,12 +411,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(37, 99, 235, 0.3);
+  background: rgba(213, 182, 124, 0.32);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(37, 99, 235, 0.5);
+  background: rgba(213, 182, 124, 0.55);
 }
 
 /* Link Styles */
@@ -462,34 +466,34 @@ img {
 
 /* Dark Mode Adjustments */
 .dark .glass-button {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: rgba(59, 130, 246, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
 .dark .glass-button:hover {
-  background: rgba(59, 130, 246, 0.2);
-  border-color: rgba(59, 130, 246, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .dark * {
-  outline-color: rgba(59, 130, 246, 0.5);
+  outline-color: rgba(245, 243, 239, 0.3);
 }
 
 .glass-nav {
-  background: rgba(var(--background), 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .glass-button {
-  background: rgba(var(--primary), 0.1);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 @supports not (backdrop-filter: blur(12px)) {
   .glass-nav {
-    background: rgba(var(--background), 0.95);
+    background: rgba(15, 15, 17, 0.95);
   }
 }
 

@@ -18,7 +18,7 @@ function ExperienceItem({ role, company, period, description }: ExperienceItemPr
         <div>
           <h3 className="text-xl font-bold tracking-tight text-foreground group-hover:text-primary 
             transition-colors">{role}</h3>
-          <h4 className="text-xxl font-bold tracking-tight text-blue-600">{company}</h4>
+          <h4 className="text-xxl font-bold tracking-tight text-primary">{company}</h4>
           <h5 className="text-m font-bold tracking-tight text-foreground group-hover:text-primary 
             transition-colors">{period}</h5>
         </div>
