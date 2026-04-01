@@ -13,9 +13,11 @@ import LightRays from "./components/LightRays";
 
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState(false);//change this to true to show the loader
+  const [isLoading, setIsLoading] = useState(true);//change this to true to show the loader
   const [showContent, setShowContent] = useState(true);
   const [showMore, setShowMore] = useState(false);
+  const [navLogoReady, setNavLogoReady] = useState(!isLoading);
+  const [navVisible, setNavVisible] = useState(!isLoading);
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
@@ -28,8 +30,12 @@ export default function App() {
     // Prevent scroll during loading
     if (isLoading) {
       document.body.style.overflow = 'hidden';
+      setNavLogoReady(false);
+      setNavVisible(false);
     } else {
       document.body.style.overflow = 'unset';
+      setNavLogoReady(true);
+      setNavVisible(true);
     }
 
     return () => {
@@ -42,17 +48,17 @@ export default function App() {
       {/* Animated background elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <LightRays
-          className="absolute inset-0 opacity-70"
+          className="absolute inset-0 opacity-90 md:opacity-70"
           raysOrigin="top-center"
-          raysColor="#f6e6c1"
-          raysSpeed={0.9}
-          lightSpread={1.2}
-          rayLength={2.2}
+          raysColor="#f8ebcc"
+          raysSpeed={0.0}
+          lightSpread={1.1}
+          rayLength={2.4}
           fadeDistance={1.1}
-          saturation={1.05}
+          saturation={1.1}
           mouseInfluence={0.12}
-          noiseAmount={0.05}
-          distortion={0.1}
+          noiseAmount={0.0}
+          distortion={0.0}
         />
         {/* Floating geometric shapes with premium accent colors */}
         <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-xl animate-float"></div>
@@ -65,14 +71,24 @@ export default function App() {
       </div>
 
       {/* Loader */}
-      {isLoading && <Loader onComplete={handleLoadingComplete} />}
+      {isLoading && (
+        <Loader
+          onComplete={handleLoadingComplete}
+          onLogoArrive={() => {
+            setNavLogoReady(true);
+            setNavVisible(true);
+          }}
+        />
+      )}
+
+      {/* Navigation stays mounted so the loader logo can fly to it */}
+      <Navigation isVisible={navVisible} logoVisible={navLogoReady} />
 
       {/* Main content */}
       <div className={`transition-all duration-1000 ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}>
         {!isLoading && (
           <>
-            <Navigation />
             <main className="relative z-10">
 
               <ProfileCard

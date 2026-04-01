@@ -6,7 +6,10 @@ const citi = "images/citi.png";
 const cba = "images/cba.png";
 const emis = "images/emis.png";
 const netmaster = "images/netmaster.png";
+const banking = "images/banking.png";
 const self = "images/self.png";
+const recertificate = "images/recertificate.png";
+const adminpermissions = "images/adminpermissions.png";
 const hostel = "images/hostel.png";
 const trunfrun = "images/trunfrun.png";
 
@@ -109,12 +112,17 @@ function FeaturedCaseStudyCard({
                 className="inline-block glass-button px-6 py-3 rounded-full text-primary hover:text-primary-foreground group/btn relative overflow-hidden transition-all duration-300 hover:scale-105"
                 aria-label={`Open ${title} project`}
               >
-                <span className="relative z-10 flex items-center gap-2">
-                  Explore This Project
-                  <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </span>
+<span className="group/btn relative z-10 flex items-center gap-2 text-gray-300 hover:text-gray-900 transition-colors duration-200">
+  Explore This Project
+  <svg
+    className="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-1"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+  </svg>
+</span>
                 <div className="absolute inset-0 bg-primary scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left rounded-full"></div>
               </a>
             </div>
@@ -136,7 +144,7 @@ function CompactCaseStudyCard({
   url
 }: CaseStudyProps) {
   return (
-    <div className="group cursor-pointer">
+    <div className="group cursor-pointer h-full">
       <div className="glass-card rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 hover:shadow-xl h-full flex flex-col">
         <div className="relative h-48 overflow-hidden">
           <img
@@ -299,57 +307,57 @@ export function CaseStudies() {
   }
 
   const featuredCaseStudies: FeaturedCaseStudyAccordion[] = [
-    // {
-    //     "title": "Optimizing Banking User Journeys",
-    //     "outcome": "Improved critical banking flows, reducing drop-offs and increasing trust across payments, onboarding, and fraud handling.",
-    //     "domain": "Banking / Financial Services",
-    //     "tags": ["Enterprise UX", "Fintech", "User Flows", "Accessibility"],
-    //     "context": "SMEs and retail users faced friction across payments, KYC onboarding, and fraud scenarios due to complexity, unclear flows, and low transparency.",
-    //     "contextMobile": "Users struggled with complex banking tasks on mobile, causing drop-offs and confusion.",
-    //     "approach": "Analyzed high-friction journeys, prioritized critical flows, and redesigned experiences balancing compliance, security, and usability constraints.",
-    //     "approachMobile": "Focused on simplifying key journeys and reducing cognitive load for mobile users.",
-    //     "solutionHighlights": "Introduced step-based flows, contextual validation, retry mechanisms, and real-time alerts to improve clarity and reduce user errors.",
-    //     "solutionHighlightsMobile": "Simplified flows, added guidance, and improved error handling for better usability.",
-    //     "outcomes": "Reduced drop-offs, improved completion rates, minimized support calls, and increased user trust in critical financial tasks.",
-    //     "outcomesMobile": "Improved task success and reduced confusion in mobile banking interactions.",
-    //     "visuals": "Payment flows, KYC onboarding journeys, and fraud alert interactions designed to reduce friction and improve clarity.",
-    //     "image": Kognitive,
-    //     "figmaUrl": ""
-    // },
-    // {
-    //     "title": "Enterprise Recertification Experience Redesign",
-    //     "outcome": "Streamlined access reviews, reducing errors and improving compliance efficiency across large-scale enterprise systems.",
-    //     "domain": "Banking / Financial Services",
-    //     "tags": ["Enterprise UX", "Access Control", "Data Tables", "Compliance"],
-    //     "context": "Enterprise teams struggled with unclear recertification processes, leading to delays, errors, and compliance risks in user-role management.",
-    //     "contextMobile": "Users needed simplified access review flows with clear status visibility on constrained screens.",
-    //     "approach": "Structured workflows around task clarity, leveraged design system constraints, and prioritized scalability, accessibility, and decision visibility.",
-    //     "approachMobile": "Focused on simplifying complex tables and actions for better usability on smaller screens.",
-    //     "solutionHighlights": "Designed grid-based tables, role management flows, status indicators, and bulk actions for efficient and error-free recertification.",
-    //     "solutionHighlightsMobile": "Simplified role views, status indicators, and actions for better mobile interaction.",
-    //     "outcomes": "Faster recertification cycles, reduced manual errors, improved audit readiness, and better control over user access.",
-    //     "outcomesMobile": "Improved clarity and reduced friction in managing access on mobile devices.",
-    //     "visuals": "Project tables, user-role management screens, and state-driven workflows improving visibility and operational control.",
-    //     "image": citi,
-    //     "figmaUrl": ""
-    // },
-    // {
-    //   "title": "Admin Permissions & Bulk User Management",
-    //   "outcome": "Reduced permission errors and scaled admin workflows through clear access models and efficient bulk operations.",
-    //   "domain": "B2B SaaS / Enterprise Tools",
-    //   "tags": ["Enterprise UX", "Access Management", "Scalability", "Admin Tools"],
-    //   "context": "Admins faced permission complexity and inefficient bulk user management, causing over-access, errors, and lack of visibility across systems.",
-    //   "contextMobile": "Admins needed simplified controls and visibility for managing users and permissions on mobile.",
-    //   "approach": "Designed hierarchical access models, introduced inheritance logic, and enabled scalable bulk operations with clear risk indicators.",
-    //   "approachMobile": "Simplified permission views and actions to reduce cognitive load on smaller screens.",
-    //   "solutionHighlights": "Custom roles, permission grouping, bulk actions, audit dashboards, and plain-language summaries for better understanding.",
-    //   "solutionHighlightsMobile": "Streamlined role views, bulk actions, and summaries for mobile usability.",
-    //   "outcomes": "Reduced support tickets, improved access clarity, faster bulk operations, and increased admin confidence.",
-    //   "outcomesMobile": "Enabled faster and clearer user management on mobile devices.",
-    //   "visuals": "Role management tables, bulk user workflows, and audit dashboards improving access clarity and operational efficiency.",
-    //   "image": cba,
-    //   "figmaUrl": ""
-    // },
+    {
+        "title": "Optimizing Banking User Journeys",
+        "outcome": "Improved critical banking flows, reducing drop-offs and increasing trust across payments, onboarding, and fraud handling.",
+        "domain": "Banking / Financial Services",
+        "tags": ["Enterprise UX", "Fintech", "User Flows", "Accessibility"],
+        "context": "SMEs and retail users faced friction across payments, KYC onboarding, and fraud scenarios due to complexity, unclear flows, and low transparency.",
+        "contextMobile": "Users struggled with complex banking tasks on mobile, causing drop-offs and confusion.",
+        "approach": "Analyzed high-friction journeys, prioritized critical flows, and redesigned experiences balancing compliance, security, and usability constraints.",
+        "approachMobile": "Focused on simplifying key journeys and reducing cognitive load for mobile users.",
+        "solutionHighlights": "Introduced step-based flows, contextual validation, retry mechanisms, and real-time alerts to improve clarity and reduce user errors.",
+        "solutionHighlightsMobile": "Simplified flows, added guidance, and improved error handling for better usability.",
+        "outcomes": "Reduced drop-offs, improved completion rates, minimized support calls, and increased user trust in critical financial tasks.",
+        "outcomesMobile": "Improved task success and reduced confusion in mobile banking interactions.",
+        "visuals": "Payment flows, KYC onboarding journeys, and fraud alert interactions designed to reduce friction and improve clarity.",
+        "image": banking,
+        "figmaUrl": "https://www.figma.com/design/sMaCcp6O3qgYvbNFbxmpi4/Uvaisul?node-id=2592-979&t=9k4UV0KxCzeV9duc-1"
+    },
+    {
+        "title": "Enterprise Recertification Experience Redesign",
+        "outcome": "Streamlined access reviews, reducing errors and improving compliance efficiency across large-scale enterprise systems.",
+        "domain": "Banking / Financial Services",
+        "tags": ["Enterprise UX", "Access Control", "Data Tables", "Compliance"],
+        "context": "Enterprise teams struggled with unclear recertification processes, leading to delays, errors, and compliance risks in user-role management.",
+        "contextMobile": "Users needed simplified access review flows with clear status visibility on constrained screens.",
+        "approach": "Structured workflows around task clarity, leveraged design system constraints, and prioritized scalability, accessibility, and decision visibility.",
+        "approachMobile": "Focused on simplifying complex tables and actions for better usability on smaller screens.",
+        "solutionHighlights": "Designed grid-based tables, role management flows, status indicators, and bulk actions for efficient and error-free recertification.",
+        "solutionHighlightsMobile": "Simplified role views, status indicators, and actions for better mobile interaction.",
+        "outcomes": "Faster recertification cycles, reduced manual errors, improved audit readiness, and better control over user access.",
+        "outcomesMobile": "Improved clarity and reduced friction in managing access on mobile devices.",
+        "visuals": "Project tables, user-role management screens, and state-driven workflows improving visibility and operational control.",
+        "image": recertificate,
+        "figmaUrl": "https://www.figma.com/design/sMaCcp6O3qgYvbNFbxmpi4/Uvaisul?node-id=2293-2156&t=9k4UV0KxCzeV9duc-1"
+    },
+    {
+      "title": "Admin Permissions & Bulk User Management",
+      "outcome": "Reduced permission errors and scaled admin workflows through clear access models and efficient bulk operations.",
+      "domain": "B2B SaaS / Enterprise Tools",
+      "tags": ["Enterprise UX", "Access Management", "Scalability", "Admin Tools"],
+      "context": "Admins faced permission complexity and inefficient bulk user management, causing over-access, errors, and lack of visibility across systems.",
+      "contextMobile": "Admins needed simplified controls and visibility for managing users and permissions on mobile.",
+      "approach": "Designed hierarchical access models, introduced inheritance logic, and enabled scalable bulk operations with clear risk indicators.",
+      "approachMobile": "Simplified permission views and actions to reduce cognitive load on smaller screens.",
+      "solutionHighlights": "Custom roles, permission grouping, bulk actions, audit dashboards, and plain-language summaries for better understanding.",
+      "solutionHighlightsMobile": "Streamlined role views, bulk actions, and summaries for mobile usability.",
+      "outcomes": "Reduced support tickets, improved access clarity, faster bulk operations, and increased admin confidence.",
+      "outcomesMobile": "Enabled faster and clearer user management on mobile devices.",
+      "visuals": "Role management tables, bulk user workflows, and audit dashboards improving access clarity and operational efficiency.",
+      "image": adminpermissions,
+      "figmaUrl": "https://www.figma.com/design/sMaCcp6O3qgYvbNFbxmpi4/Uvaisul?node-id=1672-645&t=9k4UV0KxCzeV9duc-1"
+    },
     {
       "title": "Mobile Network Monitoring Experience",
       "outcome": "Enabled real-time network visibility and faster issue resolution for IT admins through a mobile-first monitoring experience.",
@@ -607,7 +615,7 @@ export function CaseStudies() {
               {otherProjects.map((study, index) => (
                 <div
                   key={index}
-                  className="snap-start shrink-0 w-[calc(100%-2rem)] rounded-3xl bg-background/80 p-4 shadow-xl"
+                  className="snap-start shrink-0 w-[calc(100%-2rem)] h-[560px] rounded-3xl bg-background/80 p-4 shadow-xl"
                   style={{ scrollSnapAlign: "start" }}
                 >
                   <CompactCaseStudyCard
@@ -696,10 +704,10 @@ export function CaseStudies() {
               {personalProjects.map((p, i) => (
                 <div
                   key={i}
-                  className="snap-start shrink-0 w-[calc(100%-2rem)] rounded-3xl bg-background/80 p-4 shadow-xl"
+                  className="snap-start shrink-0 w-[calc(100%-2rem)] h-[520px] rounded-3xl bg-background/80 p-4 shadow-xl"
                   style={{ scrollSnapAlign: "start" }}
                 >
-                  <div className="glass-card rounded-2xl overflow-hidden flex flex-col gap-5 p-4">
+                  <div className="glass-card rounded-2xl overflow-hidden flex flex-col gap-5 p-4 h-full">
                     <div className="flex-shrink-0 w-full aspect-square overflow-hidden rounded-3xl bg-muted/10">
                       <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
                     </div>

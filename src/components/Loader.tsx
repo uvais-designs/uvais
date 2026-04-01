@@ -1,12 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface LoaderProps {
   onComplete: () => void;
+  onLogoArrive?: () => void;
 }
 
-export function Loader({ onComplete }: LoaderProps) {
+export function Loader({ onComplete, onLogoArrive }: LoaderProps) {
   const [progress, setProgress] = useState(0);
   const [phase, setPhase] = useState('loading'); // loading, transitioning, complete
+  const [flyState, setFlyState] = useState({ x: 0, y: 0, scale: 1, active: false });
+  const logoRef = useRef<HTMLDivElement | null>(null);
+  const hasFlownRef = useRef(false);
+  const flyDurationMs = 1200;
 
   useEffect(() => {
     const progressInterval = setInterval(() => {
@@ -19,11 +24,11 @@ export function Loader({ onComplete }: LoaderProps) {
           // Delay phase change and onComplete for clean transitions
           setTimeout(() => {
             setPhase('complete');
-          }, 800); // Allow logo animation to complete
+          }, flyDurationMs); // Allow logo animation to complete
 
           setTimeout(() => {
             onComplete(); // Unmount after fade-out
-          }, 1200); // Slightly after 'complete' phase
+          }, flyDurationMs + 400); // Slightly after 'complete' phase
 
           return 100;
         }
@@ -34,6 +39,31 @@ export function Loader({ onComplete }: LoaderProps) {
     return () => clearInterval(progressInterval);
   }, [onComplete]);
 
+
+  useEffect(() => {
+    if (phase !== 'transitioning') return;
+    if (hasFlownRef.current) return;
+
+    const logoEl = logoRef.current;
+    const navLogoEl = document.querySelector('[data-nav-logo]') as HTMLElement | null;
+    if (!logoEl || !navLogoEl) return;
+
+    const logoRect = logoEl.getBoundingClientRect();
+    const navRect = navLogoEl.getBoundingClientRect();
+
+    const dx = navRect.left + navRect.width / 2 - (logoRect.left + logoRect.width / 2);
+    const dy = navRect.top + navRect.height / 2 - (logoRect.top + logoRect.height / 2);
+    const scale = navRect.width / logoRect.width;
+
+    setFlyState({ x: dx, y: dy, scale, active: true });
+    hasFlownRef.current = true;
+  }, [phase]);
+
+  useEffect(() => {
+    if (phase !== 'transitioning' || !onLogoArrive) return;
+    const timer = setTimeout(() => onLogoArrive(), Math.max(0, flyDurationMs - 150));
+    return () => clearTimeout(timer);
+  }, [phase, onLogoArrive]);
 
   return (
     <div className={`fixed inset-0 z-50 transition-all duration-1000 ${phase === 'complete' ? 'opacity-0 pointer-events-none' : 'opacity-100'
@@ -53,7 +83,15 @@ export function Loader({ onComplete }: LoaderProps) {
           <div>
             <div className="relative">
               {/* Liquid glass logo container */}
-              <div className="w-24 h-24 mx-auto mb-6 relative">
+              <div
+                ref={logoRef}
+                className={`w-24 h-24 mx-auto mb-6 relative transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${phase !== 'loading' ? 'z-50' : ''}`}
+                style={{
+                  transform: flyState.active
+                    ? `translate(${flyState.x}px, ${flyState.y}px) scale(${flyState.scale})`
+                    : 'translate(0px, 0px) scale(1)'
+                }}
+              >
                 <div className="">
                   <div className="absolute inset-2 rounded-xl bg-gradient-to-br from-primary/30 to-transparent backdrop-blur-sm"></div>
                 </div>
@@ -71,7 +109,7 @@ export function Loader({ onComplete }: LoaderProps) {
               </div>
 
               {/* Name with typewriter effect */}
-              <div className={`transition-all duration-500 ${phase === 'complete' ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
+              <div className={`transition-all duration-500 ${phase !== 'loading' ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
                 }`}>
                 <h1 className="text-3xl font-bold text-foreground mb-2">
                   Hey, Uvais Here!
@@ -82,7 +120,7 @@ export function Loader({ onComplete }: LoaderProps) {
           </div>
 
           {/* Progress section */}
-          <div className={`transition-all duration-500 ${phase === 'complete' ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
+          <div className={`transition-all duration-500 ${phase !== 'loading' ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
             }`}>
             {/* Liquid glass progress container */}
             <div className="w-80 mx-auto p-6 rounded-2xl bg-white/10 dark:bg-black/10 backdrop-blur-xl shadow-xl">

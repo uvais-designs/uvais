@@ -196,7 +196,7 @@ float rayStrength(vec2 raySource, vec2 rayRefDirection, vec2 coord,
   vec2 dirNorm = normalize(sourceToCoord);
   float cosAngle = dot(dirNorm, rayRefDirection);
 
-  float distortedAngle = cosAngle + distortion * sin(iTime * 2.0 + length(sourceToCoord) * 0.01) * 0.2;
+  float distortedAngle = cosAngle + distortion * sin(length(sourceToCoord) * 0.01) * 0.2;
   float spreadFactor = pow(max(distortedAngle, 0.0), 1.0 / max(lightSpread, 0.001));
 
   float distance = length(sourceToCoord);
@@ -206,8 +206,8 @@ float rayStrength(vec2 raySource, vec2 rayRefDirection, vec2 coord,
   float fadeFalloff = clamp((iResolution.x * fadeDistance - distance) / (iResolution.x * fadeDistance), 0.5, 1.0);
   float pulse = pulsating > 0.5 ? (0.8 + 0.2 * sin(iTime * speed * 3.0)) : 1.0;
   float baseStrength = clamp(
-    (0.45 + 0.15 * sin(distortedAngle * seedA + iTime * speed)) +
-    (0.3 + 0.2 * cos(-distortedAngle * seedB + iTime * speed)),
+    (0.45 + 0.15 * sin(distortedAngle * seedA)) +
+    (0.3 + 0.2 * cos(-distortedAngle * seedB)),
     0.0, 1.0
   );
 
@@ -240,9 +240,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
   fragColor.y *= 0.3 + brightness * 0.6;
   fragColor.z *= 0.5 + brightness * 0.5;
 
-  // // Soften the bottom edge to avoid a hard line when scrolling.
-  // float bottomFade = smoothstep(0.0, 0.18, coord.y / iResolution.y);
-  // fragColor *= bottomFade;
+
   if (saturation != 1.0) {
     float gray = dot(fragColor.rgb, vec3(0.299, 0.587, 0.114));
     fragColor.rgb = mix(vec3(gray), fragColor.rgb, saturation);

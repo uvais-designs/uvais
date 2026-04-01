@@ -6,7 +6,12 @@ interface NavItem {
   label: string;
 }
 
-export function Navigation() {
+interface NavigationProps {
+  isVisible?: boolean;
+  logoVisible?: boolean;
+}
+
+export function Navigation({ isVisible = true, logoVisible = true }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
@@ -60,7 +65,7 @@ export function Navigation() {
       className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
         ? 'glass-nav shadow-lg border-b border-white/10 backdrop-blur-md'
         : 'bg-background/50 backdrop-blur-sm'
-        }`}
+        } ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
     >
       <div
         className={`container mx-auto px-4 flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-3' : 'py-4'
@@ -69,9 +74,10 @@ export function Navigation() {
         {/* Logo */}
         <a href="#home" className="w-16 h-12 flex items-center">
           <div
+            data-nav-logo
             className={`w-8 h-8 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 backdrop-blur-xl 
        flex items-center justify-center transition-all duration-300 
-      ${isScrolled ? 'scale-90' : 'scale-100'}`}
+      ${isScrolled ? 'scale-90' : 'scale-100'} ${logoVisible ? 'opacity-100' : 'opacity-0'}`}
           >
             <img
               src="images/uklogo.svg"
