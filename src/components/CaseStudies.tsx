@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
 
 const Kognitive = "images/image.png";
@@ -373,6 +373,14 @@ export function CaseStudies() {
   const otherProjects = caseStudies.filter(study => !study.featured);
   const [figmaToOpen, setFigmaToOpen] = useState<string | null>(null);
 
+  const workCarouselRef = useRef<HTMLDivElement | null>(null);
+  const personalCarouselRef = useRef<HTMLDivElement | null>(null);
+
+  const personalProjects = [
+    { title: "Hostel Management", image: hostel, url: "/uvais/hostel.html", disabled: false },
+    { title: "TrunFrun - Upcoming", image: trunfrun, url: "", disabled: true },
+  ];
+
   useEffect(() => {
     if (!figmaToOpen) return;
 
@@ -538,6 +546,7 @@ export function CaseStudies() {
               </AccordionItem>
             ))}
           </Accordion>
+
         </div>
 {/* 
         <div className="text-center mb-16">
@@ -571,7 +580,7 @@ export function CaseStudies() {
           />
         )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {otherProjects.map((study, index) => (
               <div key={index} className="opacity-0 animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'forwards' }}>
                 <CompactCaseStudyCard
@@ -588,6 +597,44 @@ export function CaseStudies() {
               </div>
             ))}
           </div>
+
+          <div className="md:hidden">
+            <div
+              ref={workCarouselRef}
+              className="flex snap-x snap-mandatory overflow-x-auto gap-4 pb-4 px-4 touch-pan-x scrollbar-hidden"
+              aria-label="Work projects carousel"
+            >
+              {otherProjects.map((study, index) => (
+                <div
+                  key={index}
+                  className="snap-start shrink-0 w-[calc(100%-2rem)] rounded-3xl bg-background/80 p-4 shadow-xl"
+                  style={{ scrollSnapAlign: "start" }}
+                >
+                  <CompactCaseStudyCard
+                    title={study.title}
+                    category={study.category}
+                    description={study.description}
+                    challenge={study.challenge}
+                    solution={study.solution}
+                    impact={study.impact}
+                    image={study.image}
+                    tags={study.tags}
+                    url={study.url}
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* <div className="mt-3 flex items-center justify-center gap-2">
+              {otherProjects.map((_, index) => (
+                <span
+                  key={index}
+                  className={`inline-flex items-center justify-center h-2.5 ${activeWorkIndex === index ? "w-8 bg-primary" : "w-2.5 bg-muted/40"} rounded-full transition-all duration-200`}
+                  aria-label={`Slide ${index + 1}`}
+                />
+              ))}
+            </div> */}
+          </div>
         </div>
 
         {/* Personal Projects */}
@@ -597,11 +644,8 @@ export function CaseStudies() {
             <p className="text-muted-foreground">Small experiments and side projects</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
-            {[
-              { title: "Hostel Management", image: hostel, url: "/uvais/hostel.html", disabled: false },
-              { title: "TrunFrun - Upcoming", image: trunfrun, url: "", disabled: true },
-            ].map((p, i) => (
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 gap-6">
+            {personalProjects.map((p, i) => (
               <div key={i} className="glass-card rounded-2xl overflow-hidden flex flex-col sm:flex-row gap-5 p-4 sm:p-5">
                 <div className="flex-shrink-0 w-full sm:w-32 md:w-36 aspect-square overflow-hidden rounded-3xl bg-muted/10">
                   <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
@@ -641,6 +685,61 @@ export function CaseStudies() {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="md:hidden">
+            <div
+              ref={personalCarouselRef}
+              className="flex snap-x snap-mandatory overflow-x-auto gap-4 pb-4 px-4 touch-pan-x scrollbar-hidden"
+              aria-label="Personal projects carousel"
+            >
+              {personalProjects.map((p, i) => (
+                <div
+                  key={i}
+                  className="snap-start shrink-0 w-[calc(100%-2rem)] rounded-3xl bg-background/80 p-4 shadow-xl"
+                  style={{ scrollSnapAlign: "start" }}
+                >
+                  <div className="glass-card rounded-2xl overflow-hidden flex flex-col gap-5 p-4">
+                    <div className="flex-shrink-0 w-full aspect-square overflow-hidden rounded-3xl bg-muted/10">
+                      <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
+                    </div>
+
+                    <div className="flex-1 flex flex-col justify-between min-h-[180px]">
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-2 line-clamp-2 text-lg">{p.title}</h4>
+                        <p className="text-sm text-muted-foreground leading-6">
+                          {p.disabled
+                            ? "A coming soon concept with the next iteration of interactive workflows."
+                            : "A compact project showcasing UX, interaction design, and lightweight project flows."}
+                        </p>
+                      </div>
+
+                      <div className="mt-5">
+                        {p.disabled ? (
+                          <button
+                            disabled
+                            className="inline-block w-full text-center py-2 rounded-md bg-muted/50 text-muted-foreground cursor-not-allowed opacity-50"
+                            aria-label={`${p.title} - Coming Soon`}
+                          >
+                            Coming Soon
+                          </button>
+                        ) : (
+                          <a
+                            href={p.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block w-full text-center py-2 rounded-md glass-button text-primary hover:scale-105 transition-all duration-200"
+                            aria-label={`View ${p.title}`}
+                          >
+                            View Project
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ import { Leadership } from "./components/Leadership";
 import { Contact } from "./components/Contact";
 import { WhyDesign } from "./components/WhyDesign";
 import ProfileCard from './components/ProfileCard'
+import LightRays from "./components/LightRays";
 
 
 export default function App() {
@@ -40,6 +41,19 @@ export default function App() {
     <div className="bg-background min-h-screen relative">
       {/* Animated background elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <LightRays
+          className="absolute inset-0 opacity-70"
+          raysOrigin="top-center"
+          raysColor="#f6e6c1"
+          raysSpeed={0.9}
+          lightSpread={1.2}
+          rayLength={2.2}
+          fadeDistance={1.1}
+          saturation={1.05}
+          mouseInfluence={0.12}
+          noiseAmount={0.05}
+          distortion={0.1}
+        />
         {/* Floating geometric shapes with premium accent colors */}
         <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-xl animate-float"></div>
         <div className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-br from-secondary/20 to-transparent rounded-full blur-xl animate-float" style={{ animationDelay: '2s' }}></div>
