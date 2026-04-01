@@ -146,7 +146,7 @@ function CompactCaseStudyCard({
   return (
     <div className="group cursor-pointer h-full">
       <div className="glass-card rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 hover:shadow-xl h-full flex flex-col">
-        <div className="relative h-48 overflow-hidden">
+        <div className="relative aspect-square overflow-hidden">
           <img
             src={image}
             alt={title}
@@ -588,7 +588,7 @@ export function CaseStudies() {
           />
         )}
 
-          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="hidden min-[751px]:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {otherProjects.map((study, index) => (
               <div key={index} className="opacity-0 animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'forwards' }}>
                 <CompactCaseStudyCard
@@ -606,7 +606,7 @@ export function CaseStudies() {
             ))}
           </div>
 
-          <div className="md:hidden">
+          <div className="max-[750px]:block min-[751px]:hidden">
             <div
               ref={workCarouselRef}
               className="flex snap-x snap-mandatory overflow-x-auto gap-4 pb-4 px-4 touch-pan-x scrollbar-hidden"
@@ -615,7 +615,7 @@ export function CaseStudies() {
               {otherProjects.map((study, index) => (
                 <div
                   key={index}
-                  className="snap-start shrink-0 w-[calc(100%-2rem)] h-[560px] rounded-3xl bg-background/80 p-4 shadow-xl"
+                  className="snap-start shrink-0 w-[calc(100%-2rem)] h-[520px] min-[513px]:h-[580px] max-[740px]:h-[580px] max-[512px]:h-[520px] rounded-3xl bg-background/80 p-4 shadow-xl"
                   style={{ scrollSnapAlign: "start" }}
                 >
                   <CompactCaseStudyCard
@@ -652,7 +652,7 @@ export function CaseStudies() {
             <p className="text-muted-foreground">Small experiments and side projects</p>
           </div>
 
-          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="hidden min-[751px]:grid grid-cols-1 md:grid-cols-2 gap-6">
             {personalProjects.map((p, i) => (
               <div key={i} className="glass-card rounded-2xl overflow-hidden flex flex-col sm:flex-row gap-5 p-4 sm:p-5">
                 <div className="flex-shrink-0 w-full sm:w-32 md:w-36 aspect-square overflow-hidden rounded-3xl bg-muted/10">
@@ -695,7 +695,7 @@ export function CaseStudies() {
             ))}
           </div>
 
-          <div className="md:hidden">
+          <div className="max-[750px]:block min-[751px]:hidden">
             <div
               ref={personalCarouselRef}
               className="flex snap-x snap-mandatory overflow-x-auto gap-4 pb-4 px-4 touch-pan-x scrollbar-hidden"
@@ -704,25 +704,25 @@ export function CaseStudies() {
               {personalProjects.map((p, i) => (
                 <div
                   key={i}
-                  className="snap-start shrink-0 w-[calc(100%-2rem)] h-[520px] rounded-3xl bg-background/80 p-4 shadow-xl"
+                  className="snap-start shrink-0 w-[calc(100%-2rem)] h-[540px] min-[513px]:h-[600px] max-[740px]:h-[600px] max-[512px]:h-[540px] rounded-3xl bg-background/80 p-4 shadow-xl"
                   style={{ scrollSnapAlign: "start" }}
                 >
-                  <div className="glass-card rounded-2xl overflow-hidden flex flex-col gap-5 p-4 h-full">
+                  <div className="glass-card rounded-2xl overflow-hidden flex flex-col gap-5 max-[740px]:gap-4 p-4 h-full">
                     <div className="flex-shrink-0 w-full aspect-square overflow-hidden rounded-3xl bg-muted/10">
                       <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
                     </div>
 
-                    <div className="flex-1 flex flex-col justify-between min-h-[180px]">
+                    <div className="flex-1 flex flex-col justify-between min-h-[140px]">
                       <div>
-                        <h4 className="font-semibold text-foreground mb-2 line-clamp-2 text-lg">{p.title}</h4>
-                        <p className="text-sm text-muted-foreground leading-6">
+                        <h4 className="font-semibold text-foreground mb-2 line-clamp-2 text-lg max-[740px]:text-base">{p.title}</h4>
+                        <p className="text-sm text-muted-foreground leading-6 max-[740px]:line-clamp-3">
                           {p.disabled
                             ? "A coming soon concept with the next iteration of interactive workflows."
                             : "A compact project showcasing UX, interaction design, and lightweight project flows."}
                         </p>
                       </div>
 
-                      <div className="mt-5">
+                      <div className="mt-auto">
                         {p.disabled ? (
                           <button
                             disabled
