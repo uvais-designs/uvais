@@ -14,6 +14,7 @@ import ProfileCard from './components/ProfileCard'
 export default function App() {
   const [isLoading, setIsLoading] = useState(false);//change this to true to show the loader
   const [showContent, setShowContent] = useState(true);
+  const [showMore, setShowMore] = useState(false);
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
@@ -79,10 +80,39 @@ export default function App() {
                 }}
               />
               <CaseStudies />
-              <Experience />
-              <Education />
-              <Leadership />
-              <WhyDesign />
+
+              {!showMore && (
+                <div className="mx-auto mt-12 flex max-w-3xl flex-col items-center gap-4 text-center">
+                  <p className="text-sm text-muted-foreground max-w-2xl">
+                    Explore the main persona and project sections first, then tap know more to continue the story.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowMore(true);
+                      setTimeout(() => {
+                        const nextSection = document.querySelector('#more-sections');
+                        if (nextSection) {
+                          nextSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }, 50);
+                    }}
+                    className="rounded-full bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+                  >
+                    Know More
+                  </button>
+                </div>
+              )}
+
+              {showMore && (
+                <div id="more-sections">
+                  <Experience />
+                  <Education />
+                  <Leadership />
+                  <WhyDesign />
+                </div>
+              )}
+
               <div id="contact">
                 <Contact />
               </div>

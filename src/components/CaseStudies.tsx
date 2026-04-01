@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
 
 const Kognitive = "images/image.png";
 const citi = "images/citi.png";
 const cba = "images/cba.png";
 const emis = "images/emis.png";
+const netmaster = "images/netmaster.png";
 const self = "images/self.png";
 const hostel = "images/hostel.png";
 const trunfrun = "images/trunfrun.png";
@@ -292,94 +294,97 @@ export function CaseStudies() {
     outcomes: string;
     outcomesMobile: string;
     visuals: string;
+    image: string;
     figmaUrl: string;
   }
 
   const featuredCaseStudies: FeaturedCaseStudyAccordion[] = [
+    // {
+    //     "title": "Optimizing Banking User Journeys",
+    //     "outcome": "Improved critical banking flows, reducing drop-offs and increasing trust across payments, onboarding, and fraud handling.",
+    //     "domain": "Banking / Financial Services",
+    //     "tags": ["Enterprise UX", "Fintech", "User Flows", "Accessibility"],
+    //     "context": "SMEs and retail users faced friction across payments, KYC onboarding, and fraud scenarios due to complexity, unclear flows, and low transparency.",
+    //     "contextMobile": "Users struggled with complex banking tasks on mobile, causing drop-offs and confusion.",
+    //     "approach": "Analyzed high-friction journeys, prioritized critical flows, and redesigned experiences balancing compliance, security, and usability constraints.",
+    //     "approachMobile": "Focused on simplifying key journeys and reducing cognitive load for mobile users.",
+    //     "solutionHighlights": "Introduced step-based flows, contextual validation, retry mechanisms, and real-time alerts to improve clarity and reduce user errors.",
+    //     "solutionHighlightsMobile": "Simplified flows, added guidance, and improved error handling for better usability.",
+    //     "outcomes": "Reduced drop-offs, improved completion rates, minimized support calls, and increased user trust in critical financial tasks.",
+    //     "outcomesMobile": "Improved task success and reduced confusion in mobile banking interactions.",
+    //     "visuals": "Payment flows, KYC onboarding journeys, and fraud alert interactions designed to reduce friction and improve clarity.",
+    //     "image": Kognitive,
+    //     "figmaUrl": ""
+    // },
+    // {
+    //     "title": "Enterprise Recertification Experience Redesign",
+    //     "outcome": "Streamlined access reviews, reducing errors and improving compliance efficiency across large-scale enterprise systems.",
+    //     "domain": "Banking / Financial Services",
+    //     "tags": ["Enterprise UX", "Access Control", "Data Tables", "Compliance"],
+    //     "context": "Enterprise teams struggled with unclear recertification processes, leading to delays, errors, and compliance risks in user-role management.",
+    //     "contextMobile": "Users needed simplified access review flows with clear status visibility on constrained screens.",
+    //     "approach": "Structured workflows around task clarity, leveraged design system constraints, and prioritized scalability, accessibility, and decision visibility.",
+    //     "approachMobile": "Focused on simplifying complex tables and actions for better usability on smaller screens.",
+    //     "solutionHighlights": "Designed grid-based tables, role management flows, status indicators, and bulk actions for efficient and error-free recertification.",
+    //     "solutionHighlightsMobile": "Simplified role views, status indicators, and actions for better mobile interaction.",
+    //     "outcomes": "Faster recertification cycles, reduced manual errors, improved audit readiness, and better control over user access.",
+    //     "outcomesMobile": "Improved clarity and reduced friction in managing access on mobile devices.",
+    //     "visuals": "Project tables, user-role management screens, and state-driven workflows improving visibility and operational control.",
+    //     "image": citi,
+    //     "figmaUrl": ""
+    // },
+    // {
+    //   "title": "Admin Permissions & Bulk User Management",
+    //   "outcome": "Reduced permission errors and scaled admin workflows through clear access models and efficient bulk operations.",
+    //   "domain": "B2B SaaS / Enterprise Tools",
+    //   "tags": ["Enterprise UX", "Access Management", "Scalability", "Admin Tools"],
+    //   "context": "Admins faced permission complexity and inefficient bulk user management, causing over-access, errors, and lack of visibility across systems.",
+    //   "contextMobile": "Admins needed simplified controls and visibility for managing users and permissions on mobile.",
+    //   "approach": "Designed hierarchical access models, introduced inheritance logic, and enabled scalable bulk operations with clear risk indicators.",
+    //   "approachMobile": "Simplified permission views and actions to reduce cognitive load on smaller screens.",
+    //   "solutionHighlights": "Custom roles, permission grouping, bulk actions, audit dashboards, and plain-language summaries for better understanding.",
+    //   "solutionHighlightsMobile": "Streamlined role views, bulk actions, and summaries for mobile usability.",
+    //   "outcomes": "Reduced support tickets, improved access clarity, faster bulk operations, and increased admin confidence.",
+    //   "outcomesMobile": "Enabled faster and clearer user management on mobile devices.",
+    //   "visuals": "Role management tables, bulk user workflows, and audit dashboards improving access clarity and operational efficiency.",
+    //   "image": cba,
+    //   "figmaUrl": ""
+    // },
     {
-      title: "Redesigning the Command Center for Maritime Operations",
-      outcome: "Designed a high-trust dashboard that reduced task friction and improved situational clarity for complex operations.",
-      domain: "Maritime Logistics",
-      tags: ["Enterprise UX", "Operational Design", "Responsive", "Accessibility"],
-      context: "Senior users were managing mission-critical marine communication systems in inconsistent network conditions, where a single error could delay logistics or compromise safety.",
-      contextMobile: "Senior users managed marine comms in inconsistent conditions and needed clear, dependable controls.",
-      approach: "I audited existing workflows, prioritized critical user journeys, and created a modular interface that supports both desktop and tablet navigation.",
-      approachMobile: "I focused on the most important journeys, simplifying controls for clarity on smaller screens.",
-      solutionHighlights: "Simplified onboarding flows, introduced progressive disclosure for complex controls, and created clear error states with recovery paths.",
-      solutionHighlightsMobile: "Created easier onboarding, clearer controls, and stronger error recovery.",
-      outcomes: "Improved task confidence, reduced review cycles, and created a visual system built for real-world operational constraints.",
-      outcomesMobile: "Boosted confidence, cut review time, and made tasks more reliable.",
-      visuals: "Dashboard screens, workflow sequences, and status-aware alerts that map to real operational scenarios.",
-      figmaUrl: "https://www.figma.com/file/example-maritime-command-center"
-    },
-    {
-      title: "Enterprise Banking Experience for Cross-Border Teams",
-      outcome: "Created a secure, efficient banking workflow for staff operating across multiple markets and time zones.",
-      domain: "Financial Services",
-      tags: ["Banking", "Compliance", "Workflow", "Usability"],
-      context: "Bank staff were switching between disparate systems to complete customer onboarding, creating delays and duplicate work.",
-      contextMobile: "Staff switched between tools to onboard customers, creating delays and friction.",
-      approach: "I mapped handoff points, harmonized information architecture, and designed a single responsive experience that adapts to desktop and tablet usage.",
-      approachMobile: "I simplified handoffs, unified info, and created a responsive workflow for both desktop and tablet.",
-      solutionHighlights: "Introduced role-based navigation, a unified customer timeline, and contextual help for complex compliance tasks.",
-      solutionHighlightsMobile: "Added role-based navigation, a single timeline, and clearer compliance help.",
-      outcomes: "Streamlined case handling, improved visibility into outstanding actions, and reduced training overhead.",
-      outcomesMobile: "Faster handling, better visibility, and less training time.",
-      visuals: "Customer journey maps, dashboard panels, and rapid selection screens for cross-border approvals.",
-      figmaUrl: "https://www.figma.com/file/example-enterprise-banking"
-    },
-    {
-      title: "Government Education Portal with Role-Based Insights",
-      outcome: "Designed a government-facing education portal that made large datasets easy to understand and act on.",
-      domain: "Public Sector",
-      tags: ["GovTech", "Data Viz", "Accessibility", "Service Design"],
-      context: "Administrators needed to manage school data while complying with existing government standards and limited network reliability.",
-      contextMobile: "Administrators needed clear school data views with low network risk.",
-      approach: "I built dashboards with progressive disclosure, clear status indicators, and mobile-friendly summaries for field use.",
-      approachMobile: "I created simpler dashboards with status indicators and mobile summaries.",
-      solutionHighlights: "Created intelligent data cards, adaptive navigation, and a consistent visual language for complex policy reporting.",
-      solutionHighlightsMobile: "Delivered smart cards, adaptive navigation, and a consistent reporting language.",
-      outcomes: "Enabled faster decision-making, better data comprehension, and more confident stakeholder reporting.",
-      outcomesMobile: "Faster decisions, clearer data, and stronger reports.",
-      visuals: "Role-based dashboard panels, alerts, and workflow diagrams for inspection and reporting tasks.",
-      figmaUrl: "https://www.figma.com/file/example-education-portal"
-    },
-    {
-      title: "Learning Platform with Adaptive Experience Paths",
-      outcome: "Synthesized personalized learning journeys into a clear, motivating interface for diverse learner needs.",
-      domain: "EdTech",
-      tags: ["Adaptive UX", "Gamification", "Learner Experience", "Scalability"],
-      context: "Learners engaged with multiple content formats and needed personalized guidance without overwhelming options.",
-      contextMobile: "Learners needed clear guidance across mixed content without feeling overwhelmed.",
-      approach: "I aligned success metrics, crafted meaningful micro-interactions, and prototyped responsive flows for learner motivation.",
-      approachMobile: "I used clear micro-interactions and responsive flows to make learning motivating.",
-      solutionHighlights: "Built adaptive progress summaries, milestone nudges, and simplified content discovery pathways.",
-      solutionHighlightsMobile: "Built adaptive progress cards, milestone nudges, and clearer content paths.",
-      outcomes: "Increased engagement clarity and created a flexible platform that supports future learning scenarios.",
-      outcomesMobile: "Increased clarity and created a flexible learning platform.",
-      visuals: "Learning path screens, progress dashboards, and simplified content selection flows.",
-      figmaUrl: "https://www.figma.com/file/example-learning-platform"
-    },
-    {
-      title: "High-Impact Product Launch Experience",
-      outcome: "Built a launch-ready product experience that balanced speed, quality, and stakeholder alignment.",
-      domain: "Product Design",
-      tags: ["Launch", "Stakeholder Alignment", "Rapid Prototyping", "Design Ops"],
-      context: "The product team needed a polished experience that could be shared with stakeholders while development timelines were tight.",
-      contextMobile: "The team needed a polished launch experience on a tight schedule.",
-      approach: "I created a clear experience roadmap, validated interactions with rapid prototypes, and aligned the team on the highest-impact screens.",
-      approachMobile: "I built a roadmap, validated prototypes, and aligned screens to the launch goals.",
-      solutionHighlights: "Delivered a purpose-driven experience with clear success metrics, launch checklists, and stakeholder-facing flows.",
-      solutionHighlightsMobile: "Delivered a focused launch experience with clear metrics and stakeholder-ready screens.",
-      outcomes: "Reduced review cycles and provided a confident handoff for development and launch planning.",
-      outcomesMobile: "Reduced reviews and created a strong handoff for launch.",
-      visuals: "Launch journey maps, prototype flow screens, and product walkthrough sequences.",
-      figmaUrl: "https://www.figma.com/file/example-launch-experience"
+      "title": "Mobile Network Monitoring Experience",
+      "outcome": "Enabled real-time network visibility and faster issue resolution for IT admins through a mobile-first monitoring experience.",
+      "domain": "Enterprise IT / Network Management",
+      "tags": ["Mobile UX", "Enterprise UX", "Data Visualization", "Monitoring"],
+      "context": "IT admins lacked efficient mobile tools to monitor network health, devices, and alerts, leading to delayed responses and operational inefficiencies.",
+      "contextMobile": "Admins needed quick access to network insights and controls on mobile devices.",
+      "approach": "Prioritized real-time data visibility, simplified navigation, and designed action-oriented dashboards for efficient monitoring.",
+      "approachMobile": "Focused on fast access to critical insights and quick actions for mobile usage.",
+      "solutionHighlights": "Dashboard metrics, device management flows, alert categorization, and bandwidth analytics for complete network control.",
+      "solutionHighlightsMobile": "Simplified dashboards, alerts, and device actions for mobile efficiency.",
+      "outcomes": "Improved response time, faster issue detection, better device control, and increased operational efficiency.",
+      "outcomesMobile": "Enabled faster monitoring and action-taking on mobile.",
+      "visuals": "Dashboard metrics, device lists, alert flows, and bandwidth charts supporting real-time monitoring and actions.",
+      "image": netmaster,
+      "figmaUrl": "https://www.figma.com/design/sMaCcp6O3qgYvbNFbxmpi4/Uvaisul?node-id=2585-6034&t=r0fADU8euF7PAtNN-1"
     }
   ];
 
   const featuredProject = caseStudies.find(study => study.featured);
   const otherProjects = caseStudies.filter(study => !study.featured);
+  const [figmaToOpen, setFigmaToOpen] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!figmaToOpen) return;
+
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setFigmaToOpen(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [figmaToOpen]);
 
   return (
     <section id="projects" className="py-20 relative">
@@ -387,18 +392,23 @@ export function CaseStudies() {
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background"></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* <div className="max-w-5xl mx-auto mb-14">
+        <div className="max-w-5xl mx-auto mb-14">
           <div className="text-center space-y-6">
-            <p className="text-sm uppercase tracking-[0.3em] text-primary font-semibold">
+            <p className="text-2xl uppercase tracking-[0.3em] text-primary font-semibold">
               Featured Case Studies
             </p>
           
-            <p className="text-base md:text-lg leading-7 text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg leading-7 text-muted-foreground max-w-3xl mx-auto">
               Due to confidentiality agreements, real production work cannot be shown, but the displayed case studies are realistic simulations based on actual professional experience, reflecting similar challenges, constraints, and decision-making processes.
             </p>
           </div>
 
-          <Accordion type="single" collapsible className="mt-10 space-y-4">
+          <Accordion
+            type="single"
+            collapsible
+            onValueChange={() => setFigmaToOpen(null)}
+            className="mt-10 space-y-4"
+          >
             {featuredCaseStudies.map((project, index) => (
               <AccordionItem
                 key={project.title}
@@ -415,17 +425,17 @@ export function CaseStudies() {
                   </div>
                 </AccordionTrigger>
 
-                <AccordionContent className="px-5 md:px-6 pb-6">
-                  <div className="grid gap-5">
-                    <div className="rounded-3xl overflow-hidden border border-border/20 bg-muted/5">
+                <AccordionContent className="relative px-5 md:px-6 pb-6">
+                  <div className="grid gap-5 lg:grid-cols-[minmax(220px,320px)_1fr] items-start">
+                    <div className="rounded-3xl overflow-hidden border border-border/20 bg-muted/5 aspect-square max-w-[320px] mx-auto lg:mx-0">
                       <img
-                        src="https://via.placeholder.com/1200x720?text=Project+Image+Placeholder"
-                        alt="Project visual placeholder"
-                        className="w-full h-56 object-cover sm:h-64"
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
                       />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
                       <div>
                         <h4 className="text-sm font-semibold text-foreground mb-2">Context & Problem</h4>
                         <p className="text-sm text-muted-foreground leading-6 pl-3 md:pl-0">
@@ -456,37 +466,97 @@ export function CaseStudies() {
                       </div>
                     </div>
 
-                    <div className="flex justify-between items-center gap-4 flex-wrap">
-                      <div className="rounded-3xl bg-muted/10 border border-border/20 p-4 flex-1 min-w-[170px]">
+                    <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between w-full lg:col-span-2">
+                      <div className="rounded-3xl bg-muted/10 border border-border/20 p-4 flex-1">
                         <h4 className="text-sm font-semibold text-foreground mb-2">Visual Screens / Flows</h4>
-                        <p className="text-sm text-muted-foreground leading-6 pl-3">{project.visuals}</p>
+                        <p className="text-sm text-muted-foreground leading-6 pl-3 lg:pl-0">{project.visuals}</p>
                       </div>
+
                       <a
                         href={project.figmaUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:shadow-lg"
+                        className="inline-flex w-full h-11 items-center justify-center rounded-full bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition hover:shadow-lg md:hidden"
                       >
-                        View Figma File
+                        View in Figma
                       </a>
+
+                      <button
+                        type="button"
+                        onClick={() => setFigmaToOpen(project.figmaUrl)}
+                        aria-label="Open Figma confirmation"
+                        className="hidden md:inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary text-primary-foreground transition hover:shadow-lg self-start lg:self-end"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                          <circle cx="12" cy="12" r="3" />
+                        </svg>
+                      </button>
                     </div>
                   </div>
+
+                  {figmaToOpen === project.figmaUrl && (
+                    <div
+                      className="absolute inset-0 z-50 flex items-center justify-center rounded-3xl bg-slate-950/95 p-4"
+                      onClick={() => setFigmaToOpen(null)}
+                    >
+                      <div
+                        className="relative w-full max-w-xl overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(15,23,42,0.95),rgba(30,41,59,0.78))] p-6 shadow-[0_40px_120px_-45px_rgba(0,0,0,0.75)] backdrop-blur-3xl ring-1 ring-white/10 sm:p-8"
+                        onClick={(event) => event.stopPropagation()}
+                      >
+                        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(148,163,184,0.18),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(71,85,105,0.18),transparent_35%)]" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-white/5 to-transparent opacity-90" />
+                        <div className="relative z-10">
+                          <h3 className="text-xl font-semibold text-white mb-3">Open Figma file?</h3>
+                          <p className="text-sm text-slate-200 mb-6">This will open the project in Figma. Are you sure you want to continue?</p>
+                          <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
+                            <button
+                              type="button"
+                              onClick={() => setFigmaToOpen(null)}
+                              className=" px-4 py-2 text-sm font-medium text-slate-100 transition hover:bg-slate-900/60"
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (figmaToOpen) {
+                                  window.open(figmaToOpen, "_blank");
+                                }
+                                setFigmaToOpen(null);
+                              }}
+                              className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:shadow-lg"
+                            >
+                              Yes, open Figma
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
-        </div> */}
-
+        </div>
+{/* 
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-2xl uppercase tracking-[0.3em] text-primary font-semibold">
             Design Stories & Solutions
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Each project tells a story of challenges overcome, users delighted, and businesses transformed through thoughtful design.
           </p>
-        </div>
+        </div> */}
 
-        {/* Featured Project */}
+        {/* Other Projects Grid */}
+        <div className="space-y-8">
+          <div className="text-center">
+            <h3 className="text-2xl uppercase tracking-[0.3em] text-primary font-semibold">Work Projects</h3>
+            <p className="text-muted-foreground">A selection of impactful design solutions</p>
+          </div>
+
+                  {/* Featured Project */}
         {featuredProject && (
           <FeaturedCaseStudyCard
             title={featuredProject.title}
@@ -500,13 +570,6 @@ export function CaseStudies() {
             url={featuredProject.url}
           />
         )}
-
-        {/* Other Projects Grid */}
-        <div className="space-y-8">
-          <div className="text-center">
-            <h3 className="text-2xl font-semibold text-foreground mb-2">Work Projects</h3>
-            <p className="text-muted-foreground">A selection of impactful design solutions</p>
-          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {otherProjects.map((study, index) => (
@@ -530,7 +593,7 @@ export function CaseStudies() {
         {/* Personal Projects */}
         <div className="mt-16">
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-semibold text-foreground">Personal Projects</h3>
+            <h3 className="text-2xl uppercase tracking-[0.3em] text-primary font-semibold">Personal Projects</h3>
             <p className="text-muted-foreground">Small experiments and side projects</p>
           </div>
 
@@ -539,17 +602,22 @@ export function CaseStudies() {
               { title: "Hostel Management", image: hostel, url: "/uvais/hostel.html", disabled: false },
               { title: "TrunFrun - Upcoming", image: trunfrun, url: "", disabled: true },
             ].map((p, i) => (
-              <div key={i} className="glass-card rounded-2xl overflow-hidden flex flex-col">
-                <div className="relative h-40 overflow-hidden">
-                  <img src={p.image} alt={p.title} className="w-full h-full object-fill group-hover:scale-110 transition-transform duration-500" />
+              <div key={i} className="glass-card rounded-2xl overflow-hidden flex flex-col sm:flex-row gap-5 p-4 sm:p-5">
+                <div className="flex-shrink-0 w-full sm:w-32 md:w-36 aspect-square overflow-hidden rounded-3xl bg-muted/10">
+                  <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
                 </div>
 
-                <div className="p-4 flex-1 flex flex-col justify-between">
+                <div className="flex-1 flex flex-col justify-between min-h-[180px]">
                   <div>
-                    <h4 className="font-semibold text-foreground mb-2 line-clamp-2">{p.title}</h4>
+                    <h4 className="font-semibold text-foreground mb-2 line-clamp-2 text-lg sm:text-base">{p.title}</h4>
+                    <p className="text-sm text-muted-foreground leading-6">
+                      {p.disabled
+                        ? "A coming soon concept with the next iteration of interactive workflows."
+                        : "A compact project showcasing UX, interaction design, and lightweight project flows."}
+                    </p>
                   </div>
 
-                  <div className="mt-4">
+                  <div className="mt-5 sm:mt-4">
                     {p.disabled ? (
                       <button
                         disabled

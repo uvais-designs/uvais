@@ -116,56 +116,65 @@ export function Contact() {
 
   return (
     <section className="py-16 flex justify-center">
-      <div
-        ref={containerRef}
-        className="dock-frame relative inline-flex items-end px-4 py-3 bg-white/6 backdrop-blur-md rounded-full shadow-lg"
-        role="navigation"
-        aria-label="Contact dock"
-        style={{ WebkitUserSelect: "none" }}
-      >
-        {/* Dock background glow */}
-        <div className="absolute -inset-2 rounded-full opacity-20 pointer-events-none" />
+      <div className="flex flex-col items-center gap-8">
+        <div
+          ref={containerRef}
+          className="dock-frame relative inline-flex items-end px-4 py-3 bg-white/6 backdrop-blur-md rounded-full shadow-lg"
+          role="navigation"
+          aria-label="Contact dock"
+          style={{ WebkitUserSelect: "none" }}
+        >
+          {/* Dock background glow */}
+          <div className="absolute -inset-2 rounded-full opacity-20 pointer-events-none" />
 
-        <div className="flex items-end gap-4 z-10" style={{ padding: "6px 10px" }}>
-          {icons.map((item, idx) => {
-            const IconComp = item.Icon;
-            const scale = scales[idx] ?? 1;
-            const color = scale > 1.02 ? item.color : "#FFFFFF";
-            return (
+          <div className="flex items-end gap-4 z-10" style={{ padding: "6px 10px" }}>
+            {icons.map((item, idx) => {
+              const IconComp = item.Icon;
+              const scale = scales[idx] ?? 1;
+              const color = scale > 1.02 ? item.color : "#FFFFFF";
+              return (
                 <a
-                key={item.label}
-                href={item.href}
-                target={item.href.startsWith("http") || item.href.startsWith("mailto") ? "_blank" : undefined}
-                rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                aria-label={item.label}
-                ref={(el) => {
-                  itemRefs.current[idx] = el;
-                }}
-                className="dock-item inline-flex items-center justify-center rounded-full bg-transparent transition-transform duration-150 ease-out"
-                style={{
-                  width: 56,
-                  height: 56,
-                  transform: `translateY(${-(scale - 1) * 18}px) scale(${scale})`,
-                  transformOrigin: "center bottom",
-                }}
-                onClick={() => {
-                  /* allow default navigation */ 
-                }}
-                >
-                <div
-                  className="icon-inner w-12 h-12 flex items-center justify-center rounded-full"
+                  key={item.label}
+                  href={item.href}
+                  target={item.href.startsWith("http") || item.href.startsWith("mailto") ? "_blank" : undefined}
+                  rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  aria-label={item.label}
+                  ref={(el) => {
+                    itemRefs.current[idx] = el;
+                  }}
+                  className="dock-item inline-flex items-center justify-center rounded-full bg-transparent transition-transform duration-150 ease-out"
                   style={{
-                  background: "rgba(255,255,255,0.06)",
-                  boxShadow: "0 6px 18px rgba(2,6,23,0.35)",
-                  color: color,
-                  transition: "color 160ms ease, background 160ms ease",
+                    width: 56,
+                    height: 56,
+                    transform: `translateY(${-(scale - 1) * 18}px) scale(${scale})`,
+                    transformOrigin: "center bottom",
+                  }}
+                  onClick={() => {
+                    /* allow default navigation */ 
                   }}
                 >
-                  <IconComp size={20} aria-hidden />
-                </div>
+                  <div
+                    className="icon-inner w-12 h-12 flex items-center justify-center rounded-full"
+                    style={{
+                      background: "rgba(255,255,255,0.06)",
+                      boxShadow: "0 6px 18px rgba(2,6,23,0.35)",
+                      color: color,
+                      transition: "color 160ms ease, background 160ms ease",
+                    }}
+                  >
+                    <IconComp size={20} aria-hidden />
+                  </div>
                 </a>
-            );
-          })}
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="text-center">
+          <p className="text-[10px] uppercase tracking-[0.35em] text-muted-foreground mb-1">
+            Designed and developed by
+          </p>
+          <p className="font-semibold text-[11px] text-primary">UVAIS</p>
         </div>
       </div>
     </section>
