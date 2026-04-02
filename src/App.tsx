@@ -4,7 +4,7 @@ import { Loader } from "./components/Loader";
 import { Navigation } from "./components/Navigation";
 import { Experience } from "./components/Experience";
 import { Education } from "./components/Education";
-import { CaseStudies } from "./components/CaseStudies";
+import { CaseStudies, CaseStudiesExtras } from "./components/CaseStudies";
 import { Leadership } from "./components/Leadership";
 import { Contact } from "./components/Contact";
 import { WhyDesign } from "./components/WhyDesign";
@@ -161,6 +161,7 @@ export default function App() {
                   <Education />
                   <Leadership />
                   <WhyDesign />
+                  <CaseStudiesExtras />
                 </div>
               )}
 

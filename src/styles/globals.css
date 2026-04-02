@@ -396,6 +396,67 @@ html {
   animation: morph 8s ease-in-out infinite;
 }
 
+/* Bulletin board drag cursor */
+.bulletin-card {
+  cursor: grab !important;
+  user-select: none;
+  touch-action: none;
+}
+
+.bulletin-card:hover {
+  cursor: grab !important;
+}
+
+.bulletin-card:active {
+  cursor: grabbing !important;
+}
+
+.bulletin-card img {
+  cursor: grab !important;
+  pointer-events: none;
+}
+
+.bulletin-card:hover img {
+  cursor: grab !important;
+  outline: 7px solid var(--color-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(213, 182, 124, 0.15), 0 0 18px rgba(213, 182, 124, 0.35);
+  animation: bulletin-glow 1.6s ease-in-out infinite;
+}
+
+.bulletin-card:active img {
+  cursor: grabbing !important;
+}
+
+.bulletin-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .bulletin-card {
+    max-width: 42vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .bulletin-card {
+    max-width: 60vw;
+  }
+}
+
+@keyframes bulletin-glow {
+  0% {
+    box-shadow: 0 0 0 4px rgba(213, 182, 124, 0.12), 0 0 16px rgba(213, 182, 124, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(213, 182, 124, 0.22), 0 0 24px rgba(213, 182, 124, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 4px rgba(213, 182, 124, 0.12), 0 0 16px rgba(213, 182, 124, 0.3);
+  }
+}
+
 .light-rays-flicker {
   animation: light-flicker 0.8s ease-out 1;
 }
@@ -465,6 +526,39 @@ html {
 
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
+}
+
+.touch-pan-both {
+  touch-action: pan-x pan-y;
+}
+
+.visual-carousel {
+  overflow: hidden;
+}
+
+.visual-carousel-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: visual-carousel-scroll 45s linear infinite;
+  will-change: transform;
+}
+
+.visual-carousel:hover .visual-carousel-track {
+  animation-play-state: paused;
+}
+
+.visual-carousel.is-touching .visual-carousel-track {
+  animation-play-state: paused;
+}
+
+@keyframes visual-carousel-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* Link Styles */

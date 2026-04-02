@@ -12,6 +12,32 @@ const adminpermissions = "images/adminpermissions.png";
 const hostel = "images/hostel.png";
 const trunfrun = "images/trunfrun.png";
 
+const visualScreens = [
+  Kognitive,
+  citi,
+  cba,
+  emis,
+  self,
+  hostel,
+  netmaster,
+  banking,
+  recertificate,
+  adminpermissions
+].filter(Boolean) as string[];
+const assetBase = (import.meta as { env?: { BASE_URL?: string } }).env?.BASE_URL ?? "/";
+const visualScreenSources = visualScreens.map((src) =>
+  src.startsWith("images/") ? `${assetBase}${src}` : src
+);
+
+const initialBulletinItems = [
+  { src: Kognitive, alt: "Kognitive preview", x: 6, y: 6, rotate: -6, width: 160 },
+  { src: citi, alt: "Citi preview", x: 30, y: 16, rotate: 4, width: 176 },
+  { src: cba, alt: "CBA preview", x: 72, y: 6, rotate: 6, width: 160 },
+  { src: emis, alt: "EMIS preview", x: 8, y: 58, rotate: 3, width: 208 },
+  { src: self, alt: "Self project preview", x: 60, y: 62, rotate: -5, width: 176 },
+  { src: hostel, alt: "Hostel preview", x: 78, y: 32, rotate: -2, width: 144 }
+];
+
 
 interface CaseStudyProps {
   title: string;
@@ -108,7 +134,7 @@ function FeaturedCaseStudyCard({
                 href={url ?? "#"}
                 target={url ? "_blank" : undefined}
                 rel={url ? "noopener noreferrer" : undefined}
-                className="ml-auto inline-flex glass-button px-6 py-3 rounded-full text-primary hover:text-primary-foreground group/btn relative overflow-hidden transition-all duration-300 hover:scale-105"
+                className="ml-auto inline-flex w-full md:w-auto justify-center glass-button px-6 py-3 rounded-full text-primary hover:text-primary-foreground group/btn relative overflow-hidden transition-all duration-300 hover:scale-105"
                 aria-label={`Open ${title} project`}
               >
                 <span className="group/btn relative z-10 flex items-center gap-2 text-gray-300 hover:text-gray-900 transition-colors duration-200">
@@ -401,13 +427,14 @@ export function CaseStudies() {
     return () => window.removeEventListener("keydown", handleEsc);
   }, [figmaToOpen]);
 
+
   return (
     <section id="projects" className="py-20 relative">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background"></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-5xl mx-auto mb-14">
+        <div className="max-w-6xl mx-auto mb-14">
           <div className="text-center space-y-6">
             <p className="text-2xl uppercase tracking-[0.3em] text-primary font-semibold">
               Featured Case Studies
@@ -435,7 +462,7 @@ export function CaseStudies() {
                     <div>
                       <p className="text-sm font-semibold text-primary mb-1">{project.domain}</p>
                       <h3 className="text-lg font-semibold text-foreground">{project.title}</h3>
-                      <p className="text-sm text-muted-foreground mt-2 max-w-2xl">{project.outcome}</p>
+                      <p className="text-sm text-muted-foreground mt-2 w-full">{project.outcome}</p>
                     </div>
                   </div>
                 </AccordionTrigger>
@@ -566,7 +593,7 @@ export function CaseStudies() {
         </div> */}
 
         {/* Other Projects Grid */}
-        <div className="space-y-8">
+        <div className="space-y-8 max-w-6xl mx-auto">
           <div className="text-center">
             <h3 className="text-2xl uppercase tracking-[0.3em] text-primary font-semibold">Work Projects</h3>
             <p className="text-muted-foreground">A selection of impactful design solutions</p>
@@ -608,7 +635,7 @@ export function CaseStudies() {
           <div className="max-[750px]:block min-[751px]:hidden">
             <div
               ref={workCarouselRef}
-              className="flex snap-x snap-mandatory overflow-x-auto gap-5 pb-6 px-6 touch-pan-x scrollbar-hidden"
+              className="flex snap-x snap-mandatory overflow-x-auto gap-5 pb-6 px-6 touch-pan-both scrollbar-hidden"
               aria-label="Work projects carousel"
             >
               {otherProjects.map((study, index) => (
@@ -644,7 +671,7 @@ export function CaseStudies() {
         </div>
 
         {/* Personal Projects */}
-        <div className="mt-16">
+        <div className="mt-16 max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <h3 className="text-2xl uppercase tracking-[0.3em] text-primary font-semibold">Personal Projects</h3>
             <p className="text-muted-foreground">Small experiments and side projects</p>
@@ -696,7 +723,7 @@ export function CaseStudies() {
           <div className="max-[750px]:block min-[751px]:hidden">
             <div
               ref={personalCarouselRef}
-              className="flex snap-x snap-mandatory overflow-x-auto gap-5 pb-6 px-6 touch-pan-x scrollbar-hidden"
+              className="flex snap-x snap-mandatory overflow-x-auto gap-5 pb-6 px-6 touch-pan-both scrollbar-hidden"
               aria-label="Personal projects carousel"
             >
               {personalProjects.map((p, i) => (
@@ -747,7 +774,171 @@ export function CaseStudies() {
             </div>
           </div>
         </div>
-      </div>
+
+
+        </div>
     </section>
   );
+}
+
+export function CaseStudiesExtras() {
+  const [visualTouching, setVisualTouching] = useState(false);
+  const [bulletinItems, setBulletinItems] = useState(initialBulletinItems);
+  const bulletinBoardRef = useRef<HTMLDivElement | null>(null);
+  const bulletinItemRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const dragRef = useRef<{ index: number; offsetX: number; offsetY: number } | null>(null);
+  const dragFrameRef = useRef<number | null>(null);
+  const dragNextPosRef = useRef<{ x: number; y: number } | null>(null);
+  const dragBoardSizeRef = useRef<{ width: number; height: number } | null>(null);
+
+  useEffect(() => {
+    const handleMove = (event: PointerEvent) => {
+      if (!dragRef.current || !bulletinBoardRef.current) return;
+      const board = bulletinBoardRef.current;
+      const boardRect = board.getBoundingClientRect();
+      dragBoardSizeRef.current = { width: boardRect.width, height: boardRect.height };
+      const { index, offsetX, offsetY } = dragRef.current;
+      const currentIndex = index;
+      const itemEl = bulletinItemRefs.current[currentIndex];
+      const itemWidth = itemEl?.offsetWidth ?? 160;
+      const itemHeight = itemEl?.offsetHeight ?? 160;
+
+      const maxX = Math.max(0, boardRect.width - itemWidth);
+      const maxY = Math.max(0, boardRect.height - itemHeight);
+      const rawX = event.clientX - boardRect.left - offsetX;
+      const rawY = event.clientY - boardRect.top - offsetY;
+      const clampedX = Math.min(Math.max(0, rawX), maxX);
+      const clampedY = Math.min(Math.max(0, rawY), maxY);
+      dragNextPosRef.current = { x: clampedX, y: clampedY };
+
+      if (dragFrameRef.current == null) {
+        dragFrameRef.current = requestAnimationFrame(() => {
+          const next = dragNextPosRef.current;
+          const size = dragBoardSizeRef.current;
+          dragFrameRef.current = null;
+          if (!next || !size || currentIndex == null) return;
+          setBulletinItems(prev =>
+            prev.map((item, i) =>
+              i === currentIndex
+                ? {
+                    ...item,
+                    x: (next.x / size.width) * 100,
+                    y: (next.y / size.height) * 100
+                  }
+                : item
+            )
+          );
+        });
+      }
+    };
+
+    const handleUp = () => {
+      dragRef.current = null;
+      dragNextPosRef.current = null;
+      dragBoardSizeRef.current = null;
+      if (dragFrameRef.current) {
+        cancelAnimationFrame(dragFrameRef.current);
+        dragFrameRef.current = null;
+      }
+    };
+
+    window.addEventListener("pointermove", handleMove);
+    window.addEventListener("pointerup", handleUp);
+    window.addEventListener("pointercancel", handleUp);
+    return () => {
+      window.removeEventListener("pointermove", handleMove);
+      window.removeEventListener("pointerup", handleUp);
+      window.removeEventListener("pointercancel", handleUp);
+      if (dragFrameRef.current) {
+        cancelAnimationFrame(dragFrameRef.current);
+        dragFrameRef.current = null;
+      }
+    };
+  }, []);
+  const extrasSection = (
+    <>
+      {/* Bulletin Board */}
+      {/* <div className="mt-20 max-w-6xl mx-auto">
+        <div className="text-center mb-8">
+          <h3 className="text-2xl uppercase tracking-[0.3em] text-primary font-semibold">Bulletin Board</h3>
+          <p className="text-muted-foreground">Snapshots and references from ongoing work</p>
+        </div>
+
+        <div className="relative mx-auto max-w-6xl rounded-[34px] border border-white/15 bg-background/70 p-6 shadow-[0_30px_80px_rgba(0,0,0,0.45)] ring-1 ring-white/5">
+          <div className="absolute inset-0 rounded-[34px] bg-[radial-gradient(circle,rgba(213,182,124,0.18)_1.6px,transparent_1.6px)] [background-size:24px_24px] opacity-70" />
+          <div className="absolute inset-3 rounded-[28px] border border-white/10 bg-gradient-to-br from-white/10 via-transparent to-black/30" />
+
+          <div ref={bulletinBoardRef} className="relative h-[420px] overflow-hidden">
+            {bulletinItems.map((item, index) => (
+              <div
+                key={index}
+                ref={(el) => {
+                  bulletinItemRefs.current[index] = el;
+                }}
+                className="absolute bulletin-card cursor-grab active:cursor-grabbing"
+                style={{
+                  left: `${item.x}%`,
+                  top: `${item.y}%`,
+                  width: item.width,
+                  transform: `rotate(${item.rotate}deg)`
+                }}
+                onPointerDown={(event) => {
+                  event.preventDefault();
+                  const board = bulletinBoardRef.current;
+                  if (!board) return;
+                  const rect = (event.currentTarget as HTMLDivElement).getBoundingClientRect();
+                  dragRef.current = {
+                    index,
+                    offsetX: event.clientX - rect.left,
+                    offsetY: event.clientY - rect.top
+                  };
+                  (event.currentTarget as HTMLDivElement).setPointerCapture(event.pointerId);
+                }}
+              >
+                <div className="rounded-2xl bg-white/95 p-2 shadow-[0_18px_40px_rgba(0,0,0,0.35)] ring-1 ring-black/10">
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className="h-full w-full rounded-xl object-cover"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-4 text-center text-[10px] uppercase tracking-[0.35em] text-muted-foreground/70">
+            Try moving things
+          </p>
+        </div>
+      </div> */}
+
+      {/* Visual Screens Carousel */}
+      {/* <div className="mt-10 max-w-6xl mx-auto">
+        <div className="text-center mb-3">
+          <h3 className="text-2xl uppercase tracking-[0.3em] text-primary font-semibold">Some Visual Screens</h3>
+          <p className="text-muted-foreground">A quick look at UI explorations and key screens</p>
+        </div>
+
+        <div
+          className={`visual-carousel relative z-10 min-h-[200px] rounded-[32px] border border-white/10 bg-background/70 px-4 py-3 shadow-[0_24px_60px_rgba(0,0,0,0.35)] max-[750px]:px-5 max-[750px]:py-2 max-[750px]:rounded-[28px] overflow-x-auto scrollbar-hidden touch-pan-both ${visualTouching ? "is-touching" : ""}`}
+          onTouchStart={() => setVisualTouching(true)}
+          onTouchEnd={() => setVisualTouching(false)}
+          onTouchCancel={() => setVisualTouching(false)}
+        >
+          <div className="visual-carousel-track">
+            {[...visualScreenSources, ...visualScreenSources].map((src, index) => (
+              <div
+                key={`${src}-${index}`}
+                className="visual-carousel-card shrink-0 w-[300px] sm:w-[320px] md:w-[360px] lg:w-[400px] h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px] rounded-2xl overflow-hidden bg-muted/30 ring-1 ring-white/10 max-[750px]:w-[85%] max-[750px]:min-w-[260px] max-[750px]:h-[200px] max-[750px]:rounded-[26px] max-[750px]:shadow-[0_12px_30px_rgba(0,0,0,0.35)] max-[750px]:px-3 max-[750px]:py-3"
+              >
+                <img src={src} alt="Visual screen" className="h-full w-full object-cover rounded-[20px]" decoding="async" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div> */}
+    </>
+  );
+
+  return <div className="hidden min-[751px]:block">{extrasSection}</div>;
 }
