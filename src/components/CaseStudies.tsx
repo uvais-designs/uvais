@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
-
 const Kognitive = "images/image.png";
 const citi = "images/citi.png";
 const cba = "images/cba.png";
@@ -92,7 +91,7 @@ function FeaturedCaseStudyCard({
             </div>
 
             {/* Tags & CTA */}
-            <div className="space-y-4">
+            <div className="flex flex-wrap items-center gap-3">
               <div className="flex flex-wrap gap-2">
                 {tags.map((tag, index) => (
                   <span
@@ -109,20 +108,20 @@ function FeaturedCaseStudyCard({
                 href={url ?? "#"}
                 target={url ? "_blank" : undefined}
                 rel={url ? "noopener noreferrer" : undefined}
-                className="inline-block glass-button px-6 py-3 rounded-full text-primary hover:text-primary-foreground group/btn relative overflow-hidden transition-all duration-300 hover:scale-105"
+                className="ml-auto inline-flex glass-button px-6 py-3 rounded-full text-primary hover:text-primary-foreground group/btn relative overflow-hidden transition-all duration-300 hover:scale-105"
                 aria-label={`Open ${title} project`}
               >
-<span className="group/btn relative z-10 flex items-center gap-2 text-gray-300 hover:text-gray-900 transition-colors duration-200">
-  Explore This Project
-  <svg
-    className="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-1"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-  </svg>
-</span>
+                <span className="group/btn relative z-10 flex items-center gap-2 text-gray-300 hover:text-gray-900 transition-colors duration-200">
+                  To Know More
+                  <svg
+                    className="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
                 <div className="absolute inset-0 bg-primary scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left rounded-full"></div>
               </a>
             </div>
@@ -609,14 +608,13 @@ export function CaseStudies() {
           <div className="max-[750px]:block min-[751px]:hidden">
             <div
               ref={workCarouselRef}
-              className="flex snap-x snap-mandatory overflow-x-auto gap-4 pb-4 px-4 touch-pan-x scrollbar-hidden"
+              className="flex snap-x snap-mandatory overflow-x-auto gap-5 pb-6 px-6 touch-pan-x scrollbar-hidden"
               aria-label="Work projects carousel"
             >
               {otherProjects.map((study, index) => (
                 <div
                   key={index}
-                  className="snap-start shrink-0 w-[calc(100%-2rem)] h-[520px] min-[513px]:h-[580px] max-[740px]:h-[580px] max-[512px]:h-[520px] rounded-3xl bg-background/80 p-4 shadow-xl"
-                  style={{ scrollSnapAlign: "start" }}
+                  className="snap-center shrink-0 w-[85%] min-w-[260px] h-[520px] min-[513px]:h-[580px] max-[740px]:h-[580px] max-[512px]:h-[520px] rounded-[28px] bg-background/80 p-4 shadow-[0_12px_30px_rgba(0,0,0,0.35)] ring-1 ring-white/10 transition-transform duration-300"
                 >
                   <CompactCaseStudyCard
                     title={study.title}
@@ -686,7 +684,7 @@ export function CaseStudies() {
                         className="inline-block w-full text-center py-2 rounded-md glass-button text-primary hover:scale-105 transition-all duration-200"
                         aria-label={`View ${p.title}`}
                       >
-                        View Project
+                        See Case Study
                       </a>
                     )}
                   </div>
@@ -698,14 +696,13 @@ export function CaseStudies() {
           <div className="max-[750px]:block min-[751px]:hidden">
             <div
               ref={personalCarouselRef}
-              className="flex snap-x snap-mandatory overflow-x-auto gap-4 pb-4 px-4 touch-pan-x scrollbar-hidden"
+              className="flex snap-x snap-mandatory overflow-x-auto gap-5 pb-6 px-6 touch-pan-x scrollbar-hidden"
               aria-label="Personal projects carousel"
             >
               {personalProjects.map((p, i) => (
                 <div
                   key={i}
-                  className="snap-start shrink-0 w-[calc(100%-2rem)] h-[540px] min-[513px]:h-[600px] max-[740px]:h-[600px] max-[512px]:h-[540px] rounded-3xl bg-background/80 p-4 shadow-xl"
-                  style={{ scrollSnapAlign: "start" }}
+                  className="snap-center shrink-0 w-[85%] min-w-[260px] h-[540px] min-[513px]:h-[600px] max-[740px]:h-[600px] max-[512px]:h-[540px] rounded-[28px] bg-background/80 p-4 shadow-[0_12px_30px_rgba(0,0,0,0.35)] ring-1 ring-white/10 transition-transform duration-300"
                 >
                   <div className="glass-card rounded-2xl overflow-hidden flex flex-col gap-5 max-[740px]:gap-4 p-4 h-full">
                     <div className="flex-shrink-0 w-full aspect-square overflow-hidden rounded-3xl bg-muted/10">
@@ -739,7 +736,7 @@ export function CaseStudies() {
                             className="inline-block w-full text-center py-2 rounded-md glass-button text-primary hover:scale-105 transition-all duration-200"
                             aria-label={`View ${p.title}`}
                           >
-                            View Project
+                            See Case Study
                           </a>
                         )}
                       </div>

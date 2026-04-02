@@ -356,6 +356,18 @@ html {
   }
 }
 
+@keyframes light-flicker {
+  0% { opacity: 0.1; }
+  8% { opacity: 1; }
+  15% { opacity: 0.3; }
+  25% { opacity: 1; }
+  38% { opacity: 0.4; }
+  55% { opacity: 1; }
+  70% { opacity: 0.7; }
+  85% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
 /* Animation Classes */
 .animate-float {
   animation: float 6s ease-in-out infinite;
@@ -382,6 +394,33 @@ html {
 .morphing-blob {
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   animation: morph 8s ease-in-out infinite;
+}
+
+.light-rays-flicker {
+  animation: light-flicker 0.8s ease-out 1;
+}
+
+/* Profile card reveal sequence */
+.profile-card-stage {
+  opacity: 0;
+  transform: translateY(24px) scale(0.98);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.profile-card-stage.card-on {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.profile-card-stage .pc-avatar-content .avatar {
+  opacity: 0;
+  transform: translateX(-50%) translateY(8px) scale(0.98);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.profile-card-stage.avatar-on .pc-avatar-content .avatar {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
 }
 
 /* Gradient Text */

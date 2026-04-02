@@ -55,8 +55,8 @@ export function Navigation({ isVisible = true, logoVisible = true }: NavigationP
 
   const navItems: NavItem[] = [
     { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#experience", label: "Experience" },
+    // { href: "#about", label: "About" },
+    // { href: "#experience", label: "Experience" },
     { href: "#projects", label: "Projects" },
   ];
 

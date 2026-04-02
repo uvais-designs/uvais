@@ -1,4 +1,4 @@
-import './styles/globals.css';
+// import './styles/globals.css';
 import { useState, useEffect } from "react";
 import { Loader } from "./components/Loader";
 import { Navigation } from "./components/Navigation";
@@ -18,6 +18,10 @@ export default function App() {
   const [showMore, setShowMore] = useState(false);
   const [navLogoReady, setNavLogoReady] = useState(!isLoading);
   const [navVisible, setNavVisible] = useState(!isLoading);
+  const [showLightRays, setShowLightRays] = useState(!isLoading);
+  const [lightRaysFlicker, setLightRaysFlicker] = useState(true);
+  const [showAvatar, setShowAvatar] = useState(!isLoading);
+  const [showProfileCard, setShowProfileCard] = useState(!isLoading);
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
@@ -32,10 +36,19 @@ export default function App() {
       document.body.style.overflow = 'hidden';
       setNavLogoReady(false);
       setNavVisible(false);
+      setShowLightRays(false);
+      setLightRaysFlicker(false);
+      setShowAvatar(false);
+      setShowProfileCard(false);
     } else {
       document.body.style.overflow = 'unset';
-      setNavLogoReady(true);
-      setNavVisible(true);
+      if (!navVisible && !showLightRays && !showProfileCard && !showAvatar) {
+        setNavLogoReady(true);
+        setNavVisible(true);
+        setShowLightRays(true);
+        setShowAvatar(true);
+        setShowProfileCard(true);
+      }
     }
 
     return () => {
@@ -47,19 +60,21 @@ export default function App() {
     <div className="bg-background min-h-screen relative">
       {/* Animated background elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <LightRays
-          className="absolute inset-0 opacity-90 md:opacity-70"
-          raysOrigin="top-center"
-          raysColor="#f8ebcc"
-          raysSpeed={0.0}
-          lightSpread={1.1}
-          rayLength={2.4}
-          fadeDistance={1.1}
-          saturation={1.1}
-          mouseInfluence={0.12}
-          noiseAmount={0.0}
-          distortion={0.0}
-        />
+        {showLightRays && (
+          <LightRays
+            className={`absolute inset-0 opacity-90 md:opacity-70 ${lightRaysFlicker ? 'light-rays-flicker' : ''}`}
+            raysOrigin="top-center"
+            raysColor="#f8ebcc"
+            raysSpeed={0.0}
+            lightSpread={1.1}
+            rayLength={2.4}
+            fadeDistance={1.1}
+            saturation={1.1}
+            mouseInfluence={0.12}
+            noiseAmount={0.0}
+            distortion={0.0}
+          />
+        )}
         {/* Floating geometric shapes with premium accent colors */}
         <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-xl animate-float"></div>
         <div className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-br from-secondary/20 to-transparent rounded-full blur-xl animate-float" style={{ animationDelay: '2s' }}></div>
@@ -76,7 +91,12 @@ export default function App() {
           onComplete={handleLoadingComplete}
           onLogoArrive={() => {
             setNavLogoReady(true);
-            setNavVisible(true);
+            setShowLightRays(true);
+            setLightRaysFlicker(true);
+            setTimeout(() => setLightRaysFlicker(false), 800);
+            setTimeout(() => setNavVisible(true), 500);
+            setTimeout(() => setShowAvatar(true), 850);
+            setTimeout(() => setShowProfileCard(true), 1100);
           }}
         />
       )}
@@ -102,6 +122,7 @@ export default function App() {
                 enableTilt={true}
                 enableMobileTilt={true}
                 mobileTiltSensitivity={2}
+                className={`profile-card-stage ${showAvatar ? 'avatar-on' : ''} ${showProfileCard ? 'card-on' : ''}`}
                 onContactClick={() => {
                   const contactSection = document.querySelector('#contact');
                   if (contactSection) {

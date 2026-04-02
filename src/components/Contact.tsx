@@ -13,6 +13,7 @@ import { useIsMobile } from "./ui/use-mobile";
 
 export function Contact() {
   const isMobile = useIsMobile();
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const icons = [
     {
       href: "mailto:ysul2505@gmail.com",
@@ -73,7 +74,7 @@ export function Contact() {
     const container = containerRef.current;
     if (!container) return;
 
-    const MAX_SCALE = 2; // maximum magnification for hovered icon
+    const MAX_SCALE = 1.5; // maximum magnification for hovered icon
     const INFLUENCE = 160; // px radius where magnify still applies
 
     const handleMove = (e: PointerEvent) => {
@@ -131,7 +132,8 @@ export function Contact() {
             {icons.map((item, idx) => {
               const IconComp = item.Icon;
               const scale = scales[idx] ?? 1;
-              const color = scale > 1.02 ? item.color : "#FFFFFF";
+              const isHovered = hoveredIndex === idx;
+              const color = isHovered ? item.color : "#FFFFFF";
               return (
                 <a
                   key={item.label}
@@ -142,17 +144,22 @@ export function Contact() {
                   ref={(el) => {
                     itemRefs.current[idx] = el;
                   }}
-                  className="dock-item inline-flex items-center justify-center rounded-full bg-transparent transition-transform duration-150 ease-out"
+                  className="dock-item group relative inline-flex items-center justify-center rounded-full bg-transparent transition-transform duration-150 ease-out"
                   style={{
                     width: 56,
                     height: 56,
-                    transform: `translateY(${-(scale - 1) * 18}px) scale(${scale})`,
+                    transform: `translateY(${-(scale - 1) * 10}px) scale(${scale})`,
                     transformOrigin: "center bottom",
                   }}
+                  onPointerEnter={() => setHoveredIndex(idx)}
+                  onPointerLeave={() => setHoveredIndex(null)}
                   onClick={() => {
                     /* allow default navigation */ 
                   }}
                 >
+                  <span className={`pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 rounded-full bg-black/80 px-2 py-0.5 text-[10px] text-white transition-opacity duration-150 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+                    {item.label}
+                  </span>
                   <div
                     className="icon-inner w-12 h-12 flex items-center justify-center rounded-full"
                     style={{
