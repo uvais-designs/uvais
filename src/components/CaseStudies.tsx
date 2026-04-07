@@ -38,7 +38,6 @@ const initialBulletinItems = [
   { src: hostel, alt: "Hostel preview", x: 78, y: 32, rotate: -2, width: 144 }
 ];
 
-
 interface CaseStudyProps {
   title: string;
   category: string;
@@ -157,7 +156,6 @@ function FeaturedCaseStudyCard({
     </div>
   );
 }
-
 
 function CompactCaseStudyCard({
   title,
@@ -405,7 +403,6 @@ export function CaseStudies() {
   const featuredProject = caseStudies.find(study => study.featured);
   const otherProjects = caseStudies.filter(study => !study.featured);
   const [figmaToOpen, setFigmaToOpen] = useState<string | null>(null);
-
   const workCarouselRef = useRef<HTMLDivElement | null>(null);
   const personalCarouselRef = useRef<HTMLDivElement | null>(null);
 
@@ -455,25 +452,26 @@ export function CaseStudies() {
               <AccordionItem
                 key={project.title}
                 value={`case-${index}`}
-                className="glass-card overflow-hidden border border-border/20 bg-background/80 shadow-sm"
+                className="glass-card overflow-hidden border border-border/20 bg-background/80 shadow-sm group"
               >
-                <AccordionTrigger className="px-5 md:px-6">
-                  <div className="flex flex-col gap-3 py-4">
-                    <div>
-                      <p className="text-sm font-semibold text-primary mb-1">{project.domain}</p>
-                      <h3 className="text-lg font-semibold text-foreground">{project.title}</h3>
-                      <p className="text-sm text-muted-foreground mt-2 w-full">{project.outcome}</p>
-                    </div>
+                <AccordionTrigger className="px-2 md:px-2">
+                  <div className="flex items-center gap-4 pl-5 group-data-[state=open]:pl-0 transition-all duration-300">
+                    <img
+                      src={project.image}
+                      alt=""
+                      className="w-16 h-16 rounded-lg object-cover group-data-[state=open]:scale-0 transition-transform duration-300"
+                    />
+                    <h3 className="text-lg font-semibold text-foreground">{project.title}</h3>
                   </div>
                 </AccordionTrigger>
 
-                <AccordionContent className="relative px-5 md:px-6 pb-6">
+                <AccordionContent className="relative px-4 md:px-4 pb-6">
                   <div className="grid gap-5 lg:grid-cols-[minmax(220px,320px)_1fr] items-start">
                     <div className="rounded-3xl overflow-hidden border border-border/20 bg-muted/5 aspect-square max-w-[320px] mx-auto lg:mx-0">
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover scale-0 group-data-[state=open]:scale-100 transition-transform duration-1000 ease-in-out"
                       />
                     </div>
 
@@ -582,15 +580,6 @@ export function CaseStudies() {
           </Accordion>
 
         </div>
-{/* 
-        <div className="text-center mb-16">
-          <h2 className="text-2xl uppercase tracking-[0.3em] text-primary font-semibold">
-            Design Stories & Solutions
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Each project tells a story of challenges overcome, users delighted, and businesses transformed through thoughtful design.
-          </p>
-        </div> */}
 
         {/* Other Projects Grid */}
         <div className="space-y-8 max-w-6xl mx-auto">

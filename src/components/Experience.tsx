@@ -33,7 +33,7 @@ export function Experience() {
     {
       role: "Senior UX Designer",
       company: "Kognitive Networks",
-      period: "2025 - Present",
+      period: "2025 - 2026",
       description: "Leading UX design for maritime and aviation network products.",
     },
     {

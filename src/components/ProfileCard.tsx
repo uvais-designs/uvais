@@ -318,12 +318,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   }, [onContactClick]);
 
   const handleResumeDownload = useCallback(() => {
-    const link = document.createElement("a");
-    link.href = "/uvais/uvais_cv.pdf";
-    link.download = "Uvaisul_Karni_Resume.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    window.open("https://docs.google.com/document/d/11yVn82ICm_J1cC8qyGhW9iuaej4vySAJ/edit?usp=sharing&ouid=105541583953517772850&rtpof=true&sd=true", "_blank");
   }, []);
 
   return (
