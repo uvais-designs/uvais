@@ -229,6 +229,89 @@ function CompactCaseStudyCard({
   );
 }
 
+function MetricsCarousel({ image, metrics }: { image: string; metrics: { label: string; value: string; trend: 'up' | 'down' }[] }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  type CarouselItem = { type: 'image'; content: string } | { type: 'metrics'; content: { label: string; value: string; trend: 'up' | 'down' }[] };
+
+  const items: CarouselItem[] = [
+    { type: 'image', content: image },
+    { type: 'metrics', content: metrics }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % items.length);
+    }, 4000); // 4 seconds
+    return () => clearInterval(interval);
+  }, [items.length]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    setTouchEnd(e.changedTouches[0].clientX);
+    handleSwipe();
+  };
+
+  const handleSwipe = () => {
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      setCurrentIndex((prev) => (prev + 1) % items.length);
+    } else if (isRightSwipe) {
+      setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
+    }
+  };
+
+  return (
+    <div 
+      ref={containerRef}
+      className="relative w-full h-64 overflow-hidden rounded-2xl border border-border/20 bg-black cursor-grab active:cursor-grabbing"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      {items.map((item, index) => (
+        <div key={index} className={`absolute inset-0 transition-opacity duration-500 ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}>
+          {item.type === 'image' ? (
+            <img src={item.content} alt="" className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full bg-black/90 flex flex-col items-start justify-start p-6 space-y-4">
+              <h4 className="text-lg font-bold text-white">Key Metrics</h4>
+              <div className="flex flex-col gap-4 w-full">
+                {item.content.map((metric, i) => (
+                  <div key={i} className="flex items-center justify-between gap-4 pb-3 border-b border-white/20 last:border-b-0">
+                    <span className="text-base font-semibold text-white/80">{metric.label}</span>
+                    <span className={`text-2xl font-black ${metric.trend === 'up' ? 'text-green-400' : 'text-red-400'}`}>
+                      {metric.trend === 'up' ? '↑' : '↓'} {metric.value.replace(/[↑↓]/, '')}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+      <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-1 z-10">
+        {items.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentIndex(i)}
+            className={`w-2 h-2 rounded-full transition-all ${i === currentIndex ? 'bg-primary w-6' : 'bg-white/40 hover:bg-white/60'}`}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function CaseStudies() {
   const caseStudies: CaseStudyProps[] = [
     {
@@ -327,25 +410,31 @@ export function CaseStudies() {
     visuals: string;
     image: string;
     figmaUrl: string;
+    metrics: { label: string; value: string; trend: 'up' | 'down' }[];
   }
 
   const featuredCaseStudies: FeaturedCaseStudyAccordion[] = [
     {
-        "title": "Optimizing Banking User Journeys",
-        "outcome": "Improved critical banking flows, reducing drop-offs and increasing trust across payments, onboarding, and fraud handling.",
-        "domain": "Banking / Financial Services",
-        "tags": ["Enterprise UX", "Fintech", "User Flows", "Accessibility"],
-        "context": "SMEs and retail users faced friction across payments, KYC onboarding, and fraud scenarios due to complexity, unclear flows, and low transparency.",
-        "contextMobile": "Users struggled with complex banking tasks on mobile, causing drop-offs and confusion.",
-        "approach": "Analyzed high-friction journeys, prioritized critical flows, and redesigned experiences balancing compliance, security, and usability constraints.",
-        "approachMobile": "Focused on simplifying key journeys and reducing cognitive load for mobile users.",
-        "solutionHighlights": "Introduced step-based flows, contextual validation, retry mechanisms, and real-time alerts to improve clarity and reduce user errors.",
-        "solutionHighlightsMobile": "Simplified flows, added guidance, and improved error handling for better usability.",
-        "outcomes": "Reduced drop-offs, improved completion rates, minimized support calls, and increased user trust in critical financial tasks.",
-        "outcomesMobile": "Improved task success and reduced confusion in mobile banking interactions.",
-        "visuals": "Payment flows, KYC onboarding journeys, and fraud alert interactions designed to reduce friction and improve clarity.",
-        "image": banking,
-        "figmaUrl": "https://www.figma.com/design/sMaCcp6O3qgYvbNFbxmpi4/Uvaisul?node-id=2592-979&t=9k4UV0KxCzeV9duc-1"
+      "title": "Optimizing Banking User Journeys",
+      "outcome": "Improved critical banking flows, reducing drop-offs and increasing trust across payments, onboarding, and fraud handling.",
+      "domain": "Banking / Financial Services",
+      "tags": ["Enterprise UX", "Fintech", "User Flows", "Accessibility"],
+      "context": "SMEs and retail users faced friction across payments, KYC onboarding, and fraud scenarios due to complexity, unclear flows, and low transparency.",
+      "contextMobile": "Users struggled with complex banking tasks on mobile, causing drop-offs and confusion.",
+      "approach": "Analyzed high-friction journeys, prioritized critical flows, and redesigned experiences balancing compliance, security, and usability constraints.",
+      "approachMobile": "Focused on simplifying key journeys and reducing cognitive load for mobile users.",
+      "solutionHighlights": "Introduced step-based flows, contextual validation, retry mechanisms, and real-time alerts to improve clarity and reduce user errors.",
+      "solutionHighlightsMobile": "Simplified flows, added guidance, and improved error handling for better usability.",
+      "outcomes": "Reduced drop-offs, improved completion rates, minimized support calls, and increased user trust in critical financial tasks.",
+      "outcomesMobile": "Improved task success and reduced confusion in mobile banking interactions.",
+      "visuals": "Payment flows, KYC onboarding journeys, and fraud alert interactions designed to reduce friction and improve clarity.",
+      "image": banking,
+        "figmaUrl": "https://www.figma.com/design/sMaCcp6O3qgYvbNFbxmpi4/Uvaisul?node-id=2592-979&t=9k4UV0KxCzeV9duc-1",
+        "metrics": [
+          { label: "KYC drop-offs", value: "↓32%", trend: "down" },
+          { label: "Payment success", value: "↑22%", trend: "up" },
+          { label: "Support tickets", value: "↓20%", trend: "down" }
+        ]
     },
     {
         "title": "Enterprise Recertification Experience Redesign",
@@ -362,7 +451,12 @@ export function CaseStudies() {
         "outcomesMobile": "Improved clarity and reduced friction in managing access on mobile devices.",
         "visuals": "Project tables, user-role management screens, and state-driven workflows improving visibility and operational control.",
         "image": recertificate,
-        "figmaUrl": "https://www.figma.com/design/sMaCcp6O3qgYvbNFbxmpi4/Uvaisul?node-id=2293-2156&t=9k4UV0KxCzeV9duc-1"
+        "figmaUrl": "https://www.figma.com/design/sMaCcp6O3qgYvbNFbxmpi4/Uvaisul?node-id=2293-2156&t=9k4UV0KxCzeV9duc-1",
+        "metrics": [
+          { label: "Recertification time", value: "↓40%", trend: "down" },
+          { label: "Errors", value: "↓50%", trend: "down" },
+          { label: "Task completion", value: "↑28%", trend: "up" }
+        ]
     },
     {
       "title": "Admin Permissions & Bulk User Management",
@@ -379,7 +473,12 @@ export function CaseStudies() {
       "outcomesMobile": "Enabled faster and clearer user management on mobile devices.",
       "visuals": "Role management tables, bulk user workflows, and audit dashboards improving access clarity and operational efficiency.",
       "image": adminpermissions,
-      "figmaUrl": "https://www.figma.com/design/sMaCcp6O3qgYvbNFbxmpi4/Uvaisul?node-id=1672-645&t=9k4UV0KxCzeV9duc-1"
+      "figmaUrl": "https://www.figma.com/design/sMaCcp6O3qgYvbNFbxmpi4/Uvaisul?node-id=1672-645&t=9k4UV0KxCzeV9duc-1",
+      "metrics": [
+        { label: "Support tickets", value: "↓35%", trend: "down" },
+        { label: "Bulk efficiency", value: "↑50%", trend: "up" },
+        { label: "Over-permissioning", value: "↓30%", trend: "down" }
+      ]
     },
     {
       "title": "Mobile Network Monitoring Experience",
@@ -396,9 +495,18 @@ export function CaseStudies() {
       "outcomesMobile": "Enabled faster monitoring and action-taking on mobile.",
       "visuals": "Dashboard metrics, device lists, alert flows, and bandwidth charts supporting real-time monitoring and actions.",
       "image": netmaster,
-      "figmaUrl": "https://www.figma.com/design/sMaCcp6O3qgYvbNFbxmpi4/Uvaisul?node-id=2585-6034&t=r0fADU8euF7PAtNN-1"
+      "figmaUrl": "https://www.figma.com/design/sMaCcp6O3qgYvbNFbxmpi4/Uvaisul?node-id=2585-6034&t=r0fADU8euF7PAtNN-1",
+      "metrics": [
+        { label: "Response time", value: "↓35%", trend: "down" },
+        { label: "Alert response", value: "↑30%", trend: "up" },
+        { label: "Time Spent", value: "↓35%", trend: "down" }
+      ]
     }
   ];
+
+
+
+
 
   const featuredProject = caseStudies.find(study => study.featured);
   const otherProjects = caseStudies.filter(study => !study.featured);
@@ -436,7 +544,7 @@ export function CaseStudies() {
             <p className="text-2xl uppercase tracking-[0.3em] text-primary font-semibold">
               Featured Case Studies
             </p>
-          
+
             <p className="text-base sm:text-lg leading-7 text-muted-foreground max-w-3xl mx-auto">
               Due to confidentiality agreements, real production work cannot be shown, but the displayed case studies are realistic simulations based on actual professional experience, reflecting similar challenges, constraints, and decision-making processes.
             </p>
@@ -467,12 +575,28 @@ export function CaseStudies() {
 
                 <AccordionContent className="relative px-4 md:px-4 pb-6">
                   <div className="grid gap-5 lg:grid-cols-[minmax(220px,320px)_1fr] items-start">
-                    <div className="rounded-3xl overflow-hidden border border-border/20 bg-muted/5 aspect-square max-w-[320px] mx-auto lg:mx-0">
+                    <div className="hidden lg:block relative rounded-3xl overflow-hidden border border-border/20 bg-muted/5 aspect-square max-w-[320px] mx-auto lg:mx-0">
                       <img
                         src={project.image}
                         alt={project.title}
                         className="w-full h-full object-cover scale-0 group-data-[state=open]:scale-100 transition-transform duration-1000 ease-in-out"
                       />
+                      <div className="absolute inset-0 bg-black/85 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-start justify-start p-6">
+                        <div className="text-white space-y-4 w-full">
+                          <h4 className="text-lg font-bold">Key Metrics</h4>
+                          {project.metrics.map((metric, i) => (
+                            <div key={i} className="flex items-center justify-between gap-4 pb-3 border-b border-white/20 last:border-b-0">
+                              <span className="text-base font-semibold">{metric.label}</span>
+                              <span className={`text-2xl font-black ${metric.trend === 'up' ? 'text-green-400' : 'text-red-400'}`}>
+                                {metric.trend === 'up' ? '↑' : '↓'} {metric.value.replace(/[↑↓]/, '')}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="lg:hidden">
+                      <MetricsCarousel image={project.image} metrics={project.metrics} />
                     </div>
 
                     <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
@@ -588,20 +712,20 @@ export function CaseStudies() {
             <p className="text-muted-foreground">A selection of impactful design solutions</p>
           </div>
 
-                  {/* Featured Project */}
-        {featuredProject && (
-          <FeaturedCaseStudyCard
-            title={featuredProject.title}
-            category={featuredProject.category}
-            description={featuredProject.description}
-            challenge={featuredProject.challenge}
-            solution={featuredProject.solution}
-            impact={featuredProject.impact}
-            image={featuredProject.image}
-            tags={featuredProject.tags}
-            url={featuredProject.url}
-          />
-        )}
+          {/* Featured Project */}
+          {featuredProject && (
+            <FeaturedCaseStudyCard
+              title={featuredProject.title}
+              category={featuredProject.category}
+              description={featuredProject.description}
+              challenge={featuredProject.challenge}
+              solution={featuredProject.solution}
+              impact={featuredProject.impact}
+              image={featuredProject.image}
+              tags={featuredProject.tags}
+              url={featuredProject.url}
+            />
+          )}
 
           <div className="hidden min-[751px]:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {otherProjects.map((study, index) => (
@@ -764,8 +888,44 @@ export function CaseStudies() {
           </div>
         </div>
 
+        {/* 0->1 Section */}
+  {/* <div className="mt-20 max-w-6xl mx-auto">
+      <div className="text-center mb-12">
+        <h3 className="text-2xl uppercase tracking-[0.3em] text-primary font-semibold">0→1</h3>
+        <p className="text-muted-foreground">Before vs After: See the transformation</p>
+      </div>
 
+      <div className="mb-12">
+        <h4 className="text-lg font-semibold text-foreground mb-6 text-center">Visual Comparisons</h4>
+        <div className="hidden min-[751px]:grid grid-cols-1 md:grid-cols-2 gap-8">
+          <BeforeAfterSlider before={Kognitive} after={citi} />
+          <BeforeAfterSlider before={cba} after={emis} />
         </div>
+        <div className="max-[750px]:block min-[751px]:hidden">
+          <div className="flex snap-x snap-mandatory overflow-x-auto gap-5 pb-6 px-6 touch-pan-both scrollbar-hidden">
+            <div className="snap-center shrink-0 w-[85%] min-w-[280px]">
+              <BeforeAfterSlider before={Kognitive} after={citi} />
+            </div>
+            <div className="snap-center shrink-0 w-[85%] min-w-[280px]">
+              <BeforeAfterSlider before={cba} after={emis} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4 className="text-lg font-semibold text-foreground mb-6 text-center">From Concept to Reality</h4>
+        <div className="max-w-2xl mx-auto">
+          <BeforeAfterSlider
+            after={banking}
+            beforeText="Cluttered old interface with poor usability, confusing navigation, and outdated design patterns that frustrated users."
+            isTextBefore={true}
+          />
+        </div>
+      </div>
+  </div> */}
+
+      </div>
     </section>
   );
 }
@@ -810,10 +970,10 @@ export function CaseStudiesExtras() {
             prev.map((item, i) =>
               i === currentIndex
                 ? {
-                    ...item,
-                    x: (next.x / size.width) * 100,
-                    y: (next.y / size.height) * 100
-                  }
+                  ...item,
+                  x: (next.x / size.width) * 100,
+                  y: (next.y / size.height) * 100
+                }
                 : item
             )
           );

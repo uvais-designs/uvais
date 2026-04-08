@@ -1,6 +1,7 @@
 {
   "name": "responsive-personal-portfolio",
   "version": "1.0.0",
+  "type": "module",
   "homepage": "https://uvais-designs.github.io/uvais",
   "private": true,
   "scripts": {

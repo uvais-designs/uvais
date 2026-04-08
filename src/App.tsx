@@ -13,7 +13,7 @@ import LightRays from "./components/LightRays";
 
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true);//change this to true to show the loader
+  const [isLoading, setIsLoading] = useState(false);//change this to true to show the loader
   const [showContent, setShowContent] = useState(true);
   const [showMore, setShowMore] = useState(false);
   const [navLogoReady, setNavLogoReady] = useState(!isLoading);
