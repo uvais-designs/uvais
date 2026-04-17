@@ -346,7 +346,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                 <div className="pc-user-info">
                   <button
                   className="pc-contact-btn"
-                  onClick={handleResumeDownload}
+                  // onClick={handleResumeDownload}
                   style={{ pointerEvents: "auto" }}
                   type="button"
                   aria-label="Download resume"

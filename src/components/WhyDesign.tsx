@@ -64,6 +64,9 @@ export function WhyDesign() {
             </svg>
           </div>
         </div>
+        <p className="mt-4 px-2 text-sm italic text-muted-foreground/45 md:hidden">
+          Desktop version holds more secrets.
+        </p>
       </div>
     </section>
   );
