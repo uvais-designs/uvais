@@ -10,7 +10,7 @@ const self = "images/self.png";
 const recertificate = "images/recertificate.png";
 const adminpermissions = "images/adminpermissions.png";
 const hostel = "images/hostel.png";
-const trunfrun = "images/trunfrun.png";
+const cgpsample = "images/cgpsample.png";
 const badge1 = "images/badge1.jpg";
 const badge2 = "images/badge2.jpg";
 const badge3 = "images/badge3.jpg";
@@ -725,8 +725,8 @@ export function CaseStudies() {
   const personalCarouselRef = useRef<HTMLDivElement | null>(null);
 
   const personalProjects = [
+    { title: "Supply Chain Recovery Hub", image: cgpsample, url: "/uvais/b2b.html", disabled: false },
     { title: "Hostel Management", image: hostel, url: "/uvais/hostel.html", disabled: false },
-    { title: "TrunFrun - Upcoming", image: trunfrun, url: "", disabled: true },
   ];
 
   useEffect(() => {
@@ -853,6 +853,7 @@ export function CaseStudies() {
             <Accordion
               type="single"
               collapsible
+              defaultValue="case-0"
               onValueChange={() => setFigmaToOpen(null)}
               className="mt-10 space-y-4"
             >
@@ -1213,7 +1214,7 @@ export function CaseStudies() {
                       <p className="text-sm text-muted-foreground leading-6">
                         {p.disabled
                           ? "A coming soon concept with the next iteration of interactive workflows."
-                          : "A compact project showcasing UX, interaction design, and lightweight project flows."}
+                          : "A centralized platform for managing supply chain disruptions and recovery."}
                       </p>
                     </div>
 
@@ -1265,7 +1266,7 @@ export function CaseStudies() {
                           <p className="text-sm text-muted-foreground leading-6 max-[740px]:line-clamp-3">
                             {p.disabled
                               ? "A coming soon concept with the next iteration of interactive workflows."
-                              : "A compact project showcasing UX, interaction design, and lightweight project flows."}
+                              : "A centralized platform for managing supply chain disruptions and recovery."}
                           </p>
                         </div>
 
