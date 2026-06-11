@@ -335,6 +335,32 @@
             max-width: 240px;
         }
 
+        .page-shell,
+        .indicator-shell,
+        footer {
+            display: none;
+        }
+
+        .mobile-case-study {
+            display: flex;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            justify-content: center;
+            background:
+                radial-gradient(circle at 20% 0%, rgba(33, 112, 228, 0.18), transparent 34%),
+                linear-gradient(180deg, #050914 0%, #08111f 54%, #05070d 100%);
+            padding: 0 16px;
+        }
+
+        .mobile-case-study iframe {
+            display: block;
+            width: min(100%, 900px);
+            height: 100%;
+            border: 0;
+            background: transparent;
+        }
+
         .dot {
             width: 10px;
             height: 10px;
@@ -451,6 +477,16 @@
             }
         }
 
+        @media(max-width:1024px) {
+            .mobile-case-study {
+                padding: 0;
+            }
+
+            .mobile-case-study iframe {
+                width: 100%;
+            }
+        }
+
         footer {
             position: fixed;
             left: 50%;
@@ -464,6 +500,10 @@
 </head>
 
 <body>
+
+    <div class="mobile-case-study" aria-label="SCM case study accordion view">
+        <iframe src="cgp-mobile.html" title="Nexus SCM Platform Case Study"></iframe>
+    </div>
 
     <div class="page-shell">
            <button class="back-btn" type="button" onclick="closePage()" title="Back to Portfolio">← Back to Portfolio</button>
@@ -634,6 +674,12 @@
                 window.close();
             }
         }
+
+        window.addEventListener('message', function (event) {
+            if (event.data && event.data.type === 'close-case-study') {
+                closePage();
+            }
+        });
     </script>
 </body>
 

@@ -524,7 +524,7 @@ export function CaseStudies() {
     {
       title: "Streamlining the Sea: A UX Overhaul for Kognitive Cloud",
       category: "Featured Work",
-      description: "Led a comprehensive UX redesign for Kognitive Cloud, enhancing user engagement and operational efficiency across their platform.Redesigned outdated workflows and screens into a usable, responsive interface based on customer needs.This revamp empowers maritime users—especially those using Starlink—to manage networks effortlessly in their day-to-day operations.",
+      description: "A maritime network management redesign focused on helping vessel teams monitor connectivity, manage Starlink-enabled operations, and complete daily network tasks with less friction.",
       challenge: "Users, especially in the maritime sector, struggled with an outdated UI that wasn’t optimized for modern workflows or hardware integrations like Starlink.",
       solution: "I reimagined old screens from a user-centered perspective simplifying flows, applying consistent UI patterns, and ensuring accessibility across devices. I also introduced scalable components to support new feature rollouts.",
       impact: [
@@ -538,7 +538,7 @@ export function CaseStudies() {
     {
       title: "Enterprise Banking Platform – LATAM Region",
       category: "Banking",
-      description: "An internal platform used by bank staff in Latin America to manage customer data, transactions, and operational workflows.",
+      description: "An internal banking workspace for LATAM staff to review customer records, manage transaction tasks, and move through operational workflows with clearer hierarchy and fewer handoff gaps.",
       challenge: "Translated wireframes into clean, responsive UI using design systems. Collaborated with design leads to deliver scalable and maintainable layouts.",
       solution: "Implemented a comprehensive user research program, redesigned the checkout flow, and created a mobile-first responsive design system.",
       impact: [
@@ -554,7 +554,7 @@ export function CaseStudies() {
     {
       title: "Retail Banking Dashboard – APAC Region",
       category: "Banking",
-      description: "A dashboard solution for an APAC-based bank enabling customer account management, daily transactions, and service operations.",
+      description: "A retail banking dashboard for APAC service teams, designed to surface account activity, transaction context, and customer service actions in one focused operational view.",
       challenge: "Worked under design leadership to deliver new screen flows. Reused and adapted UI components to ensure visual and functional consistency.",
       solution: "Created an intuitive interface with smart automation, role-based access, and streamlined workflows that reduced cognitive load.",
       impact: [
@@ -570,7 +570,7 @@ export function CaseStudies() {
     {
       title: "Tamil Nadu EMIS Portal – School Education Platform",
       category: "Education",
-      description: "A government portal that centralizes student, teacher, and school data across Tamil Nadu for administrative and academic management.",
+      description: "A public education portal experience that organizes school, teacher, and student data for administrators who need faster navigation, cleaner records, and dependable reporting flows.",
       challenge: "Revamped outdated screens to improve clarity and navigation. Worked closely with the team to follow government design standards and improve workflows.",
       solution: "Designed role-based dashboards with progressive disclosure, smart alerts, and personalized insights using advanced data visualization.",
       impact: [
@@ -586,7 +586,7 @@ export function CaseStudies() {
     {
       title: "Self-Initiated Projects for Skill Growth",
       category: "General",
-      description: "Conceptual UI/UX projects including portals, dashboards, and websites created to simulate real-world product scenarios",
+      description: "A collection of practice-led product concepts, including portals, dashboards, and websites built to explore UX patterns, interaction details, and end-to-end product thinking.",
       challenge: "Practiced full design process from ideation to handoff. Focused on building solid UX foundations and consistency across diverse platforms.",
       solution: "Integrated gamification elements, peer learning features, and adaptive content delivery based on individual learning patterns.",
       impact: [
@@ -725,8 +725,20 @@ export function CaseStudies() {
   const personalCarouselRef = useRef<HTMLDivElement | null>(null);
 
   const personalProjects = [
-    { title: "Supply Chain Recovery Hub", image: cgpsample, url: "/uvais/b2b.html", disabled: false },
-    { title: "Hostel Management", image: hostel, url: "/uvais/hostel.html", disabled: false },
+    {
+      title: "Supply Chain Recovery Hub",
+      description: "A disruption-response case study for CPG operations, covering machine breakdown alerts, stakeholder coordination, recovery planning, and product overview flows.",
+      image: cgpsample,
+      url: "/uvais/b2b.html",
+      disabled: false
+    },
+    {
+      title: "Hostel Management",
+      description: "A hostel operations concept for managing student records, rooms, payments, notices, and admin workflows in a simpler digital workspace.",
+      image: hostel,
+      url: "/uvais/hostel.html",
+      disabled: false
+    },
   ];
 
   useEffect(() => {
@@ -950,12 +962,9 @@ export function CaseStudies() {
                           type="button"
                           onClick={() => setFigmaToOpen(project.figmaUrl)}
                           aria-label="Open Figma confirmation"
-                          className="hidden md:inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary text-primary-foreground transition hover:shadow-lg self-start lg:self-end"
+                          className="hidden md:inline-flex h-11 items-center justify-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground transition hover:shadow-lg self-start lg:self-center"
                         >
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                            <circle cx="12" cy="12" r="3" />
-                          </svg>
+                          View in Figma
                         </button>
                       </div>
                     </div>
@@ -1214,7 +1223,7 @@ export function CaseStudies() {
                       <p className="text-sm text-muted-foreground leading-6">
                         {p.disabled
                           ? "A coming soon concept with the next iteration of interactive workflows."
-                          : "A centralized platform for managing supply chain disruptions and recovery."}
+                          : p.description}
                       </p>
                     </div>
 
@@ -1266,7 +1275,7 @@ export function CaseStudies() {
                           <p className="text-sm text-muted-foreground leading-6 max-[740px]:line-clamp-3">
                             {p.disabled
                               ? "A coming soon concept with the next iteration of interactive workflows."
-                              : "A centralized platform for managing supply chain disruptions and recovery."}
+                              : p.description}
                           </p>
                         </div>
 
